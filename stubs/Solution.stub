@@ -6,13 +6,19 @@ use App\Solutions\Solution;
 
 class Day{ $day } extends Solution
 {
-    public function partOne(): string
+    /**
+     * Day { $day } Part 1
+     */
+    public function partOne(): ?string
     {
-        //
+        return null;
     }
 
-    public function partTwo(): string
+    /**
+     * Day { $day } Part 2
+     */
+    public function partTwo(): ?string
     {
-        //
+        return null;
     }
 }

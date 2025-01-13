@@ -6,6 +6,9 @@ use App\Solutions\Solution;
 
 class Day01 extends Solution
 {
+    /**
+     * Day 1 Part 1
+     */
     public function partOne(): string
     {
         $input = explode("\n", trim($this->input));
@@ -18,6 +21,9 @@ class Day01 extends Solution
         return $answer;
     }
 
+    /**
+     * Day 1 Part 2
+     */
     public function partTwo(): string
     {
         $input = explode("\n", trim($this->input));

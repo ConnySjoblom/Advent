@@ -6,6 +6,9 @@ use App\Solutions\Solution;
 
 class Day02 extends Solution
 {
+    /**
+     * Day 2 Part 1
+     */
     public function partOne(): string
     {
         $input = explode(",", trim($this->input));
@@ -45,6 +48,9 @@ class Day02 extends Solution
         return $input[0];
     }
 
+    /**
+     * Day 2 Part 2
+     */
     public function partTwo(): string
     {
         for ($n = 0; $n < 100; $n++) {

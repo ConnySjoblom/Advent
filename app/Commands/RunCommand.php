@@ -33,8 +33,16 @@ class RunCommand extends Command
         $solution = new $solution($year, $day);
         $answer = $solution->$part();
 
+        if (is_null($answer)) {
+            $this->newLine();
+            $this->warn('Solution has no answer.');
+            $this->newLine();
+
+            return Command::FAILURE;
+        }
+
         $this->newLine();
-        $this->line(sprintf("Answer is: %d\n", $answer));
+        $this->info(sprintf("Answer is: %d\n", $answer));
 
         return Command::SUCCESS;
     }

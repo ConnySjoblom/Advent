@@ -6,6 +6,9 @@ use App\Solutions\Solution;
 
 class Day03 extends Solution
 {
+    /**
+     * Day 3 Part 1
+     */
     public function partOne(): string
     {
         $lines = explode("\n", trim($this->input));
@@ -75,6 +78,9 @@ class Day03 extends Solution
         return $smallest;
     }
 
+    /**
+     * Day 3 Part 2
+     */
     public function partTwo(): string
     {
         $lines = explode("\n", trim($this->input));
