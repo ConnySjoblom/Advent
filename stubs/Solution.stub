@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Solutions\Year{ $year };
+
+use App\Solutions\Solution;
+
+class Day{ $day } extends Solution
+{
+    public function partOne(): string
+    {
+        //
+    }
+
+    public function partTwo(): string
+    {
+        //
+    }
+}
