@@ -8,7 +8,7 @@ class Day03 extends Solution
 {
     public function partOne(): string
     {
-        $lines = explode("\n", $this->input);
+        $lines = explode("\n", trim($this->input));
 
         $paths = [];
         foreach ($lines as $line) {
@@ -77,7 +77,7 @@ class Day03 extends Solution
 
     public function partTwo(): string
     {
-        $lines = explode("\n", $this->input);
+        $lines = explode("\n", trim($this->input));
 
         $paths = [];
         foreach ($lines as $line) {
