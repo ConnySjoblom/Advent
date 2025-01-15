@@ -8,7 +8,6 @@ beforeEach(function () {
 
 test('Day 2 Part 1', function (string $input, string $answer) {
     $this->solution->input = $input;
-    dump($this->solution->partOne());
     assertEquals($answer, $this->solution->partOne());
 })->with([
     [<<<'EOL'
