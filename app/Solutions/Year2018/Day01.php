@@ -28,10 +28,10 @@ class Day01 extends Solution
     {
         $input = explode("\n", $this->input);
 
-        //$input = explode(", ", "+1, -1");
-        //$input = explode(", ", "+3, +3, +4, -2, -4");
-        //$input = explode(", ", "-6, +3, +8, +5, -6");
-        //$input = explode(", ", "+7, +7, -2, -7, -4");
+        // $input = explode(", ", "+1, -1");
+        // $input = explode(", ", "+3, +3, +4, -2, -4");
+        // $input = explode(", ", "-6, +3, +8, +5, -6");
+        // $input = explode(", ", "+7, +7, -2, -7, -4");
 
         $answer = 0;
         $frequencies = [$answer];

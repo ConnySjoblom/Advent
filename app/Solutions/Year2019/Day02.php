@@ -11,7 +11,7 @@ class Day02 extends Solution
      */
     public function partOne(): string
     {
-        $input = explode(",", trim($this->input));
+        $input = explode(',', trim($this->input));
 
         $input[1] = 12;
         $input[2] = 2;
@@ -19,7 +19,7 @@ class Day02 extends Solution
         for ($i = 0; $i < count($input); $i += 4) {
             $opcode = $input[$i];
 
-            print "Processing $i :: $opcode :: ";
+            echo "Processing $i :: $opcode :: ";
 
             switch ($opcode) {
                 case 99:
@@ -31,7 +31,6 @@ class Day02 extends Solution
                     $b_pos = $input[$i + 2];
                     $r_pos = $input[$i + 3];
                     $input[$r_pos] = $input[$a_pos] + $input[$b_pos];
-
                     break;
 
                 case 2:
@@ -40,7 +39,6 @@ class Day02 extends Solution
                     $b_pos = $input[$i + 2];
                     $r_pos = $input[$i + 3];
                     $input[$r_pos] = $input[$a_pos] * $input[$b_pos];
-
                     break;
             }
         }
@@ -55,7 +53,7 @@ class Day02 extends Solution
     {
         for ($n = 0; $n < 100; $n++) {
             for ($v = 0; $v < 100; $v++) {
-                $memory = explode(",", trim($this->input));
+                $memory = explode(',', trim($this->input));
 
                 $memory[1] = $n;
                 $memory[2] = $v;
@@ -85,14 +83,14 @@ class Day02 extends Solution
                 }
 
                 if ($memory[0] == 19690720) {
-                    print("Found match: noun = $n and verb = $v\n");
+                    echo "Found match: noun = $n and verb = $v\n";
                     break 2;
                 }
 
-                print("noun = $n and verb = $v\n");
+                echo "noun = $n and verb = $v\n";
             }
         }
 
-        return (100 * $n + $v);
+        return 100 * $n + $v;
     }
 }

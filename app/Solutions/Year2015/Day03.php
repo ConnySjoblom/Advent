@@ -14,24 +14,24 @@ class Day03 extends Solution
         $input = str_split($this->input);
 
         [$x, $y] = [0, 0];
-        $houses["0:0"] = 1;
+        $houses['0:0'] = 1;
         foreach ($input as $index => $char) {
             switch ($char) {
-                case '^': # North
+                case '^': // North
                     $y++;
                     break;
-                case 'v': # South
+                case 'v': // South
                     $y--;
                     break;
-                case '>': # East
+                case '>': // East
                     $x++;
                     break;
-                case '<': # West
+                case '<': // West
                     $x--;
                     break;
             }
 
-            if (!array_key_exists("$x:$y", $houses)) {
+            if (! array_key_exists("$x:$y", $houses)) {
                 $houses["$x:$y"] = 0;
             }
 
@@ -48,27 +48,27 @@ class Day03 extends Solution
     {
         $input = str_split($this->input);
 
-        $houses["0:0"] = 2;
+        $houses['0:0'] = 2;
         [$x[0], $y[0], $x[1], $y[1]] = [0, 0, 0, 0];
 
         foreach ($input as $index => $char) {
             switch ($char) {
-                case '^': # North
+                case '^': // North
                     $y[$index % 2]++;
                     break;
-                case 'v': # South
+                case 'v': // South
                     $y[$index % 2]--;
                     break;
-                case '>': # East
+                case '>': // East
                     $x[$index % 2]++;
                     break;
-                case '<': # West
+                case '<': // West
                     $x[$index % 2]--;
                     break;
             }
 
-            $house = sprintf("%s:%s", $x[$index % 2], $y[$index % 2]);
-            if (!array_key_exists($house, $houses)) {
+            $house = sprintf('%s:%s', $x[$index % 2], $y[$index % 2]);
+            if (! array_key_exists($house, $houses)) {
                 $houses[$house] = 0;
             }
 

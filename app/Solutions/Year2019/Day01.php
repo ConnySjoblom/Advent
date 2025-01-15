@@ -15,7 +15,7 @@ class Day01 extends Solution
 
         $answer = 0;
         foreach ($input as $module) {
-            $answer += (int)floor($module / 3) - 2;
+            $answer += (int) floor($module / 3) - 2;
         }
 
         return $answer;
@@ -38,7 +38,7 @@ class Day01 extends Solution
 
     private function calculate_fuel($entity, &$answer): void
     {
-        $new_fuel = (int)floor($entity / 3) - 2;
+        $new_fuel = (int) floor($entity / 3) - 2;
 
         if ($new_fuel > 5) {
             $this->calculate_fuel($new_fuel, $answer);

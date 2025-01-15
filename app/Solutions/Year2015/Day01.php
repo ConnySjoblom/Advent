@@ -11,10 +11,10 @@ class Day01 extends Solution
      */
     public function partOne(): ?string
     {
-        $up = substr_count($this->input, "(");
-        $down = substr_count($this->input, ")");
+        $up = substr_count($this->input, '(');
+        $down = substr_count($this->input, ')');
 
-        return sprintf("%d", $up - $down);
+        return sprintf('%d', $up - $down);
     }
 
     /**
@@ -27,19 +27,19 @@ class Day01 extends Solution
         $floor = 0;
         foreach ($movement as $i => $change) {
             switch ($change) {
-                case "(":
+                case '(':
                     $floor++;
                     break;
-                case ")":
+                case ')':
                     $floor--;
                     break;
             }
 
             if ($floor < 0) {
-                return sprintf("%d", $i + 1);
+                return sprintf('%d', $i + 1);
             }
         }
 
-        return "Wat?!";
+        return 'Wat?!';
     }
 }

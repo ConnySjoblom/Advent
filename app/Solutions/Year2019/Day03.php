@@ -15,7 +15,7 @@ class Day03 extends Solution
 
         $paths = [];
         foreach ($lines as $line) {
-            $steps = explode(",", trim($line));
+            $steps = explode(',', trim($line));
 
             $x = 0;
             $y = 0;
@@ -24,7 +24,7 @@ class Day03 extends Solution
                 $direction = substr($step, 0, 1);
                 $count = intval(substr($step, 1));
 
-                print(sprintf("%s: %d", $direction, $count) . "\n");
+                echo sprintf('%s: %d', $direction, $count)."\n";
 
                 switch ($direction) {
                     case 'R':
@@ -59,7 +59,7 @@ class Day03 extends Solution
 
         $smallest = PHP_INT_MAX;
         foreach (array_intersect($paths[0], $paths[1]) as $intersection) {
-            $cordinates = explode(":", $intersection);
+            $cordinates = explode(':', $intersection);
             $a = intval($cordinates[0]);
             $b = intval($cordinates[1]);
 
@@ -68,7 +68,7 @@ class Day03 extends Solution
 
             $distance = $a + $b;
 
-            print($intersection . " = " . $distance . "\n");
+            echo $intersection.' = '.$distance."\n";
 
             if ($distance < $smallest) {
                 $smallest = $distance;
@@ -87,7 +87,7 @@ class Day03 extends Solution
 
         $paths = [];
         foreach ($lines as $line) {
-            $steps = explode(",", trim($line));
+            $steps = explode(',', trim($line));
 
             $x = 0;
             $y = 0;
@@ -96,7 +96,7 @@ class Day03 extends Solution
                 $direction = substr($step, 0, 1);
                 $count = intval(substr($step, 1));
 
-                print(sprintf("%s: %d", $direction, $count) . "\n");
+                echo sprintf('%s: %d', $direction, $count)."\n";
 
                 switch ($direction) {
                     case 'R':
@@ -136,7 +136,7 @@ class Day03 extends Solution
 
             $distance = $a + $b;
 
-            print($intersection . " = " . $distance . "\n");
+            echo $intersection.' = '.$distance."\n";
 
             if ($distance < $smallest) {
                 $smallest = $distance;

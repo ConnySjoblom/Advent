@@ -25,8 +25,9 @@ class RunCommand extends Command
         $part = ($part == 1) ? 'partOne' : 'partTwo';
         $solution = sprintf('App\Solutions\Year%d\Day%02d', $year, $day);
 
-        if (!class_exists($solution)) {
+        if (! class_exists($solution)) {
             $this->error('Solution class not found');
+
             return Command::FAILURE;
         }
 

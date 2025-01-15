@@ -24,7 +24,7 @@ class Input
         return [
             $year,
             $day,
-            $part
+            $part,
         ];
     }
 }
