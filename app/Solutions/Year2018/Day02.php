@@ -66,6 +66,6 @@ class Day02 extends Solution
             }
         } while (count($input));
 
-        return '<> This should NOT happen';
+        return null;
     }
 }

@@ -40,6 +40,6 @@ class Day01 extends Solution
             }
         }
 
-        return 'Wat?!';
+        return null;
     }
 }
