@@ -11,14 +11,14 @@ class PrepareCommand extends Command
 {
     protected $signature = 'prepare
                             { day }
-                            { year? }';
+                            { --year= }';
 
     protected $description = 'Prepare puzzle';
 
     public function handle(): int
     {
         [$year, $day] = Input::validate(
-            intval($this->argument('year')),
+            intval($this->option('year')),
             intval($this->argument('day'))
         );
 
