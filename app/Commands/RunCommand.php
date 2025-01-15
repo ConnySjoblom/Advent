@@ -12,7 +12,7 @@ class RunCommand extends Command
                             { day }
                             { part }';
 
-    protected $description = 'Command description';
+    protected $description = 'Run puzzle solution';
 
     public function handle(): int
     {
@@ -42,7 +42,7 @@ class RunCommand extends Command
         }
 
         $this->newLine();
-        $this->info(sprintf("Answer is: %d\n", $answer));
+        $this->info(sprintf("Answer is: %s\n", $answer));
 
         return Command::SUCCESS;
     }

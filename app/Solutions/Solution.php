@@ -6,10 +6,12 @@ use Illuminate\Support\Facades\File;
 
 abstract class Solution
 {
-    protected string $input;
+    public string $input;
 
-    public function __construct(int $year, int $day)
+    public function __construct(?int $year = null, ?int $day = null)
     {
-        $this->input = File::get(storage_path(sprintf('input/%d_%02d_input.txt', $year, $day)));
+        if (!is_null($year) && !is_null($day)) {
+            $this->input = trim(File::get(storage_path(sprintf('input/%d_%02d_input.txt', $year, $day))));
+        }
     }
 }

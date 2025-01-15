@@ -22,6 +22,9 @@ class PrepareCommand extends Command
             intval($this->argument('day'))
         );
 
+        /**
+         * Input fetching
+         */
         $inputPath = storage_path('input');
         $inputFile = sprintf('%s/%d_%02d_input.txt', $inputPath, $year, $day);
 
@@ -41,6 +44,9 @@ class PrepareCommand extends Command
             File::put($inputFile, $inputData);
         }
 
+        /**
+         * Solution handling
+         */
         $solutionPath = app_path(sprintf('Solutions/Year%d', $year));
         $solutionFile = sprintf('%s/Day%02d.php', $solutionPath, $day);
 
@@ -49,12 +55,31 @@ class PrepareCommand extends Command
         } else {
             $this->info('<> Preparing solution...');
 
-            $stub = str(File::get(base_path('stubs/Solution.stub')))
+            $solutionStub = str(File::get(base_path('stubs/Solution.stub')))
                 ->replace('{ $day }', sprintf('%02d', $day))
                 ->replace('{ $year }', $year);
 
             File::ensureDirectoryExists($solutionPath);
-            File::put($solutionFile, $stub);
+            File::put($solutionFile, $solutionStub);
+        }
+
+        /**
+         * Test handling
+         */
+        $testPath = base_path(sprintf('tests/Feature/Year%d', $year));
+        $testFile = sprintf('%s/Day%02dTest.php', $testPath, $day);
+
+        if (File::exists($testFile)) {
+            $this->info(' ! Tests already exists.');
+        } else {
+            $this->info('<> Preparing tests...');
+
+            $testStub = str(File::get(base_path('stubs/Test.stub')))
+                ->replace('{ $day }', sprintf('%02d', $day))
+                ->replace('{ $year }', $year);
+
+            File::ensureDirectoryExists($testPath);
+            File::put($testFile, $testStub);
         }
 
         return Command::SUCCESS;
