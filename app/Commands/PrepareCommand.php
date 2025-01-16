@@ -66,7 +66,7 @@ class PrepareCommand extends Command
         /**
          * Test handling
          */
-        $testPath = base_path(sprintf('tests/Feature/Year%d', $year));
+        $testPath = base_path(sprintf('tests/Unit/Year%d', $year));
         $testFile = sprintf('%s/Day%02dTest.php', $testPath, $day);
 
         if (File::exists($testFile)) {
