@@ -29,7 +29,7 @@ class Day01 extends Solution
 
         $distance = 0;
         for ($i = 0; $i < count($groupA); $i++) {
-            $distance += abs($groupA[$i] - $groupB[$i]);
+            $distance += abs(intval($groupA[$i]) - intval($groupB[$i]));
         }
 
         return sprintf('%d', $distance);
@@ -59,7 +59,7 @@ class Day01 extends Solution
         for ($i = 0; $i < count($groupA); $i++) {
             $current = $groupA[$i];
             if (array_key_exists($current, $groupB)) {
-                $similarity += $groupB[$current] * $current;
+                $similarity += intval($groupB[$current]) * intval($current);
             }
         }
 
