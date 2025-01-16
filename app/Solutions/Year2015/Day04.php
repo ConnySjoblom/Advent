@@ -17,7 +17,7 @@ class Day04 extends Solution
             $hex = md5($input.$i);
 
             if (str_starts_with($hex, '00000')) {
-                return $i;
+                return sprintf('%d', $i);
             }
         }
 
@@ -35,7 +35,7 @@ class Day04 extends Solution
             $hex = md5($input.$i);
 
             if (str_starts_with($hex, '000000')) {
-                return $i;
+                return sprintf('%d', $i);
             }
         }
 

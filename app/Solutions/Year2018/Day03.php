@@ -33,13 +33,13 @@ class Day03 extends Solution
         $withinTwoOrMore = 0;
         foreach ($claims as $x) {
             foreach ($x as $y) {
-                if (count(array_values($y)) >= 2) {
+                if (count($y) >= 2) {
                     $withinTwoOrMore++;
                 }
             }
         }
 
-        return $withinTwoOrMore;
+        return sprintf('%d', $withinTwoOrMore);
     }
 
     /**
@@ -70,7 +70,7 @@ class Day03 extends Solution
 
         foreach ($claims as $x) {
             foreach ($x as $y) {
-                if (count(array_values($y)) >= 2) {
+                if (count($y) >= 2) {
                     foreach ($y as $id) {
                         $ids = array_diff($ids, [$id]);
                     }
@@ -78,6 +78,6 @@ class Day03 extends Solution
             }
         }
 
-        return array_values($ids)[0];
+        return sprintf('%d', array_values($ids)[0]);
     }
 }
