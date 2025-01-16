@@ -6,7 +6,7 @@ beforeEach(function () {
     $this->solution = new \App\Solutions\Year2018\Day01;
 });
 
-test('Day 1 Part 1', function (string $input, string $answer) {
+test('Day 01 Part 1', function (string $input, string $answer) {
     $this->solution->input = $input;
     assertEquals($answer, $this->solution->partOne());
 })->with([
@@ -15,7 +15,7 @@ test('Day 1 Part 1', function (string $input, string $answer) {
     ["-1\n-2\n-3", '-6'],
 ]);
 
-test('Day 1 Part 2', function (string $input, string $answer) {
+test('Day 01 Part 2', function (string $input, string $answer) {
     $this->solution->input = $input;
     assertEquals($answer, $this->solution->partTwo());
 })->with([
