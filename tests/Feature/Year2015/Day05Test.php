@@ -11,11 +11,11 @@ test('Day 05 Part 1', function (string $input, string $answer) {
     assertEquals($answer, $this->solution->partOne());
 })->with([
     ['', ''],
-])->skip();
+])->skip('No test implemented yet.');
 
 test('Day 05 Part 2', function (string $input, string $answer) {
     $this->solution->input = $input;
     assertEquals($answer, $this->solution->partTwo());
 })->with([
     ['', ''],
-])->skip();
+])->skip('No test implemented yet.');
