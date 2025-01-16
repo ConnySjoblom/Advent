@@ -10,12 +10,6 @@ test('Day 04 Part 1', function (string $input, string $answer) {
     $this->solution->input = $input;
     assertEquals($answer, $this->solution->partOne());
 })->with([
-    ['', ''],
-])->skip('Test not implemented');
-
-test('Day 04 Part 2', function (string $input, string $answer) {
-    $this->solution->input = $input;
-    assertEquals($answer, $this->solution->partTwo());
-})->with([
-    ['', ''],
-])->skip('Test not implemented');
+    ['abcdef', '609043'],
+    ['pqrstuv', '1048970'],
+]);
