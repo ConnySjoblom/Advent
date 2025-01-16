@@ -18,12 +18,15 @@ class Day02 extends Solution
             $size = explode('x', $present);
             sort($size, SORT_NUMERIC);
 
-            $paper = (2 * $size[0] * $size[1]) + (2 * $size[1] * $size[2]) + (2 * $size[2] * $size[0]);
+            $paper =
+                (2 * intval($size[0]) * intval($size[1]))
+                + (2 * intval($size[1]) * intval($size[2]))
+                + (2 * intval($size[2]) * intval($size[0]));
 
-            $wrapper += ($paper + (array_shift($size) * array_shift($size)));
+            $wrapper += ($paper + intval(array_shift($size)) * intval(array_shift($size)));
         }
 
-        return $wrapper;
+        return sprintf('%d', $wrapper);
     }
 
     /**
@@ -38,10 +41,10 @@ class Day02 extends Solution
             $size = explode('x', $present);
             sort($size, SORT_NUMERIC);
 
-            $ribbon += ($size[0] * 2) + ($size[1] * 2);
-            $ribbon += ($size[0] * $size[1] * $size[2]);
+            $ribbon += (intval($size[0]) * 2) + (intval($size[1]) * 2);
+            $ribbon += (intval($size[0]) * intval($size[1]) * intval($size[2]));
         }
 
-        return $ribbon;
+        return sprintf('%d', $ribbon);
     }
 }

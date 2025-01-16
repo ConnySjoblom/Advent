@@ -75,7 +75,7 @@ class Day03 extends Solution
             }
         }
 
-        return $smallest;
+        return sprintf('%d', $smallest);
     }
 
     /**
@@ -143,6 +143,6 @@ class Day03 extends Solution
             }
         }
 
-        return $smallest;
+        return sprintf('%d', $smallest);
     }
 }

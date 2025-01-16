@@ -29,7 +29,7 @@ class Day02 extends Solution
             }
         }
 
-        return $twice * $thrice;
+        return sprintf('%d', $twice * $thrice);
     }
 
     /**

@@ -15,10 +15,10 @@ class Day01 extends Solution
 
         $answer = 0;
         foreach ($input as $module) {
-            $answer += (int) floor($module / 3) - 2;
+            $answer += (int) floor(intval($module) / 3) - 2;
         }
 
-        return $answer;
+        return sprintf('%d', $answer);
     }
 
     /**
@@ -30,13 +30,13 @@ class Day01 extends Solution
 
         $answer = 0;
         foreach ($input as $module) {
-            $this->calculate_fuel($module, $answer);
+            $this->calculate_fuel(intval($module), $answer);
         }
 
-        return $answer;
+        return sprintf('%d', $answer);
     }
 
-    private function calculate_fuel($entity, &$answer): void
+    private function calculate_fuel(int $entity, int &$answer): void
     {
         $new_fuel = (int) floor($entity / 3) - 2;
 

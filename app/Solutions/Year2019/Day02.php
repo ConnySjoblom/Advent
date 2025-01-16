@@ -91,6 +91,6 @@ class Day02 extends Solution
             }
         }
 
-        return 100 * $n + $v;
+        return sprintf('%d', 100 * $n + $v);
     }
 }
