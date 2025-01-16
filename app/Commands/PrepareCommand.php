@@ -27,6 +27,7 @@ class PrepareCommand extends Command
 
         if (is_null(config('aoc.session'))) {
             $this->components->error('No AOC session found');
+
             return Command::FAILURE;
         }
 
