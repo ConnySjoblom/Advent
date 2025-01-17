@@ -10,12 +10,19 @@ test('Day 05 Part 1', function (string $input, string $answer) {
     $this->solution->input = $input;
     assertEquals($answer, $this->solution->partOne());
 })->with([
-    ['', ''],
-])->skip('No test implemented yet.');
+    ['ugknbfddgicrmopn', '1'],
+    ['aaa', '1'],
+    ['jchzalrnumimnmhp', '0'],
+    ['haegwjzuvuyypxyu', '0'],
+    ['dvszwmarrgswjxmb', '0'],
+]);
 
 test('Day 05 Part 2', function (string $input, string $answer) {
     $this->solution->input = $input;
     assertEquals($answer, $this->solution->partTwo());
 })->with([
-    ['', ''],
-])->skip('No test implemented yet.');
+    ['qjhvhtzxzqqjkmpb', '1'],
+    ['xxyxx', '1'],
+    ['uurcxstgmygtbstg', '0'],
+    ['ieodomkazucvgmuy', '0'],
+]);
