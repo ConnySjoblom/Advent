@@ -18,7 +18,7 @@ class Day10 extends Solution
             $input = $this->lookAndSay($input);
         }
 
-        return strlen($input);
+        return sprintf('%d', strlen($input));
     }
 
     /**
@@ -33,7 +33,7 @@ class Day10 extends Solution
             $input = $this->lookAndSay($input);
         }
 
-        return strlen($input);
+        return sprintf('%d', strlen($input));
     }
 
     public function lookAndSay(string $input): string

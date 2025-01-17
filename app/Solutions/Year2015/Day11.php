@@ -36,9 +36,9 @@ class Day11 extends Solution
             }
 
             if (
-                ! array_key_exists($this->charToInt('i'), array_values($passwordParts))
-                && ! array_key_exists($this->charToInt('o'), array_values($passwordParts))
-                && ! array_key_exists($this->charToInt('l'), array_values($passwordParts))
+                ! array_key_exists($this->charToInt('i'), $passwordParts)
+                && ! array_key_exists($this->charToInt('o'), $passwordParts)
+                && ! array_key_exists($this->charToInt('l'), $passwordParts)
             ) {
                 $noIllegalChars = true;
             }
