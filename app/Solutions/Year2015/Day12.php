@@ -13,7 +13,7 @@ class Day12 extends Solution
     {
         $input = json_decode(trim($this->input), true);
 
-        return $this->getSum($input);
+        return sprintf('%d', $this->getSum($input));
     }
 
     /**
@@ -23,7 +23,7 @@ class Day12 extends Solution
     {
         $input = json_decode(trim($this->input), true);
 
-        return $this->getSumTwo($input);
+        return sprintf('%d', $this->getSumTwo($input));
     }
 
     public function getSum(mixed $input): ?int
