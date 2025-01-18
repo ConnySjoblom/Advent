@@ -46,8 +46,15 @@ class PrepareCommand extends Command
                 'session' => config('aoc.session'),
             ], 'adventofcode.com');
 
-            $inputData = $http->get(sprintf('https://adventofcode.com/%d/day/%d/input', $year, $day))
-                ->getBody()->getContents();
+            $inputResponse = $http->get(sprintf('https://adventofcode.com/%d/day/%d/input', $year, $day));
+
+            if ($inputResponse->status() !== 200) {
+                $this->components->error('AOC session is invalid');
+
+                return Command::FAILURE;
+            }
+
+            $inputData = $inputResponse->getBody()->getContents();
 
             File::ensureDirectoryExists($inputPath);
             File::put($inputFile, $inputData);
