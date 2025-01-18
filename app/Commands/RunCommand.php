@@ -3,11 +3,13 @@
 namespace App\Commands;
 
 use App\Support\Input;
+use Illuminate\Support\Carbon;
 use LaravelZero\Framework\Commands\Command;
 
 class RunCommand extends Command
 {
     protected $signature = 'run
+                            { --s|stats }
                             { --year= }
                             { day }
                             { part }';
@@ -16,6 +18,8 @@ class RunCommand extends Command
 
     public function handle(): int
     {
+        $showStats = $this->option('stats');
+
         [$year, $day, $part] = Input::validate(
             intval($this->option('year')),
             intval($this->argument('day')),
@@ -32,7 +36,10 @@ class RunCommand extends Command
         }
 
         $solution = new $solution($year, $day);
+        $solveStart = now();
+
         $answer = $solution->$part();
+        $solveTime = $solveStart->diff(now());
 
         if (is_null($answer)) {
             $this->newLine();
@@ -44,6 +51,18 @@ class RunCommand extends Command
 
         $this->newLine();
         $this->info(sprintf("Answer is: %s\n", $answer));
+
+        $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
+
+        if ($showStats) {
+            $totalTime = Carbon::parse(LARAVEL_START)->diff(now()); // @phpstan-ignore-line
+
+            $this->line(sprintf(
+                "Solve time: %s\nExecution time: %s\n",
+                $solveTime->forHumans($carbonConfig),
+                $totalTime->forHumans($carbonConfig)
+            ));
+        }
 
         return Command::SUCCESS;
     }
