@@ -18,7 +18,7 @@ class Day14 extends Solution
         foreach ($input as $line) {
             preg_match('/(\w*) can fly (\d*) .* (\d*) .* (\d*) seconds./', $line, $matches);
 
-            $reindeer[] = new Reindeer($matches[1], $matches[2], $matches[3], $matches[4]);
+            $reindeer[] = new Reindeer($matches[1], intval($matches[2]), intval($matches[3]), intval($matches[4]));
         }
 
         for ($i = 1; $i <= $seconds; $i++) {
@@ -34,7 +34,7 @@ class Day14 extends Solution
 
         arsort($distances);
 
-        return array_values($distances)[0];
+        return sprintf('%d', array_values($distances)[0]);
     }
 
     /**
@@ -49,7 +49,7 @@ class Day14 extends Solution
         foreach ($input as $line) {
             preg_match('/(\w*) can fly (\d*) .* (\d*) .* (\d*) seconds./', $line, $matches);
 
-            $reindeer[] = new Reindeer($matches[1], $matches[2], $matches[3], $matches[4]);
+            $reindeer[] = new Reindeer($matches[1], intval($matches[2]), intval($matches[3]), intval($matches[4]));
             $points[$matches[1]] = 0;
         }
 
@@ -69,6 +69,6 @@ class Day14 extends Solution
 
         arsort($points);
 
-        return array_values($points)[0];
+        return sprintf('%d', array_values($points)[0]);
     }
 }
