@@ -2,15 +2,15 @@
 
 namespace App\Solutions\Support;
 
+use App\Solutions\Support\Enum\ReindeerState;
+
 class Reindeer
 {
     public int $distance = 0;
 
-    private int $state = 1; // 1 = Flying, 0 = Resting
+    private ReindeerState $state = ReindeerState::FLYING;
 
-    private ?int $flyingNext = null;
-
-    private ?int $restingNext = null;
+    private ?int $nextStateStep = null;
 
     public function __construct(
         public string $name,
@@ -23,53 +23,34 @@ class Reindeer
 
     public function move(int $step): void
     {
+        $this->processStep();
         $this->verifyState($step);
-        $this->fly();
-        $this->setTimes($step);
     }
 
-    private function fly(): void
+    private function processStep(): void
     {
-        switch ($this->state) {
-            case 1:
-                $this->distance += $this->speed;
-                break;
-            default:
-                break;
+        if ($this->nextStateStep == null) {
+            $this->nextStateStep = $this->flyingTime;
+        }
+
+        if ($this->state == ReindeerState::FLYING) {
+            $this->distance += $this->speed;
         }
     }
 
     private function verifyState(int $step): void
     {
-        switch ($this->state) {
-            case 0:
-                if ($this->flyingNext == $step) {
-                    $this->state = 1;
-                    $this->flyingNext = null;
-                }
-                break;
-            case 1:
-                if ($this->restingNext == $step) {
-                    $this->state = 0;
-                    $this->restingNext = null;
-                }
-                break;
-        }
-    }
+        if ($this->nextStateStep == $step) {
+            $this->state = Reindeerstate::from(1 - $this->state->value);
 
-    private function setTimes(int $step): void
-    {
-        switch ($this->state) {
-            case 0:
-                if (is_null($this->flyingNext)) {
-                    $this->flyingNext = $step + $this->restingTime;
-                }
-                break;
-            case 1:
-                if (is_null($this->restingNext)) {
-                    $this->restingNext = $step + $this->flyingTime;
-                }
-                break;
+            switch ($this->state) {
+                case ReindeerState::FLYING:
+                    $this->nextStateStep = $step + $this->flyingTime;
+                    break;
+                case ReindeerState::RESTING:
+                    $this->nextStateStep = $step + $this->restingTime;
+                    break;
+            }
         }
     }
 }
