@@ -24,9 +24,21 @@ EOF;
     [4, '4'],
 ]);
 
-test('Day 18 Part 2', function (string $input, string $answer) {
-    $this->solution->input = $input;
-    assertEquals($answer, $this->solution->partTwo());
+test('Day 18 Part 2', function (int $steps, string $answer) {
+    $this->solution->input = <<<'EOF'
+##.#.#
+...##.
+#....#
+..#...
+#.#..#
+####.#
+EOF;
+
+    assertEquals($answer, $this->solution->partTwo($steps));
 })->with([
-    ['', ''],
-])->skip('No test implemented yet.');
+    [1, '18'],
+    [2, '18'],
+    [3, '18'],
+    [4, '14'],
+    [5, '17'],
+]);
