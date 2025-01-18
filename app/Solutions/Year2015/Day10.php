@@ -9,7 +9,7 @@ class Day10 extends Solution
     /**
      * Day 10 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $times = 40;
         $input = trim($this->input);
@@ -18,13 +18,13 @@ class Day10 extends Solution
             $input = $this->lookAndSay($input);
         }
 
-        return sprintf('%d', strlen($input));
+        return strlen($input);
     }
 
     /**
      * Day 10 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $times = 50;
         $input = trim($this->input);
@@ -33,7 +33,7 @@ class Day10 extends Solution
             $input = $this->lookAndSay($input);
         }
 
-        return sprintf('%d', strlen($input));
+        return strlen($input);
     }
 
     public function lookAndSay(string $input): string

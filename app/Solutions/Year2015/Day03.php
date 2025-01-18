@@ -9,7 +9,7 @@ class Day03 extends Solution
     /**
      * Day 03 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = str_split($this->input);
 
@@ -38,13 +38,13 @@ class Day03 extends Solution
             $houses["$x:$y"] += 1;
         }
 
-        return sprintf('%d', count($houses));
+        return count($houses);
     }
 
     /**
      * Day 03 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = str_split($this->input);
 
@@ -75,6 +75,6 @@ class Day03 extends Solution
             $houses[$house] += 1;
         }
 
-        return sprintf('%d', count($houses));
+        return count($houses);
     }
 }

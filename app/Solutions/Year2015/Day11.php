@@ -9,7 +9,7 @@ class Day11 extends Solution
     /**
      * Day 11 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $password = trim($this->input);
         // ord() - 96 :: a = 1, b = 2 => chr()
@@ -63,7 +63,7 @@ class Day11 extends Solution
     /**
      * Day 11 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $this->input = $this->partOne();
         $this->input = $this->incrementString($this->input);

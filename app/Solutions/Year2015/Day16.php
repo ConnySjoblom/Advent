@@ -29,7 +29,7 @@ EOF;
     /**
      * Day 16 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -65,7 +65,7 @@ EOF;
             }
 
             if ($match) {
-                return sprintf('%d', $number);
+                return $number;
             }
         }
 
@@ -75,7 +75,7 @@ EOF;
     /**
      * Day 16 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -130,7 +130,7 @@ EOF;
             }
 
             if ($match) {
-                return sprintf('%d', $number);
+                return $number;
             }
         }
 

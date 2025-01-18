@@ -9,7 +9,7 @@ class Day02 extends Solution
     /**
      * Day 02 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -26,13 +26,13 @@ class Day02 extends Solution
             $wrapper += ($paper + intval(array_shift($size)) * intval(array_shift($size)));
         }
 
-        return sprintf('%d', $wrapper);
+        return $wrapper;
     }
 
     /**
      * Day 02 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -45,6 +45,6 @@ class Day02 extends Solution
             $ribbon += (intval($size[0]) * intval($size[1]) * intval($size[2]));
         }
 
-        return sprintf('%d', $ribbon);
+        return $ribbon;
     }
 }

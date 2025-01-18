@@ -9,7 +9,7 @@ class Day09 extends Solution
     /**
      * Day 09 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", trim($this->input));
 
@@ -47,13 +47,13 @@ class Day09 extends Solution
             }
         }
 
-        return sprintf('%d', $shortest);
+        return $shortest;
     }
 
     /**
      * Day 09 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", trim($this->input));
 
@@ -91,7 +91,7 @@ class Day09 extends Solution
             }
         }
 
-        return sprintf('%d', $longest);
+        return $longest;
     }
 
     private function generateTrips(array $places): array

@@ -9,21 +9,21 @@ class Day12 extends Solution
     /**
      * Day 12 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = json_decode(trim($this->input), true);
 
-        return sprintf('%d', $this->getSum($input));
+        return $this->getSum($input);
     }
 
     /**
      * Day 12 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = json_decode(trim($this->input), true);
 
-        return sprintf('%d', $this->getSumTwo($input));
+        return $this->getSumTwo($input);
     }
 
     public function getSum(mixed $input): ?int

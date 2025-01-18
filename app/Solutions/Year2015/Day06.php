@@ -9,7 +9,7 @@ class Day06 extends Solution
     /**
      * Day 06 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -44,13 +44,13 @@ class Day06 extends Solution
             }
         }
 
-        return sprintf('%d', count(array_filter($lights)));
+        return count(array_filter($lights));
     }
 
     /**
      * Day 06 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -87,6 +87,6 @@ class Day06 extends Solution
             }
         }
 
-        return sprintf('%d', array_sum($lights));
+        return array_sum($lights);
     }
 }

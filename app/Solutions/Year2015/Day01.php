@@ -9,18 +9,18 @@ class Day01 extends Solution
     /**
      * Day 01 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $up = substr_count($this->input, '(');
         $down = substr_count($this->input, ')');
 
-        return sprintf('%d', $up - $down);
+        return $up - $down;
     }
 
     /**
      * Day 01 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $movement = str_split($this->input);
 
@@ -36,7 +36,7 @@ class Day01 extends Solution
             }
 
             if ($floor < 0) {
-                return sprintf('%d', $i + 1);
+                return $i + 1;
             }
         }
 

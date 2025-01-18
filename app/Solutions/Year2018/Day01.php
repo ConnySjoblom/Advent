@@ -9,7 +9,7 @@ class Day01 extends Solution
     /**
      * Day 01 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -24,7 +24,7 @@ class Day01 extends Solution
     /**
      * Day 01 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", $this->input);
 

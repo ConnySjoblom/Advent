@@ -10,7 +10,7 @@ class Day14 extends Solution
     /**
      * Day 14 Part 1
      */
-    public function partOne(int $seconds = 2503): ?string
+    public function partOne(int $seconds = 2503): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -34,13 +34,13 @@ class Day14 extends Solution
 
         arsort($distances);
 
-        return sprintf('%d', array_values($distances)[0]);
+        return array_values($distances)[0];
     }
 
     /**
      * Day 14 Part 2
      */
-    public function partTwo(int $seconds = 2503): ?string
+    public function partTwo(int $seconds = 2503): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -69,6 +69,6 @@ class Day14 extends Solution
 
         arsort($points);
 
-        return sprintf('%d', array_values($points)[0]);
+        return array_values($points)[0];
     }
 }

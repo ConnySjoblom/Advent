@@ -9,7 +9,7 @@ class Day04 extends Solution
     /**
      * Day 04 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = trim($this->input);
 
@@ -17,7 +17,7 @@ class Day04 extends Solution
             $hex = md5($input.$i);
 
             if (str_starts_with($hex, '00000')) {
-                return sprintf('%d', $i);
+                return $i;
             }
         }
 
@@ -27,7 +27,7 @@ class Day04 extends Solution
     /**
      * Day 04 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = trim($this->input);
 
@@ -35,7 +35,7 @@ class Day04 extends Solution
             $hex = md5($input.$i);
 
             if (str_starts_with($hex, '000000')) {
-                return sprintf('%d', $i);
+                return $i;
             }
         }
 

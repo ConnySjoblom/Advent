@@ -9,7 +9,7 @@ class Day05 extends Solution
     /**
      * Day 05 Part 1
      */
-    public function partOne(): ?string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -35,13 +35,13 @@ class Day05 extends Solution
             $nice++;
         }
 
-        return sprintf('%d', $nice);
+        return $nice;
     }
 
     /**
      * Day 05 Part 2
      */
-    public function partTwo(): ?string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", $this->input);
 
@@ -58,6 +58,6 @@ class Day05 extends Solution
             $nice++;
         }
 
-        return sprintf('%d', $nice);
+        return $nice;
     }
 }
