@@ -32,7 +32,7 @@ class Day01 extends Solution
             $distance += abs(intval($groupA[$i]) - intval($groupB[$i]));
         }
 
-        return sprintf('%d', $distance);
+        return $distance;
     }
 
     /**
@@ -63,6 +63,6 @@ class Day01 extends Solution
             }
         }
 
-        return sprintf('%d', $similarity);
+        return $similarity;
     }
 }

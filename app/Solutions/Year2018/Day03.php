@@ -39,7 +39,7 @@ class Day03 extends Solution
             }
         }
 
-        return sprintf('%d', $withinTwoOrMore);
+        return $withinTwoOrMore;
     }
 
     /**
@@ -78,6 +78,6 @@ class Day03 extends Solution
             }
         }
 
-        return sprintf('%d', array_values($ids)[0]);
+        return array_values($ids)[0];
     }
 }

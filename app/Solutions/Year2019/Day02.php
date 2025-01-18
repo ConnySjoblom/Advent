@@ -9,7 +9,7 @@ class Day02 extends Solution
     /**
      * Day 2 Part 1
      */
-    public function partOne(): string
+    public function partOne(): string|int|null
     {
         $input = explode(',', trim($this->input));
 
@@ -44,7 +44,7 @@ class Day02 extends Solution
     /**
      * Day 2 Part 2
      */
-    public function partTwo(): string
+    public function partTwo(): string|int|null
     {
         for ($n = 0; $n < 100; $n++) {
             for ($v = 0; $v < 100; $v++) {
@@ -86,6 +86,6 @@ class Day02 extends Solution
             }
         }
 
-        return sprintf('%d', 100 * $n + $v);
+        return 100 * $n + $v;
     }
 }

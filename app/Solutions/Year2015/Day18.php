@@ -72,6 +72,7 @@ class Day18 extends Solution
         return match ($initialState) {
             '#' => in_array($lightsOn, [2, 3]) ? '#' : '.',
             '.' => $lightsOn == 3 ? '#' : '.',
+            default => null,
         };
     }
 }

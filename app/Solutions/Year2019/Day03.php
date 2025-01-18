@@ -9,7 +9,7 @@ class Day03 extends Solution
     /**
      * Day 3 Part 1
      */
-    public function partOne(): string
+    public function partOne(): string|int|null
     {
         $lines = explode("\n", trim($this->input));
 
@@ -59,9 +59,9 @@ class Day03 extends Solution
 
         $smallest = PHP_INT_MAX;
         foreach (array_intersect($paths[0], $paths[1]) as $intersection) {
-            $cordinates = explode(':', $intersection);
-            $a = intval($cordinates[0]);
-            $b = intval($cordinates[1]);
+            $coordinates = explode(':', $intersection);
+            $a = intval($coordinates[0]);
+            $b = intval($coordinates[1]);
 
             $a = abs($a);
             $b = abs($b);
@@ -75,13 +75,13 @@ class Day03 extends Solution
             }
         }
 
-        return sprintf('%d', $smallest);
+        return $smallest;
     }
 
     /**
      * Day 3 Part 2
      */
-    public function partTwo(): string
+    public function partTwo(): string|int|null
     {
         $lines = explode("\n", trim($this->input));
 
@@ -143,6 +143,6 @@ class Day03 extends Solution
             }
         }
 
-        return sprintf('%d', $smallest);
+        return $smallest;
     }
 }

@@ -18,7 +18,7 @@ class Day01 extends Solution
             $answer += intval($value);
         }
 
-        return sprintf('%d', $answer);
+        return $answer;
     }
 
     /**
@@ -41,7 +41,7 @@ class Day01 extends Solution
                 $answer += intval($value);
 
                 if (in_array($answer, $frequencies)) {
-                    return sprintf('%d', $answer);
+                    return $answer;
                 }
 
                 $frequencies[] = $answer;

@@ -9,7 +9,7 @@ class Day01 extends Solution
     /**
      * Day 1 Part 1
      */
-    public function partOne(): string
+    public function partOne(): string|int|null
     {
         $input = explode("\n", trim($this->input));
 
@@ -18,13 +18,13 @@ class Day01 extends Solution
             $answer += (int) floor(intval($module) / 3) - 2;
         }
 
-        return sprintf('%d', $answer);
+        return $answer;
     }
 
     /**
      * Day 1 Part 2
      */
-    public function partTwo(): string
+    public function partTwo(): string|int|null
     {
         $input = explode("\n", trim($this->input));
 
@@ -33,7 +33,7 @@ class Day01 extends Solution
             $this->calculate_fuel(intval($module), $answer);
         }
 
-        return sprintf('%d', $answer);
+        return $answer;
     }
 
     private function calculate_fuel(int $entity, int &$answer): void
