@@ -24,7 +24,7 @@ class Day03 extends Solution
                 $direction = substr($step, 0, 1);
                 $count = intval(substr($step, 1));
 
-                echo sprintf('%s: %d', $direction, $count)."\n";
+                echo sprintf('%s: %d', $direction, $count) . "\n";
 
                 switch ($direction) {
                     case 'R':
@@ -68,7 +68,7 @@ class Day03 extends Solution
 
             $distance = $a + $b;
 
-            echo $intersection.' = '.$distance."\n";
+            echo $intersection . ' = ' . $distance . "\n";
 
             if ($distance < $smallest) {
                 $smallest = $distance;
@@ -96,7 +96,7 @@ class Day03 extends Solution
                 $direction = substr($step, 0, 1);
                 $count = intval(substr($step, 1));
 
-                echo sprintf('%s: %d', $direction, $count)."\n";
+                echo sprintf('%s: %d', $direction, $count) . "\n";
 
                 switch ($direction) {
                     case 'R':
@@ -136,7 +136,7 @@ class Day03 extends Solution
 
             $distance = $a + $b;
 
-            echo $intersection.' = '.$distance."\n";
+            echo $intersection . ' = ' . $distance . "\n";
 
             if ($distance < $smallest) {
                 $smallest = $distance;

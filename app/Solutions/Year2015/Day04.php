@@ -14,7 +14,7 @@ class Day04 extends Solution
         $input = trim($this->input);
 
         for ($i = 0; $i < PHP_INT_MAX; $i++) {
-            $hex = md5($input.$i);
+            $hex = md5($input . $i);
 
             if (str_starts_with($hex, '00000')) {
                 return $i;
@@ -32,7 +32,7 @@ class Day04 extends Solution
         $input = trim($this->input);
 
         for ($i = 0; $i < PHP_INT_MAX; $i++) {
-            $hex = md5($input.$i);
+            $hex = md5($input . $i);
 
             if (str_starts_with($hex, '000000')) {
                 return $i;

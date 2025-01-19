@@ -3,7 +3,7 @@
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->solution = new \App\Solutions\Year{ $year }\Day{ $day };
+    $this->solution = new \App\Solutions\Year{ $year }\Day{ $day }();
 });
 
 test('Day { $day } Part 1', function (string $input, string $answer) {

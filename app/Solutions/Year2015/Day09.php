@@ -114,7 +114,7 @@ class Day09 extends Solution
                 $trips = $this->generateTrips($remainingPlaces);
 
                 for ($j = 0; $j < count($trips); $j++) {
-                    $result[] = $place.'-'.$trips[$j];
+                    $result[] = $place . '-' . $trips[$j];
                 }
             }
         }
