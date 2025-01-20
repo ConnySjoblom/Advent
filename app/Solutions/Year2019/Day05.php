@@ -14,7 +14,7 @@ class Day05 extends Solution
      * Day 05 Part 1
      * @throws Exception
      */
-    public function partOne(int $input = 5): string|int|null
+    public function partOne(int $input = 1): string|int|null
     {
         $computer = new IntcodeComputer(trim($this->input));
         $computer->setInput($input);
