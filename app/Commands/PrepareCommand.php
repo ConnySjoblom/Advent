@@ -11,13 +11,15 @@ class PrepareCommand extends Command
 {
     protected $signature = 'prepare
                             { day : Which day do you want to prepare? }
-                            { --year= : Which year do you want to prepare? }
-                            { --force : Force prepare day }';
+                            { --y|year= : Which year do you want to prepare? }
+                            { --t|test : Create the test file }
+                            { --f|force : Force prepare day }';
 
     protected $description = 'Prepare puzzle';
 
     public function handle(): int
     {
+        $test = $this->option('test');
         $force = $this->option('force');
 
         [$year, $day] = Input::validate(
@@ -37,7 +39,7 @@ class PrepareCommand extends Command
         $inputPath = storage_path('input');
         $inputFile = sprintf('%s/%d_%02d_input.txt', $inputPath, $year, $day);
 
-        if (File::exists($inputFile) && ! $force) {
+        if (File::exists($inputFile) && !$force) {
             $this->info(' ! Puzzle input already exists.');
         } else {
             $this->info('<> Preparing puzzle input...');
@@ -66,7 +68,7 @@ class PrepareCommand extends Command
         $solutionPath = app_path(sprintf('Solutions/Year%d', $year));
         $solutionFile = sprintf('%s/Day%02d.php', $solutionPath, $day);
 
-        if (File::exists($solutionFile) && ! $force) {
+        if (File::exists($solutionFile) && !$force) {
             $this->info(' ! Solution already exists.');
         } else {
             $this->info('<> Preparing solution...');
@@ -82,20 +84,22 @@ class PrepareCommand extends Command
         /**
          * Test handling
          */
-        $testPath = base_path(sprintf('tests/Unit/Year%d', $year));
-        $testFile = sprintf('%s/Day%02dTest.php', $testPath, $day);
+        if ($test) {
+            $testPath = base_path(sprintf('tests/Unit/Year%d', $year));
+            $testFile = sprintf('%s/Day%02dTest.php', $testPath, $day);
 
-        if (File::exists($testFile) && ! $force) {
-            $this->info(' ! Tests already exists.');
-        } else {
-            $this->info('<> Preparing tests...');
+            if (File::exists($testFile) && !$force) {
+                $this->info(' ! Tests already exists.');
+            } else {
+                $this->info('<> Preparing tests...');
 
-            $testStub = str(File::get(base_path('stubs/Test.stub')))
-                ->replace('{ $day }', sprintf('%02d', $day))
-                ->replace('{ $year }', $year);
+                $testStub = str(File::get(base_path('stubs/Test.stub')))
+                    ->replace('{ $day }', sprintf('%02d', $day))
+                    ->replace('{ $year }', $year);
 
-            File::ensureDirectoryExists($testPath);
-            File::put($testFile, $testStub);
+                File::ensureDirectoryExists($testPath);
+                File::put($testFile, $testStub);
+            }
         }
 
         return Command::SUCCESS;
