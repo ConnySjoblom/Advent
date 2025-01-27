@@ -41,15 +41,15 @@ class RunCommand extends Command
         $answer = $solution->$part();
         $solveTime = $solveStart->diff(now());
 
+        $this->newLine();
+
         if (is_null($answer)) {
-            $this->newLine();
             $this->warn('Solution has no answer.');
             $this->newLine();
 
             return Command::FAILURE;
         }
 
-        $this->newLine();
         $this->info(sprintf("Answer is: %s\n", $answer));
 
         $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
