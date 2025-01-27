@@ -6,9 +6,9 @@ use Exception;
 
 class IntcodeComputer
 {
-    protected int $input;
-
     protected int $pointer = 0;
+
+    protected array $input = [];
 
     protected array $output = [];
 
@@ -21,12 +21,17 @@ class IntcodeComputer
 
     public function setInput(int $input): void
     {
-        $this->input = $input;
+        $this->input[] = $input;
     }
 
     public function getOutput(): array
     {
         return $this->output;
+    }
+
+    public function getLastOutput(): int
+    {
+        return end($this->output);
     }
 
     /**
@@ -61,7 +66,7 @@ class IntcodeComputer
                     break;
 
                 case 3: # Write
-                    $this->writeMemoryOffset(1, $this->input);
+                    $this->writeMemoryOffset(1, array_shift($this->input));
 
                     $this->pointer += 2;
                     break;
@@ -131,7 +136,7 @@ class IntcodeComputer
 
     private function getOp(): int
     {
-        return (int) substr($this->getOpStr(), -2);
+        return (int)substr($this->getOpStr(), -2);
     }
 
     /**
@@ -139,7 +144,7 @@ class IntcodeComputer
      */
     private function readMemoryOffset(int $offset): int
     {
-        $accessMode = (int) substr($this->getOpStr(), -2 - $offset, 1);
+        $accessMode = (int)substr($this->getOpStr(), -2 - $offset, 1);
 
         return match ($accessMode) {
             0 => $this->memory[$this->memory[$this->pointer + $offset]],
