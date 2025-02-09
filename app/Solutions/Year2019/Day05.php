@@ -8,8 +8,6 @@ use Exception;
 
 class Day05 extends Solution
 {
-    public array $output = [];
-
     /**
      * Day 05 Part 1
      * @throws Exception
@@ -18,11 +16,13 @@ class Day05 extends Solution
     {
         $computer = new IntcodeComputer(trim($this->input));
         $computer->setInput($input);
-        $computer->run();
 
-        $this->output = $computer->getOutput();
+        $output = 0;
+        while ($output == 0) {
+            $output = $computer->run();
+        }
 
-        return array_pop($this->output);
+        return $output;
     }
 
     /**
@@ -33,10 +33,12 @@ class Day05 extends Solution
     {
         $computer = new IntcodeComputer(trim($this->input));
         $computer->setInput($input);
-        $computer->run();
 
-        $this->output = $computer->getOutput();
+        $output = 0;
+        while ($output == 0) {
+            $output = $computer->run();
+        }
 
-        return array_pop($this->output);
+        return $output;
     }
 }
