@@ -119,6 +119,8 @@ class IntcodeComputer
                     break;
             }
         }
+
+        return 0; // this should not happen?!
     }
 
     private function getOpStr(): string
@@ -136,8 +138,8 @@ class IntcodeComputer
         $accessMode = (int)substr($this->getOpStr(), -2 - $offset, 1);
 
         return match ($accessMode) {
-            0 => $this->memory[$this->memory[$this->pointer + $offset]],
-            1 => $this->memory[$this->pointer + $offset]
+            1 => $this->memory[$this->pointer + $offset],
+            default => $this->memory[$this->memory[$this->pointer + $offset]], // 0 is considered default behaviour
         };
     }
 
