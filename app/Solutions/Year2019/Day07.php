@@ -20,9 +20,7 @@ class Day07 extends Solution
                 $computer = new IntcodeComputer(trim($this->input));
                 $computer->setInput($phase_setting);
                 $computer->setInput($input);
-                $computer->run();
-
-                $input = $computer->getLastOutput();
+                $input = $computer->run();
             }
 
             $signals[] = $input;
@@ -37,7 +35,28 @@ class Day07 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        return null;
+        $max = 0;
+        foreach ($this->permutations(range(5, 9)) as $permutation) {
+            $input = 0;
+            $output = 0;
+            $computers = $this->createComputers($permutation);
+            while (true) {
+                foreach ($computers as $computer) {
+                    $computer->setInput($input);
+                    $input = $computer->run();
+
+                    if ($input == -1) {
+                        break 2;
+                    }
+                }
+
+                $output = $input;
+            }
+
+            $max = max($max, $output);
+        }
+
+        return $max;
     }
 
     public function permutations(array $elements): Generator
@@ -55,5 +74,18 @@ class Day07 extends Solution
                 }
             }
         }
+    }
+
+    private function createComputers(mixed $permutation): array
+    {
+        $computers = [];
+
+        foreach ($permutation as $phase) {
+            $computer = new IntcodeComputer(trim($this->input));
+            $computer->setInput($phase);
+            $computers[] = $computer;
+        }
+
+        return $computers;
     }
 }

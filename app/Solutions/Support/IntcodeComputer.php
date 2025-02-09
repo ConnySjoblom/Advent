@@ -2,8 +2,6 @@
 
 namespace App\Solutions\Support;
 
-use Exception;
-
 class IntcodeComputer
 {
     protected int $pointer = 0;
@@ -34,18 +32,14 @@ class IntcodeComputer
         return end($this->output);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function run(): void
+    public function run(): null|int
     {
         while ($this->pointer < count($this->memory)) {
             $op = $this->getOp();
 
             switch ($op) {
                 case 99:
-                    $this->pointer = count($this->memory);
-                    break;
+                    return -1;
 
                 case 1: # Addition
                     $term1 = $this->readMemoryOffset(1);
@@ -72,10 +66,11 @@ class IntcodeComputer
                     break;
 
                 case 4: # Read
-                    $this->output[] = $this->readMemoryOffset(1);
+                    $output = $this->readMemoryOffset(1);
 
                     $this->pointer += 2;
-                    break;
+
+                    return $output;
 
                 case 5: # Jump if true
                     $param1 = $this->readMemoryOffset(1);
@@ -122,9 +117,6 @@ class IntcodeComputer
 
                     $this->pointer += 4;
                     break;
-
-                default:
-                    throw new Exception("Unsupported operation: '$op'");
             }
         }
     }
@@ -139,17 +131,13 @@ class IntcodeComputer
         return (int)substr($this->getOpStr(), -2);
     }
 
-    /**
-     * @throws Exception
-     */
     private function readMemoryOffset(int $offset): int
     {
         $accessMode = (int)substr($this->getOpStr(), -2 - $offset, 1);
 
         return match ($accessMode) {
             0 => $this->memory[$this->memory[$this->pointer + $offset]],
-            1 => $this->memory[$this->pointer + $offset],
-            default => throw new Exception('Unhandled access mode'),
+            1 => $this->memory[$this->pointer + $offset]
         };
     }
 
