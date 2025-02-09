@@ -8,3 +8,4 @@ parameters:
         - app
         - bootstrap
         - config
+    tmpDir: build/phpstan

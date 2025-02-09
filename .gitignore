@@ -1,4 +1,5 @@
 /vendor
+/build/phpstan
 /storage/input
 /.env
 /.idea
