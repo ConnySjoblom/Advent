@@ -39,7 +39,17 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        return null;
+        $this->objects = collect(explode("\n", $this->input))
+            ->map(fn ($object) => collect(explode(')', $object)))
+            ->mapWithKeys(fn ($object) => [$object[1] => $object[0]]);
+
+        $you = $this->getOrbitFor('YOU');
+        $san = $this->getOrbitFor('SAN');
+
+        $commonSteps = array_intersect($you, $san);
+
+        return count(array_diff($you, $commonSteps))
+            + count(array_diff($san, $commonSteps));
     }
 
     private function getOrbits(string $object): int
@@ -57,5 +67,17 @@ class Day06 extends Solution
         $this->memory->put($object, $orbits);
 
         return $orbits;
+    }
+
+    private function getOrbitFor(string $object): array
+    {
+        $steps = [];
+        $nextStep = $object;
+        while ($this->objects->has($nextStep)) {
+            $nextStep = $this->objects->get($nextStep);
+            $steps[] = $nextStep;
+        }
+
+        return $steps;
     }
 }
