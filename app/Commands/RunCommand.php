@@ -53,34 +53,52 @@ class RunCommand extends Command
             return Command::FAILURE;
         }
 
-        $this->info(sprintf("Answer is: %s\n", $answer));
-
         if ($submitAnswer) {
-            $this->task('Submit answer', function () use ($year, $day, $part, $answer) {
-                $http = Http::withCookies([
-                    'session' => config('aoc.session'),
-                ], 'adventofcode.com');
+            $http = Http::withCookies([
+                'session' => config('aoc.session'),
+            ], 'adventofcode.com');
 
-                $response = $http->asForm()->post(
-                    sprintf('https://adventofcode.com/%d/day/%d/answer', $year, $day),
-                    [
-                        'level' => "$part",
-                        'answer' => "$answer",
-                    ]
-                );
+            $response = $http->asForm()->post(
+                sprintf('https://adventofcode.com/%d/day/%d/answer', $year, $day),
+                [
+                    'level' => "$part",
+                    'answer' => "$answer",
+                ]
+            );
 
-                if ($response->ok()) {
-                    $body = $response->getBody()->getContents();
-                    dump($body);
+            $answerString = "Answer '$answer' is ";
+
+            if ($response->ok()) {
+                $body = $response->getBody()->getContents();
+                dump($body); // Yes, this is supposed to be here.. for now :)
+                if (str_contains($body, 'You gave an answer too recently')) {
+                    $this->components->info(sprintf(
+                        'Answer sent too recently, wait %s..',
+                        str($body)->match('/You have (.*) left to wait/')->toString()
+                    ));
+                } else {
                     if (str_contains($body, "That's the right answer!")) {
-                        return true;
+                        $answerString .= 'correct!';
                     }
+
+                    if (str_contains($body, "That's not the right answer")) {
+                        $answerString .= 'wrong!';
+                    }
+
+                    if (str_contains($body, 'your answer is too high')) {
+                        $answerString .= 'too high!';
+                    }
+
+                    if (str_contains($body, 'Did you already complete it?')) {
+                        $answerString .= 'already submitted!';
+                    }
+
+                    $this->info($answerString);
+                    $this->newLine();
                 }
-
-                return false;
-            });
-
-            $this->newLine();
+            }
+        } else {
+            $this->info(sprintf("Answer is: %s\n", $answer));
         }
 
         $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
