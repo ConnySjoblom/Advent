@@ -18,11 +18,8 @@ class Day05 extends Solution
         $steps = 0;
         $pointer = 0;
         while ($pointer < count($input)) {
-            $move = $input[$pointer];
-            $input[$pointer]++;
+            $pointer += $input[$pointer]++;
             $steps++;
-
-            $pointer += $move;
         }
 
         return $steps;
@@ -43,14 +40,12 @@ class Day05 extends Solution
             $move = $input[$pointer];
 
             if ($move >= 3) {
-                $input[$pointer]--;
+                $pointer += $input[$pointer]--;
             } else {
-                $input[$pointer]++;
+                $pointer += $input[$pointer]++;
             }
 
             $steps++;
-
-            $pointer += $move;
         }
 
         return $steps;
