@@ -45,6 +45,32 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        return null;
+        $banks = array_map(
+            fn ($bank) => intval($bank),
+            explode("\t", $this->input)
+        );
+
+        $cycles = 0;
+        $memories = [];
+        while (true) {
+            $bank = array_search(max($banks), $banks);
+
+            $items = $banks[$bank];
+            $banks[$bank] = 0;
+
+            while ($items > 0) {
+                $bank = ($bank + 1) % count($banks);
+                $banks[$bank]++;
+                $items--;
+            }
+
+            if (in_array(implode(',', $banks), array_keys($memories))) {
+                return $cycles - $memories[implode(',', $banks)];
+            }
+
+            $memories[implode(',', $banks)] = $cycles;
+
+            $cycles++;
+        }
     }
 }
