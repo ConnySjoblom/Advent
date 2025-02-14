@@ -154,6 +154,7 @@ class Day08 extends Solution
         return match ($operation) {
             'inc' => $registry[$target] + $change,
             'dec' => $registry[$target] - $change,
+            default => die('lolwat'),
         };
     }
 }
