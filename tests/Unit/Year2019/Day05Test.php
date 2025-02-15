@@ -2,7 +2,7 @@
 
 use function PHPUnit\Framework\assertEquals;
 
-test('Day 05 Part 2', function (string $input, int $param, string $answer) {
+test('Day 05', function (string $input, int $param, string $answer) {
     $computer = new \App\Solutions\Support\IntcodeComputer($input);
     $computer->setInput($param);
     assertEquals($answer, $computer->run());

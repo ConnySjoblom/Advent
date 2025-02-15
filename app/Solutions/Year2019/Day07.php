@@ -45,7 +45,7 @@ class Day07 extends Solution
                     $computer->setInput($input);
                     $input = $computer->run();
 
-                    if ($input == -1) {
+                    if ($input == -2) {
                         break 2;
                     }
                 }

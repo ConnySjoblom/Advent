@@ -21,8 +21,11 @@ class Day09 extends Solution
     /**
      * Day 09 Part 2
      */
-    public function partTwo(): string|int|null
+    public function partTwo(int $input = 2): string|int|null
     {
-        return null;
+        $computer = new IntcodeComputer(trim($this->input));
+        $computer->setInput($input);
+
+        return $computer->run();
     }
 }
