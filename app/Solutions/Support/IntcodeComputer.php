@@ -6,9 +6,9 @@ class IntcodeComputer
 {
     protected int $pointer = 0;
 
-    protected array $input = [];
+    protected int $relative_base = 0;
 
-    protected array $output = [];
+    protected array $input = [];
 
     protected array $memory;
 
@@ -22,16 +22,6 @@ class IntcodeComputer
         $this->input[] = $input;
     }
 
-    public function getOutput(): array
-    {
-        return $this->output;
-    }
-
-    public function getLastOutput(): int
-    {
-        return end($this->output);
-    }
-
     public function run(): null|int
     {
         while ($this->pointer < count($this->memory)) {
@@ -39,7 +29,7 @@ class IntcodeComputer
 
             switch ($op) {
                 case 99:
-                    return -1;
+                    return -2;
 
                 case 1: # Addition
                     $term1 = $this->readMemoryOffset(1);
@@ -117,6 +107,17 @@ class IntcodeComputer
 
                     $this->pointer += 4;
                     break;
+
+                case 9: # Adjust relative base
+                    $param1 = $this->readMemoryOffset(1);
+
+                    $this->relative_base += $param1;
+
+                    $this->pointer += 2;
+
+                    break;
+                default:
+                    throw new \Exception('Unknown operation: ' . $op);
             }
         }
 
@@ -137,14 +138,53 @@ class IntcodeComputer
     {
         $accessMode = (int)substr($this->getOpStr(), -2 - $offset, 1);
 
-        return match ($accessMode) {
-            1 => $this->memory[$this->pointer + $offset],
-            default => $this->memory[$this->memory[$this->pointer + $offset]], // 0 is considered default behaviour
-        };
+        switch ($accessMode) {
+            case 1:
+                $address = $this->pointer + $offset;
+                if (!array_key_exists($address, $this->memory)) {
+                    return 0;
+                }
+
+                return $this->memory[$address];
+
+            case 2:
+                $address = $this->pointer + $offset;
+                if (!array_key_exists($address, $this->memory)) {
+                    return 0;
+                }
+
+                $address = $this->memory[$address] + $this->relative_base;
+                if (!array_key_exists($address, $this->memory)) {
+                    return 0;
+                }
+
+                return $this->memory[$address];
+
+            default: // 0 is considered default behaviour
+                $address = $this->pointer + $offset;
+                if (!array_key_exists($address, $this->memory)) {
+                    return 0;
+                }
+
+                $address = $this->memory[$address];
+                if (!array_key_exists($address, $this->memory)) {
+                    return 0;
+                }
+
+                return $this->memory[$address];
+        }
     }
 
     private function writeMemoryOffset(int $offset, int $data): void
     {
-        $this->memory[$this->memory[$this->pointer + $offset]] = $data;
+        $accessMode = (int)substr($this->getOpStr(), -2 - $offset, 1);
+
+        switch ($accessMode) {
+            case 2:
+                $this->memory[$this->memory[$this->pointer + $offset] + $this->relative_base] = $data;
+                break;
+            default:
+                $this->memory[$this->memory[$this->pointer + $offset]] = $data;
+        }
     }
 }
