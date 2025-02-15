@@ -138,21 +138,16 @@ class IntcodeComputer
     {
         $accessMode = (int)substr($this->getOpStr(), -2 - $offset, 1);
 
+        $address = $this->pointer + $offset;
+        if (!array_key_exists($address, $this->memory)) {
+            return 0;
+        }
+
         switch ($accessMode) {
             case 1:
-                $address = $this->pointer + $offset;
-                if (!array_key_exists($address, $this->memory)) {
-                    return 0;
-                }
-
                 return $this->memory[$address];
 
             case 2:
-                $address = $this->pointer + $offset;
-                if (!array_key_exists($address, $this->memory)) {
-                    return 0;
-                }
-
                 $address = $this->memory[$address] + $this->relative_base;
                 if (!array_key_exists($address, $this->memory)) {
                     return 0;
@@ -161,11 +156,6 @@ class IntcodeComputer
                 return $this->memory[$address];
 
             default: // 0 is considered default behaviour
-                $address = $this->pointer + $offset;
-                if (!array_key_exists($address, $this->memory)) {
-                    return 0;
-                }
-
                 $address = $this->memory[$address];
                 if (!array_key_exists($address, $this->memory)) {
                     return 0;
