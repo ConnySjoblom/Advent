@@ -11,13 +11,13 @@ class Day07 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $lines = explode("\n", trim($this->input));
+        $lines = explode("\n", $this->input);
 
         $sum = 0;
         foreach ($lines as $line) {
             [$target, $numbers] = explode(': ', $line);
             $target = intval($target);
-            $numbers = array_map('intval', explode(' ', trim($numbers)));
+            $numbers = array_map('intval', explode(' ', $numbers));
 
             if ($this->evaluatePossible($target, $numbers)) {
                 $sum += $target;

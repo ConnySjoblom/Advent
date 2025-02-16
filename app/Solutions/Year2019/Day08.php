@@ -35,7 +35,7 @@ class Day08 extends Solution
         $output = [];
         for ($i = 0; $i < 6; $i++) {
             for ($j = 0; $j < 25; $j++) {
-                $output[$i][$j] = $this->getPixelColor($rows, $i, $j, 0) == 0 ? ' ' : '#';
+                $output[$i][$j] = $this->getPixelColor($rows, $i, $j, 0) == 0 ? '  ' : '██';
             }
         }
 

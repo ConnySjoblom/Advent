@@ -11,7 +11,7 @@ class Day12 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = json_decode(trim($this->input), true);
+        $input = json_decode($this->input, true);
 
         return $this->getSum($input);
     }
@@ -21,7 +21,7 @@ class Day12 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = json_decode(trim($this->input), true);
+        $input = json_decode($this->input, true);
 
         return $this->getSumTwo($input);
     }
@@ -52,7 +52,7 @@ class Day12 extends Solution
                 break;
             case 'array':
                 foreach ($input as $key => $value) {
-                    if (! is_numeric($key) && $value == 'red') {
+                    if (!is_numeric($key) && $value == 'red') {
                         break 2;
                     }
                 }

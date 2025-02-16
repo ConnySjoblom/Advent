@@ -17,7 +17,7 @@ class Day07 extends Solution
         $signals = [];
         foreach ($this->permutations(range(0, 4)) as $permutation) {
             foreach ($permutation as $phase_setting) {
-                $computer = new IntcodeComputer(trim($this->input));
+                $computer = new IntcodeComputer($this->input);
                 $computer->setInput($phase_setting);
                 $computer->setInput($input);
                 $input = $computer->run();
@@ -81,7 +81,7 @@ class Day07 extends Solution
         $computers = [];
 
         foreach ($permutation as $phase) {
-            $computer = new IntcodeComputer(trim($this->input));
+            $computer = new IntcodeComputer($this->input);
             $computer->setInput($phase);
             $computers[] = $computer;
         }

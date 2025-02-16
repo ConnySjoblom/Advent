@@ -11,7 +11,7 @@ class Day02 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode(',', trim($this->input));
+        $input = explode(',', $this->input);
 
         $input[1] = 12;
         $input[2] = 2;
@@ -48,7 +48,7 @@ class Day02 extends Solution
     {
         for ($n = 0; $n < 100; $n++) {
             for ($v = 0; $v < 100; $v++) {
-                $memory = explode(',', trim($this->input));
+                $memory = explode(',', $this->input);
 
                 $memory[1] = $n;
                 $memory[2] = $v;

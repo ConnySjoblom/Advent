@@ -11,7 +11,7 @@ class Day09 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", trim($this->input));
+        $input = explode("\n", $this->input);
 
         $places = [];
         $distances = [];
@@ -55,7 +55,7 @@ class Day09 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", trim($this->input));
+        $input = explode("\n", $this->input);
 
         $places = [];
         $distances = [];

@@ -14,7 +14,7 @@ class Day05 extends Solution
      */
     public function partOne(int $input = 1): string|int|null
     {
-        $computer = new IntcodeComputer(trim($this->input));
+        $computer = new IntcodeComputer($this->input);
         $computer->setInput($input);
 
         $output = 0;
@@ -31,7 +31,7 @@ class Day05 extends Solution
      */
     public function partTwo(int $input = 5): string|int|null
     {
-        $computer = new IntcodeComputer(trim($this->input));
+        $computer = new IntcodeComputer($this->input);
         $computer->setInput($input);
 
         $output = 0;

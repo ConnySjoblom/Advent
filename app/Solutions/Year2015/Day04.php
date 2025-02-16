@@ -11,7 +11,7 @@ class Day04 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = trim($this->input);
+        $input = $this->input;
 
         for ($i = 0; $i < PHP_INT_MAX; $i++) {
             $hex = md5($input . $i);
@@ -29,7 +29,7 @@ class Day04 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = trim($this->input);
+        $input = $this->input;
 
         for ($i = 0; $i < PHP_INT_MAX; $i++) {
             $hex = md5($input . $i);

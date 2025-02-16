@@ -12,7 +12,7 @@ class Day10 extends Solution
     public function partOne(): string|int|null
     {
         $times = 40;
-        $input = trim($this->input);
+        $input = $this->input;
 
         for ($i = 0; $i < $times; $i++) {
             $input = $this->lookAndSay($input);
@@ -27,7 +27,7 @@ class Day10 extends Solution
     public function partTwo(): string|int|null
     {
         $times = 50;
-        $input = trim($this->input);
+        $input = $this->input;
 
         for ($i = 0; $i < $times; $i++) {
             $input = $this->lookAndSay($input);

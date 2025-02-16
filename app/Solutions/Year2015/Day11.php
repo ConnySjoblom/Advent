@@ -11,7 +11,7 @@ class Day11 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $password = trim($this->input);
+        $password = $this->input;
         // ord() - 96 :: a = 1, b = 2 => chr()
 
         $invalidPassword = true;
@@ -36,9 +36,9 @@ class Day11 extends Solution
             }
 
             if (
-                ! array_key_exists($this->charToInt('i'), $passwordParts)
-                && ! array_key_exists($this->charToInt('o'), $passwordParts)
-                && ! array_key_exists($this->charToInt('l'), $passwordParts)
+                !array_key_exists($this->charToInt('i'), $passwordParts)
+                && !array_key_exists($this->charToInt('o'), $passwordParts)
+                && !array_key_exists($this->charToInt('l'), $passwordParts)
             ) {
                 $noIllegalChars = true;
             }

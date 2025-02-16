@@ -11,11 +11,11 @@ class Day01 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", trim($this->input));
+        $input = explode("\n", $this->input);
 
         $answer = 0;
         foreach ($input as $module) {
-            $answer += (int) floor(intval($module) / 3) - 2;
+            $answer += (int)floor(intval($module) / 3) - 2;
         }
 
         return $answer;
@@ -26,7 +26,7 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", trim($this->input));
+        $input = explode("\n", $this->input);
 
         $answer = 0;
         foreach ($input as $module) {
@@ -38,7 +38,7 @@ class Day01 extends Solution
 
     private function calculate_fuel(int $entity, int &$answer): void
     {
-        $new_fuel = (int) floor($entity / 3) - 2;
+        $new_fuel = (int)floor($entity / 3) - 2;
 
         if ($new_fuel > 5) {
             $this->calculate_fuel($new_fuel, $answer);

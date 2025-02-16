@@ -11,11 +11,11 @@ class Day03 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $lines = explode("\n", trim($this->input));
+        $lines = explode("\n", $this->input);
 
         $paths = [];
         foreach ($lines as $line) {
-            $steps = explode(',', trim($line));
+            $steps = explode(',', $line);
 
             $x = 0;
             $y = 0;
@@ -83,11 +83,11 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $lines = explode("\n", trim($this->input));
+        $lines = explode("\n", $this->input);
 
         $paths = [];
         foreach ($lines as $line) {
-            $steps = explode(',', trim($line));
+            $steps = explode(',', $line);
 
             $x = 0;
             $y = 0;

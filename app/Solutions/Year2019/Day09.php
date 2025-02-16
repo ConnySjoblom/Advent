@@ -12,7 +12,7 @@ class Day09 extends Solution
      */
     public function partOne(int $input = 1): string|int|null
     {
-        $computer = new IntcodeComputer(trim($this->input));
+        $computer = new IntcodeComputer($this->input);
         $computer->setInput($input);
 
         return $computer->run();
@@ -23,7 +23,7 @@ class Day09 extends Solution
      */
     public function partTwo(int $input = 2): string|int|null
     {
-        $computer = new IntcodeComputer(trim($this->input));
+        $computer = new IntcodeComputer($this->input);
         $computer->setInput($input);
 
         return $computer->run();
