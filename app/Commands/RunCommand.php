@@ -38,7 +38,7 @@ class RunCommand extends Command
             return Command::FAILURE;
         }
 
-        $solution = new $solution($year, $day);
+        $solution = new $solution($this, $year, $day);
         $solveStart = now();
 
         $answer = $solution->$partMethod();
@@ -47,8 +47,7 @@ class RunCommand extends Command
         $this->newLine();
 
         if (is_null($answer)) {
-            $this->warn('Solution has no answer.');
-            $this->newLine();
+            $this->components->warn('Solution has no answer.');
 
             return Command::FAILURE;
         }
