@@ -38,7 +38,7 @@ class RunCommand extends Command
             return Command::FAILURE;
         }
 
-        $solution = new $solution($this, $year, $day);
+        $solution = new $solution($year, $day);
         $solveStart = now();
 
         $answer = $solution->$partMethod();
