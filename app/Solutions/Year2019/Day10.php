@@ -11,8 +11,9 @@ class Day10 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $asteroids = [];
         $rows = explode("\n", $this->input);
+
+        $asteroids = [];
         foreach ($rows as $y => $row) {
             for ($x = 0; $x < strlen($row); $x++) {
                 if ($row[$x] === '#') {
