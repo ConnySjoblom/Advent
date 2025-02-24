@@ -84,10 +84,10 @@ class Day10 extends Solution
 
             $g = gmp_intval(gmp_gcd($dx, $dy));
 
-            $anx = $dx / $g;
-            $any = $dy / $g;
+            $dx /= $g;
+            $dy /= $g;
 
-            $angle = (rad2deg(atan2($anx, -$any)) * 100 + 36000) % 36000;
+            $angle = (rad2deg(atan2($dx, -$dy)) * 100 + 36000) % 36000;
             $distance = sqrt(pow($ax - $sx, 2) + pow($ay - $sy, 2));
 
             $targets[$angle][] = [$distance, $ax, $ay];
@@ -102,15 +102,16 @@ class Day10 extends Solution
         $vaporized = [];
         while (count($vaporized) < 200) {
             foreach ($targets as $angle => &$list) {
-                if (empty($list)) {
-                    continue;
+                $vaporized[] = array_shift($list);
+
+                if (count($list) == 0) {
+                    unset($targets[$angle]);
                 }
 
-                $vaporized[] = array_shift($list);
                 if (count($vaporized) == 200) {
-                    $last = last($vaporized);
+                    [$distance, $x, $y] = last($vaporized);
 
-                    return $last[1] * 100 + $last[2];
+                    return $x * 100 + $y;
                 }
             }
         }
