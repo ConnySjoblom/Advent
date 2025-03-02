@@ -6,7 +6,7 @@ use App\Solutions\Solution;
 
 class Day10 extends Solution
 {
-    private $station = [];
+    private array $station = [];
 
     /**
      * Day 10 Part 1
