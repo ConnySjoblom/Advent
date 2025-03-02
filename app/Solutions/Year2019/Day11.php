@@ -24,10 +24,8 @@ class Day11 extends Solution
             [$color, $direction] = [$computer->run(), $computer->run()];
 
             $this->boatPanels["$x,$y"] = $color;
-            [$dx, $dy] = $this->moveRobot($direction);
 
-            $x += $dx;
-            $y += $dy;
+            [$x, $y] = $this->moveRobot($direction, $x, $y);
         } while ($color != -2 || $direction != -2);
 
         return count($this->boatPanels);
@@ -46,10 +44,8 @@ class Day11 extends Solution
             [$color, $direction] = [$computer->run(), $computer->run()];
 
             $this->boatPanels["$x,$y"] = $color;
-            [$dx, $dy] = $this->moveRobot($direction);
 
-            $x += $dx;
-            $y += $dy;
+            [$x, $y] = $this->moveRobot($direction, $x, $y);
 
             $computer->setInput($this->getCurrentColor($x, $y));
         } while ($color != -2 || $direction != -2);
@@ -66,23 +62,19 @@ class Day11 extends Solution
         return 0;
     }
 
-    private function moveRobot(int $direction): array
+    private function moveRobot(int $direction, int $x, int $y): array
     {
         $this->robotDirection = match ($direction) {
-            1 => ($this->robotDirection + 1) % 4,
-            default => ($this->robotDirection - 1 + 4) % 4,
+            0 => ($this->robotDirection - 1 + 4) % 4,
+            default => ($this->robotDirection + 1) % 4,
         };
 
-        switch ($this->robotDirection) {
-            case 0: // UP
-                return [0, -1];
-            case 1: // RIGHT
-                return [1, 0];
-            case 2: // DOWN
-                return [0, 1];
-            case 3: // LEFT
-                return [-1, 0];
-        }
+        return match ($this->robotDirection) {
+            0 => [$x, --$y],
+            1 => [++$x, $y],
+            2 => [$x, ++$y],
+            default => [--$x, $y],
+        };
     }
 
     private function render(array $boatPanels): string
@@ -90,7 +82,6 @@ class Day11 extends Solution
         array_pop($boatPanels); // Last item is exit code
 
         $maxX = $maxY = 0;
-
         $keys = array_keys($boatPanels);
         foreach ($keys as $key) {
             [$x, $y] = explode(',', $key);
