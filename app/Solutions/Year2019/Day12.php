@@ -63,6 +63,45 @@ class Day12 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        return null;
+        $moons = [];
+        foreach (explode("\n", $this->input) as $line) {
+            preg_match('/<x=(.*), y=(.*), z=(.*)>/', $line, $matches);
+
+            $moons[] = [
+                'x' => intval($matches[1]), 'y' => intval($matches[2]), 'z' => intval($matches[3]),
+                'vx' => 0, 'vy' => 0, 'vz' => 0,
+            ];
+        }
+
+        foreach (['x', 'y', 'z'] as $k) {
+            $steps = 0;
+            $initialPos = array_column($moons, $k);
+            $initialVel = array_fill(0, count($initialPos), 0);
+
+            do {
+                foreach ($moons as &$a) {
+                    foreach ($moons as $b) {
+                        if ($a[$k] == $b[$k]) {
+                            continue;
+                        }
+
+                        $a['v' . $k] += $a[$k] < $b[$k] ? 1 : -1;
+                    }
+                }
+
+                foreach ($moons as &$moon) {
+                    $moon[$k] += $moon['v' . $k];
+                }
+
+                $steps++;
+            } while (
+                array_column($moons, $k) !== $initialPos
+                || array_column($moons, 'v' . $k) !== $initialVel
+            );
+
+            $loops[] = $steps;
+        }
+
+        return gmp_intval(gmp_lcm($loops[0], gmp_lcm($loops[1], $loops[2])));
     }
 }
