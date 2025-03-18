@@ -80,8 +80,8 @@ class Day13 extends Solution
             '▗▖'   // Ball
         ];
 
-        for ($y = 0; $y <= count($grid); $y++) {
-            for ($x = 0; $x <= count($grid[$y] ?? []); $x++) {
+        for ($y = 0; $y < count($grid); $y++) {
+            for ($x = 0; $x < count($grid[$y]); $x++) {
                 echo $tiles[$grid[$y][$x] ?? 0];
             }
             echo "\n";
