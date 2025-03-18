@@ -12,6 +12,8 @@ class IntcodeComputer
 
     protected array $memory;
 
+    protected bool $halted = false;
+
     public function __construct(string $memory)
     {
         $this->memory = array_map('intval', explode(',', $memory));
@@ -22,6 +24,16 @@ class IntcodeComputer
         $this->input[] = $input;
     }
 
+    public function setMemory(int $position, int $memory): void
+    {
+        $this->memory[$position] = $memory;
+    }
+
+    public function isHalted(): bool
+    {
+        return $this->halted;
+    }
+
     public function run(): null|int
     {
         while ($this->pointer < count($this->memory)) {
@@ -29,6 +41,7 @@ class IntcodeComputer
 
             switch ($op) {
                 case 99:
+                    $this->halted = true;
                     return -2;
 
                 case 1: # Addition
@@ -116,8 +129,6 @@ class IntcodeComputer
                     $this->pointer += 2;
 
                     break;
-                default:
-                    throw new \Exception('Unknown operation: ' . $op);
             }
         }
 

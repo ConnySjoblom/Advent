@@ -39,6 +39,7 @@ class RunCommand extends Command
         }
 
         $solution = new $solution($year, $day);
+        $solution->verbosity = $this->getOutput()->getVerbosity();
         $solveStart = now();
 
         $answer = $solution->$partMethod();

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 abstract class Solution
 {
     public string $input;
+    public int $verbosity;
 
     public function __construct(?int $year = null, ?int $day = null)
     {
