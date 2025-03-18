@@ -11,7 +11,7 @@ test('Day 09', function (string $input, string $answer) {
 
     do {
         $output[] = $computer->run();
-    } while (!in_array('-2', $output));
+    } while ($computer->isRunning());
 
     if (count($output) > 1) {
         array_pop($output);

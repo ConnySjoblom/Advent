@@ -12,7 +12,7 @@ class IntcodeComputer
 
     protected array $memory;
 
-    protected bool $halted = false;
+    protected bool $finished = false;
 
     public function __construct(string $memory)
     {
@@ -29,9 +29,14 @@ class IntcodeComputer
         $this->memory[$position] = $memory;
     }
 
-    public function isHalted(): bool
+    public function isFinished(): bool
     {
-        return $this->halted;
+        return $this->finished;
+    }
+
+    public function isRunning(): bool
+    {
+        return !$this->finished;
     }
 
     public function run(): null|int
@@ -41,8 +46,8 @@ class IntcodeComputer
 
             switch ($op) {
                 case 99:
-                    $this->halted = true;
-                    return -2;
+                    $this->finished = true;
+                    break 2;
 
                 case 1: # Addition
                     $term1 = $this->readMemoryOffset(1);
@@ -132,7 +137,7 @@ class IntcodeComputer
             }
         }
 
-        return 0; // this should not happen?!
+        return -2;
     }
 
     private function getOpStr(): string

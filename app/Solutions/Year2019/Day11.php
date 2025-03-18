@@ -26,7 +26,7 @@ class Day11 extends Solution
             $this->boatPanels["$x,$y"] = $color;
 
             [$x, $y] = $this->moveRobot($direction, $x, $y);
-        } while ($color != -2 || $direction != -2);
+        } while ($computer->isRunning());
 
         return count($this->boatPanels);
     }
@@ -48,7 +48,7 @@ class Day11 extends Solution
             [$x, $y] = $this->moveRobot($direction, $x, $y);
 
             $computer->setInput($this->getCurrentColor($x, $y));
-        } while ($color != -2 || $direction != -2);
+        } while ($computer->isRunning());
 
         return $this->render($this->boatPanels);
     }
