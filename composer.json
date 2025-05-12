@@ -24,16 +24,16 @@
     "require": {
         "php": "^8.4.0",
         "ext-gmp": "*",
-        "illuminate/http": "^11.5",
-        "illuminate/translation": "^11.37",
-        "illuminate/validation": "^11.37",
-        "laravel-zero/framework": "^11.36.1"
+        "illuminate/http": "^11.44",
+        "illuminate/translation": "^11.44",
+        "illuminate/validation": "^11.44",
+        "laravel-zero/framework": "^11.36"
     },
     "require-dev": {
-        "larastan/larastan": "^3.0",
-        "laravel/pint": "^1.18.3",
-        "mockery/mockery": "^1.6.12",
-        "pestphp/pest": "^3.7.1"
+        "larastan/larastan": "^3.4",
+        "laravel/pint": "^1.22",
+        "mockery/mockery": "^1.6",
+        "pestphp/pest": "^3.8"
     },
     "autoload": {
         "psr-4": {
