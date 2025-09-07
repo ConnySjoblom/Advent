@@ -15,7 +15,7 @@ class Day04 extends Solution
 
         $matches = 0;
         for ($i = $min; $i <= $max; $i++) {
-            preg_match('/(\d)\1/', $i, $match);
+            preg_match('/(\d)\1/', strval($i), $match);
             if (count($match) < 1) {
                 continue;
             }
@@ -46,7 +46,7 @@ class Day04 extends Solution
             }
 
             if (
-                str($i)
+                str(strval($i))
                     ->split('/(.)\1*\K/', flags: PREG_SPLIT_NO_EMPTY)
                     ->filter(fn ($value) => strlen($value) == 2)
                     ->count() < 1
