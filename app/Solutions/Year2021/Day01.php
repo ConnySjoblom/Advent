@@ -11,11 +11,12 @@ class Day01 extends Solution
      */
     public function partOne(): string|int|null
     {
+        $numbers = array_map('intval', explode("\n", $this->input));
+        $count = count($numbers);
         $times = 0;
-        $input = array_map('intval', explode("\n", $this->input));
 
-        for ($i = 1; $i < count($input); $i++) {
-            if ($input[$i] > $input[$i - 1]) {
+        for ($i = 1; $i < $count; $i++) {
+            if ($numbers[$i] > $numbers[$i - 1]) {
                 $times++;
             }
         }
@@ -28,18 +29,19 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
+        $numbers = array_map('intval', explode("\n", $this->input));
+        $count = count($numbers);
         $times = 0;
-        $input = array_map('intval', explode("\n", $this->input));
-        $memory = PHP_INT_MAX;
+        $previous = PHP_INT_MAX;
 
-        for ($i = 2; $i < count($input); $i++) {
-            $sum = $input[$i] + $input[$i - 1] + $input[$i - 2];
+        for ($i = 2; $i < $count; $i++) {
+            $sum = $numbers[$i] + $numbers[$i - 1] + $numbers[$i - 2];
 
-            if ($memory < $sum) {
+            if ($sum > $previous) {
                 $times++;
             }
 
-            $memory = $sum;
+            $previous = $sum;
         }
 
         return $times;
