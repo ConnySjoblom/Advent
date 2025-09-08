@@ -40,7 +40,7 @@ class PrepareCommand extends Command
 
         $this->prepareFile(
             $inputFile,
-            fn() => $this->fetchPuzzleInput($year, $day),
+            fn () => $this->fetchPuzzleInput($year, $day),
             $force,
             'Input'
         );
@@ -51,7 +51,7 @@ class PrepareCommand extends Command
 
         $this->prepareFile(
             $solutionFile,
-            fn() => $this->renderStub(base_path('stubs/Solution.stub'), [
+            fn () => $this->renderStub(base_path('stubs/Solution.stub'), [
                 'year' => $year,
                 'day' => sprintf('%02d', $day),
             ]),
@@ -66,7 +66,7 @@ class PrepareCommand extends Command
 
             $this->prepareFile(
                 $testFile,
-                fn() => $this->renderStub(base_path('stubs/Test.stub'), [
+                fn () => $this->renderStub(base_path('stubs/Test.stub'), [
                     'year' => $year,
                     'day' => sprintf('%02d', $day),
                 ]),
