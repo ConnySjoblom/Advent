@@ -29,10 +29,10 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
+        $previous = PHP_INT_MAX;
         $numbers = array_map('intval', explode("\n", $this->input));
         $count = count($numbers);
         $times = 0;
-        $previous = PHP_INT_MAX;
 
         for ($i = 2; $i < $count; $i++) {
             $sum = $numbers[$i] + $numbers[$i - 1] + $numbers[$i - 2];
