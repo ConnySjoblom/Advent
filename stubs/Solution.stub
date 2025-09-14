@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Solutions\Year{ $year };
+namespace App\Solutions\Year{{ year }};
 
 use App\Solutions\Solution;
 
-class Day{ $day } extends Solution
+class Day{{ day }} extends Solution
 {
     /**
-     * Day { $day } Part 1
+     * Day {{ day }} Part 1
      */
     public function partOne(): string|int|null
     {
@@ -15,7 +15,7 @@ class Day{ $day } extends Solution
     }
 
     /**
-     * Day { $day } Part 2
+     * Day {{ day }} Part 2
      */
     public function partTwo(): string|int|null
     {
