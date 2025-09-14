@@ -74,8 +74,8 @@ class PrepareCommand extends Command
             $this->info('<> Preparing solution...');
 
             $solutionStub = str(File::get(base_path('stubs/Solution.stub')))
-                ->replace('{ $day }', sprintf('%02d', $day))
-                ->replace('{ $year }', $year);
+                ->replace('{{ day }}', sprintf('%02d', $day))
+                ->replace('{{ year }}', $year);
 
             File::ensureDirectoryExists($solutionPath);
             File::put($solutionFile, $solutionStub);
@@ -94,8 +94,8 @@ class PrepareCommand extends Command
                 $this->info('<> Preparing tests...');
 
                 $testStub = str(File::get(base_path('stubs/Test.stub')))
-                    ->replace('{ $day }', sprintf('%02d', $day))
-                    ->replace('{ $year }', $year);
+                    ->replace('{{ day }}', sprintf('%02d', $day))
+                    ->replace('{{ year }}', $year);
 
                 File::ensureDirectoryExists($testPath);
                 File::put($testFile, $testStub);
