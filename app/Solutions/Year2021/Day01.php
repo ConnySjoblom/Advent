@@ -29,19 +29,14 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $previous = PHP_INT_MAX;
         $numbers = array_map('intval', explode("\n", $this->input));
         $count = count($numbers);
         $times = 0;
 
-        for ($i = 2; $i < $count; $i++) {
-            $sum = $numbers[$i] + $numbers[$i - 1] + $numbers[$i - 2];
-
-            if ($sum > $previous) {
+        for ($i = 3; $i < $count; $i++) {
+            if ($numbers[$i] > $numbers[$i - 3]) {
                 $times++;
             }
-
-            $previous = $sum;
         }
 
         return $times;
