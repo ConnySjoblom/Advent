@@ -51,7 +51,6 @@ class PrepareCommand extends Command
             $inputResponse = $http->get(sprintf('https://adventofcode.com/%d/day/%d/input', $year, $day));
 
             if ($inputResponse->status() !== 200) {
-                dd($inputResponse->body());
                 $this->components->error('AOC session is invalid');
 
                 return Command::FAILURE;
