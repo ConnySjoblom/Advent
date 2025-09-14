@@ -15,19 +15,13 @@ class Day02 extends Solution
         $depth = 0;
 
         foreach (explode("\n", $this->input) as $command) {
-            [$direction, $value] = explode(' ', $command);
+            [$direction, $value] = sscanf($command, '%s %d');
 
-            switch ($direction) {
-                case 'forward':
-                    $horizontal += (int)$value;
-                    break;
-                case 'down':
-                    $depth += (int)$value;
-                    break;
-                case 'up':
-                    $depth -= (int)$value;
-                    break;
-            }
+            match ($direction) {
+                'forward' => $horizontal += $value,
+                'down' => $depth += $value,
+                'up' => $depth -= $value,
+            };
         }
 
         return $horizontal * $depth;
@@ -43,20 +37,16 @@ class Day02 extends Solution
         $aim = 0;
 
         foreach (explode("\n", $this->input) as $command) {
-            [$direction, $value] = explode(' ', $command);
+            [$direction, $value] = sscanf($command, '%s %d');
 
-            switch ($direction) {
-                case 'forward':
-                    $horizontal += (int)$value;
-                    $depth += (int)$value * $aim;
-                    break;
-                case 'down':
-                    $aim += (int)$value;
-                    break;
-                case 'up':
-                    $aim -= (int)$value;
-                    break;
-            }
+            match ($direction) {
+                'forward' => [
+                    $horizontal += $value,
+                    $depth += $value * $aim
+                ],
+                'down' => $aim += $value,
+                'up' => $aim -= $value,
+            };
         }
 
         return $horizontal * $depth;
