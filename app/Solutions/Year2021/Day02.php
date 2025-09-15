@@ -17,6 +17,7 @@ class Day02 extends Solution
         foreach (explode("\n", $this->input) as $command) {
             [$direction, $value] = sscanf($command, '%s %d');
 
+            /** @phpstan-ignore-next-line */
             match ($direction) {
                 'forward' => $horizontal += $value,
                 'down' => $depth += $value,
@@ -39,6 +40,7 @@ class Day02 extends Solution
         foreach (explode("\n", $this->input) as $command) {
             [$direction, $value] = sscanf($command, '%s %d');
 
+            /** @phpstan-ignore-next-line */
             match ($direction) {
                 'forward' => [
                     $horizontal += $value,
