@@ -11,9 +11,7 @@ class Day02 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $horizontal = 0;
-        $depth = 0;
-
+        $horizontal = $depth = 0;
         foreach (explode("\n", $this->input) as $command) {
             [$direction, $value] = sscanf($command, '%s %d');
 
@@ -33,10 +31,7 @@ class Day02 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $horizontal = 0;
-        $depth = 0;
-        $aim = 0;
-
+        $horizontal = $depth = $aim = 0;
         foreach (explode("\n", $this->input) as $command) {
             [$direction, $value] = sscanf($command, '%s %d');
 
