@@ -70,7 +70,7 @@ class RunCommand extends Command
 
             if ($response->ok()) {
                 $body = $response->getBody()->getContents();
-                dump($body); // Yes, this is supposed to be here.. for now :)
+                dump($body); // Yes, this is supposed to be here. for now :)
                 if (str_contains($body, 'You gave an answer too recently')) {
                     $this->components->info(sprintf(
                         'Answer sent too recently, wait %s..',
@@ -104,7 +104,7 @@ class RunCommand extends Command
         $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
 
         if ($showTime) {
-            $totalTime = Carbon::parse(LARAVEL_START)->diff(now()); // @phpstan-ignore-line
+            $totalTime = Carbon::parse(LARAVEL_START)->diff(now());
 
             $this->line(sprintf(
                 "Solve time: %s\nExecution time: %s\n",
