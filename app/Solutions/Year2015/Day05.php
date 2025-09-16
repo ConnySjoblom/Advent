@@ -24,11 +24,11 @@ class Day05 extends Solution
                 continue;
             }
 
-            if (! preg_match('/(.)\1/', $string)) {
+            if (!preg_match('/(.)\1/', $string)) {
                 continue;
             }
 
-            if (! preg_match('/^.*[aeiou].*[aeiou].*[aeiou].*$/', $string)) {
+            if (!preg_match('/^.*[aeiou].*[aeiou].*[aeiou].*$/', $string)) {
                 continue;
             }
 
@@ -47,11 +47,11 @@ class Day05 extends Solution
 
         $nice = 0;
         foreach ($input as $string) {
-            if (! preg_match('/(..).*\1/', $string)) {
+            if (!preg_match('/(..).*\1/', $string)) {
                 continue;
             }
 
-            if (! preg_match('/(.).\1/', $string)) {
+            if (!preg_match('/(.).\1/', $string)) {
                 continue;
             }
 
