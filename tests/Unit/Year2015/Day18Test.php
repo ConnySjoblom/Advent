@@ -3,11 +3,11 @@
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->solution = new \App\Solutions\Year2015\Day18();
+    test()->solution = new \App\Solutions\Year2015\Day18();
 });
 
 test('Day 18 Part 1', function (int $steps, string $answer) {
-    $this->solution->input = <<<'EOF'
+    test()->solution->input = <<<'EOF'
 .#.#.#
 ...##.
 #....#
@@ -16,7 +16,7 @@ test('Day 18 Part 1', function (int $steps, string $answer) {
 ####..
 EOF;
 
-    assertEquals($answer, $this->solution->partOne($steps));
+    assertEquals($answer, test()->solution->partOne($steps));
 })->with([
     [1, '11'],
     [2, '8'],
@@ -25,7 +25,7 @@ EOF;
 ]);
 
 test('Day 18 Part 2', function (int $steps, string $answer) {
-    $this->solution->input = <<<'EOF'
+    test()->solution->input = <<<'EOF'
 ##.#.#
 ...##.
 #....#
@@ -34,7 +34,7 @@ test('Day 18 Part 2', function (int $steps, string $answer) {
 ####.#
 EOF;
 
-    assertEquals($answer, $this->solution->partTwo($steps));
+    assertEquals($answer, test()->solution->partTwo($steps));
 })->with([
     [1, '18'],
     [2, '18'],

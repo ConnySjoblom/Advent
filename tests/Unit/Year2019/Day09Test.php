@@ -3,7 +3,7 @@
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->solution = new \App\Solutions\Year2019\Day09();
+    test()->solution = new \App\Solutions\Year2019\Day09();
 });
 
 test('Day 09', function (string $input, string $answer) {
@@ -26,7 +26,7 @@ test('Day 09', function (string $input, string $answer) {
 test('Day 09 strlen()', function (string $input, string $answer) {
     $computer = new \App\Solutions\Support\IntcodeComputer($input);
 
-    $this->assertTrue(strlen(strval($computer->run())) == 16);
+    test()->assertTrue(strlen(strval($computer->run())) == 16);
 })->with([
     ['1102,34915192,34915192,7,4,7,99,0', '109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99'],
 ]);
