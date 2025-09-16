@@ -7,14 +7,14 @@ beforeEach(function () {
 });
 
 test('Day 18 Part 1', function (int $steps, string $answer) {
-    test()->solution->input = <<<'EOF'
+    test()->solution->input = <<<INPUT
 .#.#.#
 ...##.
 #....#
 ..#...
 #.#..#
 ####..
-EOF;
+INPUT;
 
     assertEquals($answer, test()->solution->partOne($steps));
 })->with([
@@ -25,14 +25,14 @@ EOF;
 ]);
 
 test('Day 18 Part 2', function (int $steps, string $answer) {
-    test()->solution->input = <<<'EOF'
+    test()->solution->input = <<<INPUT
 ##.#.#
 ...##.
 #....#
 ..#...
 #.#..#
 ####.#
-EOF;
+INPUT;
 
     assertEquals($answer, test()->solution->partTwo($steps));
 })->with([

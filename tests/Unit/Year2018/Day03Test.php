@@ -10,20 +10,20 @@ test('Day 03 Part 1', function (string $input, string $answer) {
     test()->solution->input = $input;
     assertEquals($answer, test()->solution->partOne());
 })->with([
-    [<<<'EOL'
+    [<<<INPUT
 #1 @ 1,3: 4x4
 #2 @ 3,1: 4x4
 #3 @ 5,5: 2x2
-EOL, '4'],
+INPUT, '4'],
 ]);
 
 test('Day 03 Part 2', function (string $input, string $answer) {
     test()->solution->input = $input;
     assertEquals($answer, test()->solution->partTwo());
 })->with([
-    [<<<'EOL'
+    [<<<INPUT
 #1 @ 1,3: 4x4
 #2 @ 3,1: 4x4
 #3 @ 5,5: 2x2
-EOL, '3'],
+INPUT, '3'],
 ]);

@@ -10,10 +10,10 @@ test('Day 14 Part 1', function (string $input, string $answer) {
     test()->solution->input = $input;
     assertEquals($answer, test()->solution->partOne(1000));
 })->with([
-    [<<<'EOF'
+    [<<<INPUT
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
-EOF
+INPUT
         , '1120'],
 ]);
 
@@ -21,9 +21,9 @@ test('Day 14 Part 2', function (string $input, string $answer) {
     test()->solution->input = $input;
     assertEquals($answer, test()->solution->partTwo(1000));
 })->with([
-    [<<<'EOF'
+    [<<<INPUT
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
-EOF
+INPUT
         , '689'],
 ]);

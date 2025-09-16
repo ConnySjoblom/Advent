@@ -10,7 +10,7 @@ test('Day 01 Part 1', function (string $input, string $answer) {
     test()->solution->input = $input;
     assertEquals($answer, test()->solution->partOne());
 })->with([
-    [<<<EOF
+    [<<<INPUT
 199
 200
 208
@@ -21,7 +21,7 @@ test('Day 01 Part 1', function (string $input, string $answer) {
 269
 260
 263
-EOF
+INPUT
         , '7'],
 ]);
 
@@ -29,7 +29,7 @@ test('Day 01 Part 2', function (string $input, string $answer) {
     test()->solution->input = $input;
     assertEquals($answer, test()->solution->partTwo());
 })->with([
-    [<<<EOF
+    [<<<INPUT
 199
 200
 208
@@ -40,6 +40,6 @@ test('Day 01 Part 2', function (string $input, string $answer) {
 269
 260
 263
-EOF
+INPUT
         , '5'],
 ]);
