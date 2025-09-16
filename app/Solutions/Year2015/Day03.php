@@ -31,7 +31,7 @@ class Day03 extends Solution
                     break;
             }
 
-            if (! array_key_exists("$x:$y", $houses)) {
+            if (!array_key_exists("$x:$y", $houses)) {
                 $houses["$x:$y"] = 0;
             }
 
@@ -68,7 +68,7 @@ class Day03 extends Solution
             }
 
             $house = sprintf('%s:%s', $x[$index % 2], $y[$index % 2]);
-            if (! array_key_exists($house, $houses)) {
+            if (!array_key_exists($house, $houses)) {
                 $houses[$house] = 0;
             }
 

@@ -25,13 +25,13 @@ class Day06 extends Solution
 
             for ($x = $fromX; $x <= $toX; $x++) {
                 for ($y = $fromY; $y <= $toY; $y++) {
-                    if (! array_key_exists("$x:$y", $lights)) {
+                    if (!array_key_exists("$x:$y", $lights)) {
                         $lights["$x:$y"] = false;
                     }
 
                     switch ($action) {
                         case 'toggle':
-                            $lights["$x:$y"] = ! $lights["$x:$y"];
+                            $lights["$x:$y"] = !$lights["$x:$y"];
                             break;
                         case 'turn on':
                             $lights["$x:$y"] = true;
@@ -66,7 +66,7 @@ class Day06 extends Solution
 
             for ($x = $fromX; $x <= $toX; $x++) {
                 for ($y = $fromY; $y <= $toY; $y++) {
-                    if (! array_key_exists("$x:$y", $lights)) {
+                    if (!array_key_exists("$x:$y", $lights)) {
                         $lights["$x:$y"] = 0;
                     }
 
