@@ -3,12 +3,12 @@
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->solution = new \App\Solutions\Year2015\Day12();
+    test()->solution = new \App\Solutions\Year2015\Day12();
 });
 
 test('Day 12 Part 1', function (string $input, string $answer) {
-    $this->solution->input = $input;
-    assertEquals($answer, $this->solution->partOne());
+    test()->solution->input = $input;
+    assertEquals($answer, test()->solution->partOne());
 })->with([
     ['[1,2,3]', '6'],
     ['{"a":2,"b":4}', '6'],
@@ -22,8 +22,8 @@ test('Day 12 Part 1', function (string $input, string $answer) {
 ]);
 
 test('Day 12 Part 2', function (string $input, string $answer) {
-    $this->solution->input = $input;
-    assertEquals($answer, $this->solution->partTwo());
+    test()->solution->input = $input;
+    assertEquals($answer, test()->solution->partTwo());
 })->with([
     ['[1,2,3]', '6'],
     ['[1,{"c":"red","b":2},3]', '4'],

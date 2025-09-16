@@ -3,11 +3,11 @@
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->solution = new \App\Solutions\Year2015\Day10();
+    test()->solution = new \App\Solutions\Year2015\Day10();
 });
 
 test('Day 10 Part 1 & 2', function (string $input, string $answer) {
-    assertEquals($answer, $this->solution->lookAndSay($input));
+    assertEquals($answer, test()->solution->lookAndSay($input));
 })->with([
     ['1', '11'],
     ['11', '21'],

@@ -3,12 +3,12 @@
 use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
-    $this->solution = new \App\Solutions\Year2019\Day14();
+    test()->solution = new \App\Solutions\Year2019\Day14();
 });
 
 test('Day 14 Part 1', function (string $input, string $answer) {
-    $this->solution->input = $input;
-    assertEquals($answer, $this->solution->partOne());
+    test()->solution->input = $input;
+    assertEquals($answer, test()->solution->partOne());
 })->with([
     [<<<INPUT
 157 ORE => 5 NZVS
@@ -57,8 +57,8 @@ INPUT, '2210736'],
 ]);
 
 test('Day 14 Part 2', function (string $input, string $answer) {
-    $this->solution->input = $input;
-    assertEquals($answer, $this->solution->partTwo());
+    test()->solution->input = $input;
+    assertEquals($answer, test()->solution->partTwo());
 })->with([
     [<<<INPUT
 157 ORE => 5 NZVS
