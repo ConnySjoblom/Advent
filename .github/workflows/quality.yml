@@ -59,4 +59,4 @@ jobs:
           php-version: '8.4'
 
       - name: Code Style Check
-        run: vendor/bin/pint --test --format=checkstyle | cs2pr
+        run: vendor/bin/pint --test

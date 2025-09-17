@@ -41,7 +41,7 @@ class IntcodeComputer
 
     public function run(): null|int
     {
-        while ( $this->pointer < count($this->memory) ) {
+        while ($this->pointer < count($this->memory)) {
             $op = $this->getOp();
 
             switch ($op) {
