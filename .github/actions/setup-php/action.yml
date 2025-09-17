@@ -19,7 +19,7 @@ runs:
       with:
         php-version: ${{ inputs.php-version }}
         extensions: ${{ inputs.extensions }}
-        tools: composer:v2
+        tools: composer:v2, cs2pr
         coverage: none
 
     - name: Get Composer Cache Directory
