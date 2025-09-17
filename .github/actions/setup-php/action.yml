@@ -39,4 +39,4 @@ runs:
     - name: Install Dependencies
       id: install-dependencies
       shell: bash
-      run: composer install --prefer-dist --no-interaction --no-progress
+      run: composer install --ansi --prefer-dist --no-interaction --no-progress
