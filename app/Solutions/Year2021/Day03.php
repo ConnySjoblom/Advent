@@ -39,51 +39,47 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $reports = explode("\n", $this->input);
-        $positions = strlen($reports[0]);
+        $oxygenReports = explode("\n", $this->input);
+        $co2Reports = explode("\n", $this->input);
+        $positions = strlen($oxygenReports[0]);
 
         for ($i = 0; $i < $positions; $i++) {
-            if (count($reports) == 1) {
+            // Process oxygen reports if more than one remains
+            if (count($oxygenReports) > 1) {
+                [$ones, $zeros] = $this->getPositionValues($oxygenReports, $i);
+
+                if ($ones == $zeros) {
+                    $oxygenReports = $this->keepOnes($oxygenReports, $i);
+                } else {
+                    $oxygenReports = match ($ones > $zeros) {
+                        true => $this->keepOnes($oxygenReports, $i),
+                        false => $this->keepZeros($oxygenReports, $i),
+                    };
+                }
+            }
+
+            // Process CO2 reports if more than one remains
+            if (count($co2Reports) > 1) {
+                [$ones, $zeros] = $this->getPositionValues($co2Reports, $i);
+
+                if ($ones == $zeros) {
+                    $co2Reports = $this->keepZeros($co2Reports, $i);
+                } else {
+                    $co2Reports = match ($ones > $zeros) {
+                        true => $this->keepZeros($co2Reports, $i),
+                        false => $this->keepOnes($co2Reports, $i),
+                    };
+                }
+            }
+
+            // Break early if both have only one report left
+            if (count($oxygenReports) === 1 && count($co2Reports) === 1) {
                 break;
             }
-
-            [$ones, $zeros] = $this->getPositionValues($reports, $i);
-
-            if ($ones == $zeros) {
-                $reports = $this->keepOnes($reports, $i);
-                continue;
-            }
-
-            $reports = match ($ones > $zeros) {
-                true => $this->keepOnes($reports, $i),
-                false => $this->keepZeros($reports, $i),
-            };
         }
 
-        $oxygen = bindec(array_values($reports)[0]);
-
-        $reports = explode("\n", $this->input);
-        for ($i = 0; $i < $positions; $i++) {
-            if (count($reports) == 1) {
-                break;
-            }
-
-            [$ones, $zeros] = $this->getPositionValues($reports, $i);
-
-            if ($ones == $zeros) {
-                $reports = $this->keepZeros($reports, $i);
-                continue;
-            }
-
-            $reports = match ($ones > $zeros) {
-                true => $this->keepZeros($reports, $i),
-                false => $this->keepOnes($reports, $i),
-            };
-
-            dump($reports);
-        }
-
-        $co2 = bindec(array_values($reports)[0]);
+        $oxygen = bindec(array_values($oxygenReports)[0]);
+        $co2 = bindec(array_values($co2Reports)[0]);
 
         return $oxygen * $co2;
     }
