@@ -101,11 +101,11 @@ class Day03 extends Solution
 
     private function keepZeros(array $reports, int $position): array
     {
-        return array_filter($reports, fn($report) => $report[$position] === '0');
+        return array_filter($reports, fn ($report) => $report[$position] === '0');
     }
 
     private function keepOnes(array $reports, int $position): array
     {
-        return array_filter($reports, fn($report) => $report[$position] === '1');
+        return array_filter($reports, fn ($report) => $report[$position] === '1');
     }
 }
