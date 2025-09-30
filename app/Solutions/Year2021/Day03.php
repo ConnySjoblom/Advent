@@ -19,6 +19,7 @@ class Day03 extends Solution
         for ($i = 0; $i < $positions; $i++) {
             $ones = $zeros = 0;
             foreach ($reports as $report) {
+                /** @phpstan-ignore-next-line  */
                 match ($report[$i]) {
                     '1' => $ones++,
                     '0' => $zeros++,
@@ -88,6 +89,7 @@ class Day03 extends Solution
     {
         $ones = $zeros = 0;
         foreach ($reports as $report) {
+            /** @phpstan-ignore-next-line  */
             match ($report[$position]) {
                 '1' => $ones++,
                 '0' => $zeros++,
