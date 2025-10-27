@@ -1166,7 +1166,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -1225,7 +1225,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -1446,7 +1446,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1549,16 +1549,16 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
-                "reference": "c7c3bbcd05c0836af89f1b49bf70c3170c011c13"
+                "reference": "e54ff0a5bcc57cea12bedcc804c6d8eb8a4d3555"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/filesystem/zipball/c7c3bbcd05c0836af89f1b49bf70c3170c011c13",
-                "reference": "c7c3bbcd05c0836af89f1b49bf70c3170c011c13",
+                "url": "https://api.github.com/repos/illuminate/filesystem/zipball/e54ff0a5bcc57cea12bedcc804c6d8eb8a4d3555",
+                "reference": "e54ff0a5bcc57cea12bedcc804c6d8eb8a4d3555",
                 "shasum": ""
             },
             "require": {
@@ -1612,7 +1612,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-09-30T17:35:38+00:00"
+            "time": "2025-10-22T19:48:35+00:00"
         },
         {
             "name": "illuminate/http",
@@ -1678,7 +1678,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -1884,16 +1884,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "89291f59ef6c170c00f10a41c566c49ee32ca09a"
+                "reference": "646dcbd7584b40a288863fbac90ea57db79647cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/89291f59ef6c170c00f10a41c566c49ee32ca09a",
-                "reference": "89291f59ef6c170c00f10a41c566c49ee32ca09a",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/646dcbd7584b40a288863fbac90ea57db79647cd",
+                "reference": "646dcbd7584b40a288863fbac90ea57db79647cd",
                 "shasum": ""
             },
             "require": {
@@ -1959,7 +1959,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-10-13T21:11:33+00:00"
+            "time": "2025-10-21T17:38:47+00:00"
         },
         {
             "name": "illuminate/testing",
@@ -2023,7 +2023,7 @@
         },
         {
             "name": "illuminate/translation",
-            "version": "v12.34.0",
+            "version": "v12.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/translation.git",
