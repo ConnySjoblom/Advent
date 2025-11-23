@@ -37,7 +37,27 @@ class Day09 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        return null;
+        $map = str($this->input)
+            ->explode("\n")
+            ->map(function ($line) {
+                return str_split($line);
+            });
+
+        $visited = [];
+        $basinSizes = [];
+        foreach ($map as $x => $line) {
+            foreach ($line as $y => $height) {
+                $adjacent = $this->getAdjacent($map, $x, $y);
+                $isLowest = $this->isLowest($height, $adjacent);
+
+                if ($isLowest && !isset($visited["$x,$y"])) {
+                    $basinSizes[] = $this->floodFill($map, $x, $y, $visited);
+                }
+            }
+        }
+
+        rsort($basinSizes);
+        return $basinSizes[0] * $basinSizes[1] * $basinSizes[2];
     }
 
     public function getAdjacent($map, $x, $y): array
@@ -67,5 +87,25 @@ class Day09 extends Solution
         }
 
         return $isLowest;
+    }
+
+    public function floodFill($map, $x, $y, &$visited): int
+    {
+        $key = "$x,$y";
+        if (isset($visited[$key]) || !isset($map[$x][$y]) || $map[$x][$y] == 9) {
+            return 0;
+        }
+
+        $visited[$key] = true;
+        $size = 1;
+
+        $directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        foreach ($directions as [$dx, $dy]) {
+            $nx = $x + $dx;
+            $ny = $y + $dy;
+            $size += $this->floodFill($map, $nx, $ny, $visited);
+        }
+
+        return $size;
     }
 }
