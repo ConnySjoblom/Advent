@@ -24,7 +24,7 @@ class Day09 extends Solution
                 $isLowest = $this->isLowest($height, $adjacent);
 
                 if ($isLowest) {
-                    $riskLevel += (1 + $height);
+                    $riskLevel += (1 + intval($height));
                 }
             }
         }

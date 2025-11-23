@@ -88,6 +88,7 @@ class Day10 extends Solution
             ']' => '[',
             '}' => '{',
             '>' => '<',
+            default => throw new \Exception("Invalid character '{$char}'"),
         };
     }
 
@@ -98,6 +99,7 @@ class Day10 extends Solution
             ']' => 57,
             '}' => 1197,
             '>' => 25137,
+            default => throw new \Exception("Invalid character '{$char}'"),
         };
     }
 
@@ -108,6 +110,7 @@ class Day10 extends Solution
             '[' => 2,
             '{' => 3,
             '<' => 4,
+            default => throw new \Exception("Invalid character '{$char}'"),
         };
     }
 }
