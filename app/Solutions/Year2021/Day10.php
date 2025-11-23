@@ -91,16 +91,6 @@ class Day10 extends Solution
         };
     }
 
-    public function convertToClosingChar($char): string
-    {
-        return match ($char) {
-            '(' => ')',
-            '[' => ']',
-            '{' => '}',
-            '<' => '>',
-        };
-    }
-
     public function scoreIllegalChar($char): int
     {
         return match ($char) {
