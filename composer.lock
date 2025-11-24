@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "brick/math",
-            "version": "0.14.0",
+            "version": "0.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "113a8ee2656b882d4c3164fa31aa6e12cbb7aaa2"
+                "reference": "f05858549e5f9d7bb45875a75583240a38a281d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/113a8ee2656b882d4c3164fa31aa6e12cbb7aaa2",
-                "reference": "113a8ee2656b882d4c3164fa31aa6e12cbb7aaa2",
+                "url": "https://api.github.com/repos/brick/math/zipball/f05858549e5f9d7bb45875a75583240a38a281d0",
+                "reference": "f05858549e5f9d7bb45875a75583240a38a281d0",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/math/issues",
-                "source": "https://github.com/brick/math/tree/0.14.0"
+                "source": "https://github.com/brick/math/tree/0.14.1"
             },
             "funding": [
                 {
@@ -64,7 +64,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-29T12:40:03+00:00"
+            "time": "2025-11-24T14:40:29+00:00"
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -1384,16 +1384,16 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v12.37.0",
+            "version": "v12.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "d6eaa8afd48dbe16b6b3c412a87479cad67eeb12"
+                "reference": "17ec6c2f741b11564420acc737dea9334d69988c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/d6eaa8afd48dbe16b6b3c412a87479cad67eeb12",
-                "reference": "d6eaa8afd48dbe16b6b3c412a87479cad67eeb12",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/17ec6c2f741b11564420acc737dea9334d69988c",
+                "reference": "17ec6c2f741b11564420acc737dea9334d69988c",
                 "shasum": ""
             },
             "require": {
@@ -1441,7 +1441,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-09-12T14:35:11+00:00"
+            "time": "2025-11-14T15:29:05+00:00"
         },
         {
             "name": "illuminate/contracts",
@@ -2073,16 +2073,16 @@
         },
         {
             "name": "illuminate/validation",
-            "version": "v12.37.0",
+            "version": "v12.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/validation.git",
-                "reference": "b5393fd4f7bcad8e58cfc5460dc45e6be29127f8"
+                "reference": "feb50e83af0fc3429f503cffde489f851da41456"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/validation/zipball/b5393fd4f7bcad8e58cfc5460dc45e6be29127f8",
-                "reference": "b5393fd4f7bcad8e58cfc5460dc45e6be29127f8",
+                "url": "https://api.github.com/repos/illuminate/validation/zipball/feb50e83af0fc3429f503cffde489f851da41456",
+                "reference": "feb50e83af0fc3429f503cffde489f851da41456",
                 "shasum": ""
             },
             "require": {
@@ -2132,7 +2132,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-11-03T22:07:25+00:00"
+            "time": "2025-11-10T22:51:39+00:00"
         },
         {
             "name": "illuminate/view",
