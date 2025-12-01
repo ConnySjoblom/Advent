@@ -19,6 +19,7 @@ class Day01 extends Solution
             $position += match ($direction) {
                 'R' => $steps,
                 'L' => -$steps,
+                default => 0,
             };
 
             $position = (($position % 100) + 100) % 100;
@@ -57,6 +58,7 @@ class Day01 extends Solution
             $position += match ($direction) {
                 'L' => -$steps,
                 'R' => $steps,
+                default => 0,
             };
 
             $position = (($position % 100) + 100) % 100;
