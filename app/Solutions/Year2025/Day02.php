@@ -15,9 +15,9 @@ class Day02 extends Solution
         foreach (explode(',', $this->input) as $id_range) {
             $parts = array_map('intval', explode('-', $id_range));
             for ($i = $parts[0]; $i <= $parts[1]; $i++) {
-                $strlen = strlen($i);
+                $strlen = strlen(strval($i));
                 if ($strlen % 2 == 0) {
-                    $id_parts = str_split($i, $strlen / 2);
+                    $id_parts = str_split(strval($i), $strlen / 2);
                     if ($id_parts[0] == $id_parts[1]) {
                         $sum += $i;
                     }
@@ -37,9 +37,9 @@ class Day02 extends Solution
         foreach (explode(',', $this->input) as $id_range) {
             $parts = array_map('intval', explode('-', $id_range));
             for ($i = $parts[0]; $i <= $parts[1]; $i++) {
-                $strlen = strlen($i);
+                $strlen = strlen(strval($i));
                 for ($j = 1; $j <= $strlen / 2; $j++) {
-                    $needle = substr($i, 0, $j);
+                    $needle = substr(strval($i), 0, $j);
                     if ($this->isRepeating($needle, $i)) {
                         $sum += $i;
                         break;
