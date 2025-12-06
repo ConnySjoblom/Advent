@@ -10,7 +10,7 @@ use LaravelZero\Framework\Commands\Command;
 class PrepareCommand extends Command
 {
     protected $signature = 'prepare
-                            { day : Which day do you want to prepare? }
+                            { day? : Which day do you want to prepare? }
                             { --y|year= : Which year do you want to prepare? }
                             { --t|test : Create the test file }
                             { --f|force : Force prepare day }';

@@ -18,15 +18,15 @@ class Input
         if (empty($year)) {
             $year = $maxYear;
 
-            // If year and day is empty, fallback to current day
-            if (empty($day) && $curMonth == 12) {
-                $day = date('d');
+            // If both year and day are empty, also default day to current day
+            if (empty($day)) {
+                $day = intval(date('d'));
             }
         }
 
         Validator::validate(['year' => $year, 'day' => $day, 'part' => $part], [
             'year' => 'integer|between:2015,' . $maxYear,
-            'day' => 'integer|between:1,25',
+            'day' => 'required|integer|between:1,25',
             'part' => 'integer|between:1,2',
         ]);
 
