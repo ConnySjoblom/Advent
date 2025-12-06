@@ -50,7 +50,7 @@ class Day05 extends Solution
                 $merged[] = $range;
             } else {
                 $last = &$merged[count($merged) - 1];
-                if ($range[0] <= $last[1] + 1) {
+                if ($range[0] <= (int)$last[1] + 1) {
                     $last[1] = max($last[1], $range[1]);
                 } else {
                     $merged[] = $range;
@@ -60,7 +60,7 @@ class Day05 extends Solution
 
         $freshCount = 0;
         foreach ($merged as $range) {
-            $freshCount += $range[1] - $range[0] + 1;
+            $freshCount += (int)$range[1] - (int)$range[0] + 1;
         }
 
         return $freshCount;
