@@ -33,8 +33,9 @@ class Day07 extends Solution
         );
 
         $startX = array_search('S', $diagram[0]);
+        $cache = [];
 
-        return 1 + $this->timeline($diagram, $startX, 0);
+        return 1 + $this->timeline($diagram, $startX, 0, $cache);
     }
 
     private function beam(array $diagram, int $x, int $y, array &$visited): int
@@ -61,7 +62,7 @@ class Day07 extends Solution
             + $this->beam($diagram, $x + 1, $y, $visited);
     }
 
-    private function timeline(array $diagram, int $x, int $y): int
+    private function timeline(array $diagram, int $x, int $y, array &$cache): int
     {
         while (isset($diagram[$y][$x]) && $diagram[$y][$x] !== '^') {
             $y++;
@@ -71,8 +72,18 @@ class Day07 extends Solution
             return 0;
         }
 
-        return 1
-            + $this->timeline($diagram, $x - 1, $y)
-            + $this->timeline($diagram, $x + 1, $y);
+        $key = "$x,$y";
+
+        if (isset($cache[$key])) {
+            return $cache[$key];
+        }
+
+        $result = 1
+            + $this->timeline($diagram, $x - 1, $y, $cache)
+            + $this->timeline($diagram, $x + 1, $y, $cache);
+
+        $cache[$key] = $result;
+
+        return $result;
     }
 }
