@@ -38,7 +38,7 @@ class Day09 extends Solution
         $cords = array_map(fn ($line) => array_map('intval', explode(',', $line)), explode("\n", $this->input));
         $cordCount = count($cords);
 
-        $border = [];
+        $borders = [];
         for ($i = 0; $i < $cordCount; $i++) {
             [$x, $y] = $cords[$i];
             [$nx, $ny] = $cords[($i + 1) % $cordCount];
@@ -48,16 +48,17 @@ class Day09 extends Solution
 
             if ($x == $nx) {
                 for ($yy = $minY; $yy <= $maxY; $yy++) {
-                    $border["$x,$yy"] = true;
+                    $borders["$x,$yy"] = true;
                 }
             } else {
                 for ($xx = $minX; $xx <= $maxX; $xx++) {
-                    $border["$xx,$y"] = true;
+                    $borders["$xx,$y"] = true;
                 }
             }
         }
 
         $maxArea = 0;
+        $borders = array_map(fn ($point) => explode(',', $point), array_keys($borders));
         for ($i = 0; $i < $cordCount; $i++) {
             $last = now();
             for ($j = $i + 1; $j < $cordCount; $j++) {
@@ -70,8 +71,7 @@ class Day09 extends Solution
                     continue;
                 }
 
-                foreach (array_keys($border) as $point) {
-                    [$x, $y] = explode(',', $point);
+                foreach ($borders as [$x, $y]) {
                     if ($x > $minX && $x < $maxX && $y > $minY && $y < $maxY) {
                         continue 2;
                     }
