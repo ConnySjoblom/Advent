@@ -59,11 +59,12 @@ class Day09 extends Solution
 
         $maxArea = 0;
         for ($i = 0; $i < $cordCount; $i++) {
+            $last = now();
             for ($j = $i + 1; $j < $cordCount; $j++) {
                 [$minX, $maxX] = [min($cords[$i][0], $cords[$j][0]), max($cords[$i][0], $cords[$j][0])];
                 [$minY, $maxY] = [min($cords[$i][1], $cords[$j][1]), max($cords[$i][1], $cords[$j][1])];
 
-                $area = (abs($maxX - $minX) + 1) * (abs($maxY - $minY) + 1);
+                $area = ($maxX - $minX + 1) * ($maxY - $minY + 1);
 
                 if ($area < $maxArea) {
                     continue;
@@ -84,10 +85,10 @@ class Day09 extends Solution
                 $estimatedTotal = $elapsed * $cordCount / ($i + 1);
                 $remaining = $estimatedTotal - $elapsed;
 
-                $elapsed = CarbonInterval::seconds(intval($elapsed))->cascade()->forHumans();
                 $remaining = CarbonInterval::seconds(intval($remaining))->cascade()->forHumans();
+                $elapsedSingle = CarbonInterval::seconds(intval($last->diffInSeconds(now())))->cascade()->forHumans();
 
-                echo "Completed $i / " . ($cordCount - 1) . " | Elapsed: {$elapsed} | Est. remaining: {$remaining}\n";
+                echo "Completed $i / " . ($cordCount - 1) . " | Delta: {$elapsedSingle} | Est. remaining: {$remaining}\n";
             }
         }
 
