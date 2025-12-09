@@ -22,7 +22,8 @@
         "illuminate/http": "^12.29",
         "illuminate/translation": "^12.29",
         "illuminate/validation": "^12.29",
-        "laravel-zero/framework": "^12.0"
+        "laravel-zero/framework": "^12.0",
+        "nesbot/carbon": "^3.11"
     },
     "require-dev": {
         "larastan/larastan": "^3.7",
