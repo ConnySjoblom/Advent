@@ -48,17 +48,17 @@ class Day09 extends Solution
 
             if ($x == $nx) {
                 for ($yy = $minY; $yy <= $maxY; $yy++) {
-                    $borders["$x,$yy"] = true;
+                    $borders["$x,$yy"] = [$x, $yy];
                 }
             } else {
                 for ($xx = $minX; $xx <= $maxX; $xx++) {
-                    $borders["$xx,$y"] = true;
+                    $borders["$xx,$y"] = [$xx, $y];
                 }
             }
         }
 
         $maxArea = 0;
-        $borders = array_map(fn ($point) => explode(',', $point), array_keys($borders));
+        $borders = array_values($borders);
         for ($i = 0; $i < $cordCount; $i++) {
             $last = now();
             for ($j = $i + 1; $j < $cordCount; $j++) {
@@ -67,7 +67,7 @@ class Day09 extends Solution
 
                 $area = ($maxX - $minX + 1) * ($maxY - $minY + 1);
 
-                if ($area < $maxArea) {
+                if ($area <= $maxArea) {
                     continue;
                 }
 
