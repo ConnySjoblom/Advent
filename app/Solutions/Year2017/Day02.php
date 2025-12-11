@@ -13,7 +13,7 @@ class Day02 extends Solution
     public function partOne(): string|int|null
     {
         $rows = array_map(
-            fn ($row) => array_map('intval', explode("\t", $row)),
+            fn ($row) => InputParser::csvIntegers($row, "\t"),
             InputParser::lines($this->input)
         );
 
@@ -31,7 +31,7 @@ class Day02 extends Solution
     public function partTwo(): string|int|null
     {
         $rows = array_map(
-            fn ($row) => array_map('intval', explode("\t", $row)),
+            fn ($row) => InputParser::csvIntegers($row, "\t"),
             InputParser::lines($this->input)
         );
 
