@@ -43,39 +43,38 @@ class TestMissingCommand extends Command
 
             $stats['total_solutions']++;
 
-            // Check if test file exists
+            // Check if solution methods are implemented
+            $solutionContent = File::get($solutionFile);
+            $part1Implemented = $this->isSolutionImplemented($solutionContent, 1);
+            $part2Implemented = $this->isSolutionImplemented($solutionContent, 2);
+
+            // Only check for tests if the solution is implemented
             $testFile = base_path("tests/Unit/Year{$year}/Day{$day}Test.php");
+            $testContent = File::exists($testFile) ? File::get($testFile) : null;
 
-            if (!File::exists($testFile)) {
-                $missing[] = [
-                    'year' => $year,
-                    'day' => $day,
-                    'missing' => 'Both parts',
-                ];
-                $stats['missing_tests']++;
-                $stats['missing_part1']++;
-                $stats['missing_part2']++;
-                continue;
-            }
+            $missingParts = [];
 
-            // Test file exists, check if it has tests for both parts
-            $testContent = File::get($testFile);
-            $hasPart1 = $this->hasTestForPart($testContent, 1);
-            $hasPart2 = $this->hasTestForPart($testContent, 2);
-
-            if (!$hasPart1 || !$hasPart2) {
-                $missingParts = [];
-                if (!$hasPart1) {
+            // Check Part 1
+            if ($part1Implemented) {
+                $hasTest = $testContent && $this->hasTestForPart($testContent, 1);
+                if (!$hasTest) {
                     $missingParts[] = 'Part 1';
                     $stats['missing_part1']++;
                 }
-                if (!$hasPart2) {
+            }
+
+            // Check Part 2
+            if ($part2Implemented) {
+                $hasTest = $testContent && $this->hasTestForPart($testContent, 2);
+                if (!$hasTest) {
                     $missingParts[] = 'Part 2';
                     $stats['missing_part2']++;
                 }
+            }
 
+            if (!empty($missingParts)) {
                 // Use "Both parts" if both are missing for consistency
-                $missingText = (!$hasPart1 && !$hasPart2)
+                $missingText = (count($missingParts) === 2)
                     ? 'Both parts'
                     : implode(', ', $missingParts);
 
@@ -84,8 +83,15 @@ class TestMissingCommand extends Command
                     'day' => $day,
                     'missing' => $missingText,
                 ];
+
+                if (count($missingParts) === 2) {
+                    $stats['missing_tests']++;
+                }
             } else {
-                $stats['with_tests']++;
+                // Only count as "with tests" if at least one part is implemented
+                if ($part1Implemented || $part2Implemented) {
+                    $stats['with_tests']++;
+                }
             }
         }
 
@@ -147,11 +153,7 @@ class TestMissingCommand extends Command
                     ? substr($content, $testStart, $nextTest - $testStart)
                     : substr($content, $testStart);
 
-                // Check if the test is skipped or has empty test data
-                if (str_contains($testBlock, '->skip(')) {
-                    return false;
-                }
-
+                // Check if the test has empty test data (no real test case)
                 if (preg_match("/\['',\s*''\]/", $testBlock)) {
                     return false;
                 }
@@ -161,5 +163,24 @@ class TestMissingCommand extends Command
         }
 
         return false;
+    }
+
+    private function isSolutionImplemented(string $content, int $part): bool
+    {
+        $method = $part === 1 ? 'partOne' : 'partTwo';
+
+        // Find the method (with or without parameters)
+        if (!preg_match("/public function {$method}\([^)]*\).*?\{(.*?)\n\s+\}/s", $content, $matches)) {
+            return false;
+        }
+
+        $methodBody = $matches[1];
+
+        // Check if the method just returns null (not implemented)
+        if (preg_match('/^\s*return\s+null;\s*$/s', trim($methodBody))) {
+            return false;
+        }
+
+        return true;
     }
 }
