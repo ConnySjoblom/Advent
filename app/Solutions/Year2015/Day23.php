@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day23 extends Solution
 {
@@ -11,7 +12,7 @@ class Day23 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $program = explode("\n", $this->input);
+        $program = InputParser::lines($this->input);
 
         $reg = [
             'a' => 0,
@@ -76,7 +77,7 @@ class Day23 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $program = explode("\n", $this->input);
+        $program = InputParser::lines($this->input);
 
         $reg = [
             'a' => 1,

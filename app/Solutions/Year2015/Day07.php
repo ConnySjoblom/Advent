@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day07 extends Solution
 {
@@ -15,9 +16,9 @@ class Day07 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             $i = explode(' -> ', $line);
             $this->wires[$i[1]] = $i[0];
         }
@@ -30,9 +31,9 @@ class Day07 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             $i = explode(' -> ', $line);
             $this->wires[$i[1]] = $i[0];
         }

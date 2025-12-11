@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day18 extends Solution
 {
@@ -11,12 +13,7 @@ class Day18 extends Solution
      */
     public function partOne(int $steps = 100): string|int|null
     {
-        $input = explode("\n", $this->input);
-
-        $config = [];
-        for ($i = 0; $i < count($input); $i++) {
-            $config[$i] = str_split($input[$i]);
-        }
+        $config = InputParser::grid($this->input);
 
         for ($i = 0; $i < $steps; $i++) {
             $newConfig = [];
@@ -29,15 +26,7 @@ class Day18 extends Solution
             $config = $newConfig;
         }
 
-        $lightsOn = 0;
-        for ($i = 0; $i < count($config); $i++) {
-            $count = array_count_values($config[$i]);
-            if (isset($count['#'])) {
-                $lightsOn += array_count_values($config[$i])['#'];
-            }
-        }
-
-        return $lightsOn;
+        return GridHelper::count($config, '#');
     }
 
     /**
@@ -45,12 +34,7 @@ class Day18 extends Solution
      */
     public function partTwo(int $steps = 100): string|int|null
     {
-        $input = explode("\n", $this->input);
-
-        $config = [];
-        for ($i = 0; $i < count($input); $i++) {
-            $config[$i] = str_split($input[$i]);
-        }
+        $config = InputParser::grid($this->input);
 
         $config[0][0] = '#';
         $config[0][count($config) - 1] = '#';
@@ -68,15 +52,7 @@ class Day18 extends Solution
             $config = $newConfig;
         }
 
-        $lightsOn = 0;
-        for ($i = 0; $i < count($config); $i++) {
-            $count = array_count_values($config[$i]);
-            if (isset($count['#'])) {
-                $lightsOn += array_count_values($config[$i])['#'];
-            }
-        }
-
-        return $lightsOn;
+        return GridHelper::count($config, '#');
     }
 
     private function animate(array $config, int $x, int $y, int $part = 1): string
@@ -91,20 +67,10 @@ class Day18 extends Solution
 
         $lightsOn = 0;
         $initialState = $config[$x][$y];
-        for ($i = $x - 1; $i <= $x + 1; $i++) {
-            for ($j = $y - 1; $j <= $y + 1; $j++) {
-                if (
-                    ($i == $x && $j == $y)
-                    || $i < 0 || $j < 0
-                    || $i > count($config) - 1
-                    || $j > count($config[$x]) - 1
-                ) {
-                    continue;
-                }
 
-                if ($config[$i][$j] == '#') {
-                    $lightsOn++;
-                }
+        foreach (GridHelper::allNeighbors($x, $y) as [$i, $j]) {
+            if (GridHelper::inBounds($config, $i, $j) && $config[$i][$j] == '#') {
+                $lightsOn++;
             }
         }
 
