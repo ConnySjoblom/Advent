@@ -41,6 +41,8 @@ class Day13 extends Solution
             [$axis, $n] = $instructions[$i];
             foreach (array_keys($dots) as $dot) {
                 [$x, $y] = explode(',', $dot);
+                $x = (int) $x;
+                $y = (int) $y;
 
                 if ($axis == 'y') {
                     if ($y < $n) {
@@ -75,6 +77,8 @@ class Day13 extends Solution
         $maxX = $maxY = 0;
         foreach (array_keys($dots) as $dot) {
             [$x,$y] = explode(',', $dot);
+            $x = (int) $x;
+            $y = (int) $y;
             $maxX = max($maxX, $x);
             $maxY = max($maxY, $y);
         }

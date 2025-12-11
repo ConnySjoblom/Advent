@@ -43,17 +43,6 @@ class Day11 extends Solution
                 [$y, $x] = explode(',', $octopus);
                 $octopuses[$y][$x] = 0;
             }
-
-            if ($step == 0) {
-                // Debug write
-                for ($y = 0; $y < $maxY; $y++) {
-                    for ($x = 0; $x < $maxX; $x++) {
-                        echo $octopuses[$y][$x];
-                    }
-                    echo "\n";
-                }
-                die();
-            }
         }
 
         return $totalFlashes;
