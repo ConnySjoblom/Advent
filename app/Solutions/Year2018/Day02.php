@@ -17,15 +17,12 @@ class Day02 extends Solution
         $twice = 0;
         $thrice = 0;
         foreach ($input as $id) {
-            $charCounts = [];
-            foreach (array_unique(str_split($id)) as $char) {
-                $charCounts[$char] = count(array_filter(str_split($id), fn ($value) => $value == $char));
-            }
+            $charCounts = array_count_values(str_split($id));
 
-            if (array_search(2, $charCounts)) {
+            if (in_array(2, $charCounts)) {
                 $twice++;
             }
-            if (array_search(3, $charCounts)) {
+            if (in_array(3, $charCounts)) {
                 $thrice++;
             }
         }
