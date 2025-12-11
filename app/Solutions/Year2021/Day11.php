@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day11 extends Solution
 {
@@ -11,7 +13,7 @@ class Day11 extends Solution
      */
     public function partOne(int $steps = 100): string|int|null
     {
-        $octopuses = array_map(fn ($row) => str_split($row), explode("\n", $this->input));
+        $octopuses = InputParser::integerGrid($this->input);
 
         $maxY = count($octopuses);
         $maxX = count($octopuses[0]);
@@ -53,7 +55,7 @@ class Day11 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $octopuses = array_map(fn ($row) => str_split($row), explode("\n", $this->input));
+        $octopuses = InputParser::integerGrid($this->input);
 
         $maxY = count($octopuses);
         $maxX = count($octopuses[0]);
@@ -97,23 +99,10 @@ class Day11 extends Solution
 
     private function flash(int $y, int $x, array &$octopuses, int &$totalFlashes = 0): void
     {
-        $directions = [
-            [0, -1],   // Up
-            [1, -1],   // Up-Right
-            [1, 0],    // Right
-            [1, 1],    // Down-Right
-            [0, 1],    // Down
-            [-1, 1],   // Down-Left
-            [-1, 0],   // Left
-            [-1, -1],  // Up-Left
-        ];
-
         $totalFlashes++;
 
-        foreach ($directions as $direction) {
-            $dx = $x + $direction[0];
-            $dy = $y + $direction[1];
-            if (isset($octopuses[$dy][$dx])) {
+        foreach (GridHelper::allNeighbors($y, $x) as [$dy, $dx]) {
+            if (GridHelper::inBounds($octopuses, $dy, $dx)) {
                 $octopuses[$dy][$dx]++;
             }
         }

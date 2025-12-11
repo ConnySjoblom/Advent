@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day09 extends Solution
 {
@@ -11,11 +13,7 @@ class Day09 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $map = str($this->input)
-            ->explode("\n")
-            ->map(function ($line) {
-                return str_split($line);
-            });
+        $map = InputParser::integerGrid($this->input);
 
         $riskLevel = 0;
         foreach ($map as $x => $line) {
@@ -37,11 +35,7 @@ class Day09 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $map = str($this->input)
-            ->explode("\n")
-            ->map(function ($line) {
-                return str_split($line);
-            });
+        $map = InputParser::integerGrid($this->input);
 
         $visited = [];
         $basinSizes = [];
@@ -63,7 +57,7 @@ class Day09 extends Solution
     public function getAdjacent($map, $x, $y): array
     {
         $adjacent = [];
-        $directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        $directions = GridHelper::directions();
 
         foreach ($directions as [$dx, $dy]) {
             $nx = $x + $dx;
@@ -92,14 +86,14 @@ class Day09 extends Solution
     public function floodFill($map, $x, $y, &$visited): int
     {
         $key = "$x,$y";
-        if (isset($visited[$key]) || !isset($map[$x][$y]) || $map[$x][$y] == 9) {
+        if (isset($visited[$key]) || !GridHelper::inBounds($map, $x, $y) || $map[$x][$y] == 9) {
             return 0;
         }
 
         $visited[$key] = true;
         $size = 1;
 
-        $directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        $directions = GridHelper::directions();
         foreach ($directions as [$dx, $dy]) {
             $nx = $x + $dx;
             $ny = $y + $dy;

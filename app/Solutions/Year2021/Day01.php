@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day01 extends Solution
 {
@@ -11,7 +12,7 @@ class Day01 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $numbers = array_map('intval', explode("\n", $this->input));
+        $numbers = InputParser::integers($this->input);
         $count = count($numbers);
         $times = 0;
 
@@ -29,7 +30,7 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $numbers = array_map('intval', explode("\n", $this->input));
+        $numbers = InputParser::integers($this->input);
         $count = count($numbers);
         $times = 0;
 

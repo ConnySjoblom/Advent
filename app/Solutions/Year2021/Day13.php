@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Day13 extends Solution
@@ -12,10 +13,10 @@ class Day13 extends Solution
      */
     public function partOne($folds = 1): string|int|null
     {
-        [$dots, $instructions] = explode("\n\n", $this->input);
+        [$dots, $instructions] = InputParser::groups($this->input);
 
-        $dots = array_fill_keys(explode("\n", $dots), true);
-        $instructions = array_map(fn ($i) => explode('=', explode(' ', $i)[2]), explode("\n", $instructions));
+        $dots = array_fill_keys(InputParser::lines($dots), true);
+        $instructions = array_map(fn ($i) => explode('=', explode(' ', $i)[2]), InputParser::lines($instructions));
 
         return $this->fold($dots, $instructions, $folds);
     }
@@ -25,10 +26,10 @@ class Day13 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        [$dots, $instructions] = explode("\n\n", $this->input);
+        [$dots, $instructions] = InputParser::groups($this->input);
 
-        $dots = array_fill_keys(explode("\n", $dots), true);
-        $instructions = array_map(fn ($i) => explode('=', explode(' ', $i)[2]), explode("\n", $instructions));
+        $dots = array_fill_keys(InputParser::lines($dots), true);
+        $instructions = array_map(fn ($i) => explode('=', explode(' ', $i)[2]), InputParser::lines($instructions));
 
         return $this->fold($dots, $instructions, count($instructions));
     }
