@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day02 extends Solution
 {
@@ -12,7 +13,7 @@ class Day02 extends Solution
     public function partOne(): string|int|null
     {
         $sum = 0;
-        foreach (explode(',', $this->input) as $id_range) {
+        foreach (InputParser::csv($this->input) as $id_range) {
             $parts = array_map('intval', explode('-', $id_range));
             for ($i = $parts[0]; $i <= $parts[1]; $i++) {
                 $strlen = strlen(strval($i));
@@ -34,7 +35,7 @@ class Day02 extends Solution
     public function partTwo(): string|int|null
     {
         $sum = 0;
-        foreach (explode(',', $this->input) as $id_range) {
+        foreach (InputParser::csv($this->input) as $id_range) {
             $parts = array_map('intval', explode('-', $id_range));
             for ($i = $parts[0]; $i <= $parts[1]; $i++) {
                 $strlen = strlen(strval($i));

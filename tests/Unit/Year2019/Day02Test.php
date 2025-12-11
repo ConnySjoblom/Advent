@@ -1,6 +1,5 @@
 <?php
 
-use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
     test()->solution = new \App\Solutions\Year2019\Day02();

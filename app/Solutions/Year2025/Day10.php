@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
+use App\Solutions\Support\Helpers\MathHelper;
 
 class Day10 extends Solution
 {
@@ -12,7 +14,7 @@ class Day10 extends Solution
     public function partOne(): string|int|null
     {
         $answer = 0;
-        $manuals = explode("\n", $this->input);
+        $manuals = InputParser::lines($this->input);
         foreach ($manuals as $manual) {
             $buttons = explode(' ', $manual);
             $joltage = array_pop($buttons);
@@ -52,7 +54,7 @@ class Day10 extends Solution
     public function partTwo(): string|int|null
     {
         $answer = 0;
-        $manuals = explode("\n", $this->input);
+        $manuals = InputParser::lines($this->input);
 
         foreach ($manuals as $manual) {
             $buttons = explode(' ', $manual);
@@ -86,35 +88,8 @@ class Day10 extends Solution
 
         // Generate all combinations for each size from 1 to n
         for ($size = 1; $size <= $n; $size++) {
-            $result = array_merge($result, $this->combinations($buttons, $size));
+            $result = array_merge($result, MathHelper::combinations($buttons, $size));
         }
-
-        return $result;
-    }
-
-    /**
-     * Generate all combinations of a specific size
-     */
-    private function combinations(array $items, int $size): array
-    {
-        if ($size === 0) {
-            return [[]];
-        }
-
-        if (empty($items)) {
-            return [];
-        }
-
-        $result = [];
-        $first = array_shift($items);
-
-        // Include the first item
-        foreach ($this->combinations($items, $size - 1) as $combo) {
-            $result[] = array_merge([$first], $combo);
-        }
-
-        // Exclude the first item
-        $result = array_merge($result, $this->combinations($items, $size));
 
         return $result;
     }

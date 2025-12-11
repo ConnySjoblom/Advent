@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day06 extends Solution
 {
@@ -13,7 +14,7 @@ class Day06 extends Solution
     {
         $lines = array_map(
             fn ($line) => preg_split('/\s+/', $line, -1, PREG_SPLIT_NO_EMPTY),
-            explode("\n", $this->input)
+            InputParser::lines($this->input)
         );
 
         $answer = 0;
@@ -40,7 +41,7 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $lines = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
         $maxLength = max(array_map('strlen', $lines));
         $operatorRow = count($lines) - 1;
 
@@ -77,6 +78,7 @@ class Day06 extends Solution
                     $result = match ($operator) {
                         '+' => $result + $number,
                         '*' => $result * $number,
+                        default => $result,
                     };
                 }
 
