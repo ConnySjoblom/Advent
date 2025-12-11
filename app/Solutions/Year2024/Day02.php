@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2024;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day02 extends Solution
 {
@@ -11,7 +12,7 @@ class Day02 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $reports = explode("\n", $this->input);
+        $reports = InputParser::lines($this->input);
 
         $safeNum = 0;
         foreach ($reports as $report) {
@@ -50,7 +51,7 @@ class Day02 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $reports = explode("\n", $this->input);
+        $reports = InputParser::lines($this->input);
 
         $safe = 0;
         foreach ($reports as $report) {

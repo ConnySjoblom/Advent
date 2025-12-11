@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2024;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day03 extends Solution
 {
@@ -11,7 +12,7 @@ class Day03 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $memory = implode('', explode("\n", $this->input));
+        $memory = implode('', InputParser::lines($this->input));
 
         preg_match_all("/mul\((\d*,\d*)\)/", $memory, $matches);
 
@@ -29,7 +30,7 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $memory = implode('', explode("\n", $this->input));
+        $memory = implode('', InputParser::lines($this->input));
 
         preg_match_all("/do\(\)|don't\(\)|mul\(\d*,\d*\)/", $memory, $matches);
 

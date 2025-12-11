@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2024;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day06 extends Solution
 {
@@ -11,27 +13,10 @@ class Day06 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $directions = [
-            [-1, 0],
-            [0, 1],
-            [1, 0],
-            [0, -1],
-        ];
-        $map = str($this->input)
-            ->explode("\n")
-            ->map(fn ($line) => str_split($line))
-            ->toArray();
+        $directions = GridHelper::directions();
+        $map = InputParser::grid($this->input);
 
-        $x = 0;
-        $y = 0;
-        foreach ($map as $i => $row) {
-            foreach ($row as $j => $column) {
-                if ($column === '^') {
-                    $y = $i;
-                    $x = $j;
-                }
-            }
-        }
+        [$y, $x] = GridHelper::findFirst($map, '^');
 
         $safe = true;
         $visited = [];
@@ -41,10 +26,7 @@ class Day06 extends Solution
 
             $visited[] = "$y,$x";
 
-            if (
-                $dy >= count($map) || $dy < 0
-                || $dx >= count($map[0]) || $dx < 0
-            ) {
+            if (!GridHelper::inBounds($map, $dy, $dx)) {
                 $safe = false;
                 continue;
             }
@@ -66,10 +48,7 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $map = str($this->input)
-            ->explode("\n")
-            ->map(fn ($line) => str_split($line))
-            ->toArray();
+        $map = InputParser::grid($this->input);
 
         $origin = $map;
         $map = $this->walk($map);
@@ -99,23 +78,9 @@ class Day06 extends Solution
 
     private function walk(array $map): array|bool
     {
-        $directions = [
-            [-1, 0],
-            [0, 1],
-            [1, 0],
-            [0, -1],
-        ];
+        $directions = GridHelper::directions();
 
-        $x = 0;
-        $y = 0;
-        foreach ($map as $i => $row) {
-            foreach ($row as $j => $column) {
-                if ($column === '^') {
-                    $y = $i;
-                    $x = $j;
-                }
-            }
-        }
+        [$y, $x] = GridHelper::findFirst($map, '^');
 
         $ix = $x;
         $iy = $y;
@@ -138,10 +103,7 @@ class Day06 extends Solution
                 }
             }
 
-            if (
-                $dy >= count($map) || $dy < 0
-                || $dx >= count($map[0]) || $dx < 0
-            ) {
+            if (!GridHelper::inBounds($map, $dy, $dx)) {
                 $safe = false;
                 continue;
             }
