@@ -18,7 +18,7 @@ class Day03 extends Solution
 
         $size = intval(ceil(sqrt($max)));
         $spiral = array_fill(0, $size, array_fill(0, $size, 0));
-        $directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+        $directions = GridHelper::directions();
 
         $x = $y = intval(floor($size / 2));
 
@@ -59,7 +59,7 @@ class Day03 extends Solution
 
         $size = intval(ceil(sqrt($max)));
         $spiral = array_fill(0, $size, array_fill(0, $size, 0));
-        $directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+        $directions = GridHelper::directions();
 
         $x = $y = intval(floor($size / 2));
         $spiral[$x][$y] = 1;
