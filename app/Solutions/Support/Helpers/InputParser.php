@@ -109,6 +109,14 @@ class InputParser
     }
 
     /**
+     * Parse a string of digits into an array of integers
+     */
+    public static function digits(string $input): array
+    {
+        return array_map('intval', str_split(trim($input)));
+    }
+
+    /**
      * Parse words from input (split by spaces)
      */
     public static function words(string $input): array
