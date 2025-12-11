@@ -78,11 +78,8 @@ class Day02 extends Solution
                 }
 
                 if ($memory[0] == 19690720) {
-                    echo "Found match: noun = $n and verb = $v\n";
                     break 2;
                 }
-
-                echo "noun = $n and verb = $v\n";
             }
         }
 

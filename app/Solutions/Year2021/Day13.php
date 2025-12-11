@@ -75,7 +75,7 @@ class Day13 extends Solution
 
     private function show(array $dots): void
     {
-        echo "\n\n";
+        $output = "\n\n";
 
         $maxX = $maxY = 0;
         foreach (array_keys($dots) as $dot) {
@@ -89,12 +89,13 @@ class Day13 extends Solution
 
         for ($y = 0; $y <= $maxY; $y++) {
             for ($x = 0; $x <= $maxX; $x++) {
-                echo array_key_exists("$x,$y", $dots) ? '██' : '  ';
+                $output .= array_key_exists("$x,$y", $dots) ? '██' : '  ';
             }
 
-            echo "\n";
+            $output .= "\n";
         }
 
-        echo "\n\n";
+        $output .= "\n";
+        $this->debug($output);
     }
 }

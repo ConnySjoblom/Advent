@@ -45,14 +45,6 @@ class Day03 extends Solution
             $step++;
         }
 
-        foreach ($spiral as $y) {
-            foreach ($y as $x) {
-                print str_pad(strval($x), 4, ' ');
-            }
-
-            print "\n";
-        }
-
         return abs($positions[1][0] - end($positions)[0]) + abs($positions[1][1] - end($positions)[1]);
     }
 

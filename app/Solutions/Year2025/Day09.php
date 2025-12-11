@@ -4,7 +4,6 @@ namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
 use Carbon\CarbonInterval;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class Day09 extends Solution
 {
@@ -80,16 +79,14 @@ class Day09 extends Solution
                 $maxArea = $area;
             }
 
-            if ($this->verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE) {
-                $elapsed = $start->diffInSeconds(now());
-                $estimatedTotal = $elapsed * $cordCount / ($i + 1);
-                $remaining = $estimatedTotal - $elapsed;
+            $elapsed = $start->diffInSeconds(now());
+            $estimatedTotal = $elapsed * $cordCount / ($i + 1);
+            $remaining = $estimatedTotal - $elapsed;
 
-                $remaining = CarbonInterval::seconds(intval($remaining))->cascade()->forHumans();
-                $elapsedSingle = CarbonInterval::seconds(intval($last->diffInSeconds(now())))->cascade()->forHumans();
+            $remaining = CarbonInterval::seconds(intval($remaining))->cascade()->forHumans();
+            $elapsedSingle = CarbonInterval::seconds(intval($last->diffInSeconds(now())))->cascade()->forHumans();
 
-                echo "Completed $i / " . ($cordCount - 1) . " | Delta: {$elapsedSingle} | Est. remaining: {$remaining}\n";
-            }
+            $this->debug("Completed $i / " . ($cordCount - 1) . " | Delta: {$elapsedSingle} | Est. remaining: {$remaining}");
         }
 
         return $maxArea;
