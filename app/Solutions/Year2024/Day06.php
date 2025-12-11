@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2024;
 
 use App\Solutions\Solution;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Day06 extends Solution
 {
@@ -85,7 +86,10 @@ class Day06 extends Solution
                     $newMap[$i][$j] = '#';
 
                     $it = ++$a;
-                    echo "\n$it / $count";
+                    if ($this->verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE) {
+                        echo "\n$it / $count";
+                    }
+
 
                     if (!$this->walk($newMap)) {
                         $loops++;
