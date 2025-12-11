@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Day13 extends Solution
 {
@@ -65,7 +66,9 @@ class Day13 extends Solution
             $dots = $visible;
         }
 
-        $this->show($visible);
+        if ($this->verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE) {
+            $this->show($visible);
+        }
 
         return count($visible);
     }

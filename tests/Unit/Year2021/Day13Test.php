@@ -41,4 +41,4 @@ test('Day 13 Part 2', function (string $input, string $answer) {
     assertEquals($answer, test()->solution->partTwo());
 })->with([
     ['', ''],
-])->skip('No test implemented yet.');
+])->skip('Visual output can\'t be tested.');

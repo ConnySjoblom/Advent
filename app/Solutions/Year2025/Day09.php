@@ -80,7 +80,7 @@ class Day09 extends Solution
                 $maxArea = $area;
             }
 
-            if ($this->verbosity >= OutputInterface::VERBOSITY_VERBOSE) {
+            if ($this->verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE) {
                 $elapsed = $start->diffInSeconds(now());
                 $estimatedTotal = $elapsed * $cordCount / ($i + 1);
                 $remaining = $estimatedTotal - $elapsed;
