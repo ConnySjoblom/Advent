@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
+use App\Solutions\Support\Helpers\MathHelper;
 
 class Day12 extends Solution
 {
@@ -12,11 +14,11 @@ class Day12 extends Solution
     public function partOne(): string|int|null
     {
         $moons = [];
-        foreach (explode("\n", $this->input) as $line) {
-            preg_match('/<x=(.*), y=(.*), z=(.*)>/', $line, $matches);
+        foreach (InputParser::lines($this->input) as $line) {
+            $coords = InputParser::extractIntegers($line);
 
             $moons[] = [
-                [intval($matches[1]), intval($matches[2]), intval($matches[3])], // Position on index 0
+                [$coords[0], $coords[1], $coords[2]], // Position on index 0
                 [0, 0, 0], // Velocity on index 1
             ];
         }
@@ -64,11 +66,11 @@ class Day12 extends Solution
     public function partTwo(): string|int|null
     {
         $moons = [];
-        foreach (explode("\n", $this->input) as $line) {
-            preg_match('/<x=(.*), y=(.*), z=(.*)>/', $line, $matches);
+        foreach (InputParser::lines($this->input) as $line) {
+            $coords = InputParser::extractIntegers($line);
 
             $moons[] = [
-                'x' => intval($matches[1]), 'y' => intval($matches[2]), 'z' => intval($matches[3]),
+                'x' => $coords[0], 'y' => $coords[1], 'z' => $coords[2],
                 'vx' => 0, 'vy' => 0, 'vz' => 0,
             ];
         }
@@ -102,6 +104,6 @@ class Day12 extends Solution
             $loops[] = $steps;
         }
 
-        return gmp_intval(gmp_lcm($loops[0], gmp_lcm($loops[1], $loops[2])));
+        return MathHelper::lcmArray($loops);
     }
 }

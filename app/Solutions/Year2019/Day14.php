@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day14 extends Solution
 {
@@ -45,7 +46,7 @@ class Day14 extends Solution
     public function buildReactionMap(): array
     {
         $reactions = [];
-        $reactionsString = explode("\n", $this->input);
+        $reactionsString = InputParser::lines($this->input);
 
         foreach ($reactionsString as $reaction) {
             [$inputs, $output] = explode(' => ', $reaction);

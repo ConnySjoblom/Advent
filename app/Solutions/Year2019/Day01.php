@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day01 extends Solution
 {
@@ -11,11 +12,11 @@ class Day01 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::integers($this->input);
 
         $answer = 0;
         foreach ($input as $module) {
-            $answer += (int)floor(intval($module) / 3) - 2;
+            $answer += (int)floor($module / 3) - 2;
         }
 
         return $answer;
@@ -26,11 +27,11 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::integers($this->input);
 
         $answer = 0;
         foreach ($input as $module) {
-            $this->calculate_fuel(intval($module), $answer);
+            $this->calculate_fuel($module, $answer);
         }
 
         return $answer;
