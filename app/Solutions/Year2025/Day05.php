@@ -14,7 +14,7 @@ class Day05 extends Solution
     {
         $parts = InputParser::groups($this->input);
         $freshIds = array_map(
-            fn ($range) => explode('-', $range),
+            fn ($range) => InputParser::csvIntegers($range, '-'),
             InputParser::lines($parts[0])
         );
         $ingredients = InputParser::lines($parts[1]);
@@ -39,7 +39,7 @@ class Day05 extends Solution
     {
         $parts = InputParser::groups($this->input);
         $freshIds = array_map(
-            fn ($range) => explode('-', $range),
+            fn ($range) => InputParser::csvIntegers($range, '-'),
             InputParser::lines($parts[0])
         );
 

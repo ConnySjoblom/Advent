@@ -18,7 +18,7 @@ class Day02 extends Solution
         foreach ($passwords as $password) {
             [$requirements, $password] = explode(': ', $password);
             [$limits, $char] = explode(' ', $requirements);
-            [$min, $max] = explode('-', $limits);
+            [$min, $max] = InputParser::csvIntegers($limits, '-');
 
             $occurrences = substr_count($password, $char);
             if ($occurrences < $min || $occurrences > $max) {
@@ -42,7 +42,7 @@ class Day02 extends Solution
         foreach ($passwords as $password) {
             [$requirements, $password] = explode(': ', $password);
             [$limits, $char] = explode(' ', $requirements);
-            [$a, $b] = array_map('intval', explode('-', $limits));
+            [$a, $b] = InputParser::csvIntegers($limits, '-');
 
             $password = str_split($password);
 

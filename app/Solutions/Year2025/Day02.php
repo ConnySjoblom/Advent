@@ -14,7 +14,7 @@ class Day02 extends Solution
     {
         $sum = 0;
         foreach (InputParser::csv($this->input) as $id_range) {
-            $parts = array_map('intval', explode('-', $id_range));
+            $parts = InputParser::csvIntegers($id_range, '-');
             for ($i = $parts[0]; $i <= $parts[1]; $i++) {
                 $strlen = strlen(strval($i));
                 if ($strlen % 2 == 0) {
@@ -36,7 +36,7 @@ class Day02 extends Solution
     {
         $sum = 0;
         foreach (InputParser::csv($this->input) as $id_range) {
-            $parts = array_map('intval', explode('-', $id_range));
+            $parts = InputParser::csvIntegers($id_range, '-');
             for ($i = $parts[0]; $i <= $parts[1]; $i++) {
                 $strlen = strlen(strval($i));
                 for ($j = 1; $j <= $strlen / 2; $j++) {
