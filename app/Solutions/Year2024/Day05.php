@@ -18,9 +18,9 @@ class Day05 extends Solution
         $updates = [];
         foreach ($input as $line) {
             if (str_contains($line, '|')) {
-                $rules[] = array_map(fn ($val) => intval($val), explode('|', $line));
+                $rules[] = InputParser::csvIntegers($line, '|');
             } elseif (str_contains($line, ',')) {
-                $updates[] = array_map(fn ($val) => intval($val), explode(',', $line));
+                $updates[] = InputParser::csvIntegers($line);
             }
         }
 
@@ -55,9 +55,9 @@ class Day05 extends Solution
         $updates = [];
         foreach ($input as $line) {
             if (str_contains($line, '|')) {
-                $rules[] = array_map(fn ($val) => intval($val), explode('|', $line));
+                $rules[] = InputParser::csvIntegers($line, '|');
             } elseif (str_contains($line, ',')) {
-                $updates[] = array_map(fn ($val) => intval($val), explode(',', $line));
+                $updates[] = InputParser::csvIntegers($line);
             }
         }
 

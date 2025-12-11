@@ -53,7 +53,7 @@ class Day06 extends Solution
         $origin = $map;
         $map = $this->walk($map);
 
-        $count = substr_count(implode('', array_map(fn ($line) => implode('', $line), $map)), 'X');
+        $count = GridHelper::count($map, 'X');
 
         $a = 0;
         $loops = 0;

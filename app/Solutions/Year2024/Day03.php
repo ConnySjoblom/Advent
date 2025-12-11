@@ -18,8 +18,8 @@ class Day03 extends Solution
 
         $sum = 0;
         foreach ($matches[1] as $match) {
-            $pair = explode(',', $match);
-            $sum += intval($pair[0]) * intval($pair[1]);
+            [$a, $b] = InputParser::csvIntegers($match);
+            $sum += $a * $b;
         }
 
         return $sum;
@@ -44,8 +44,8 @@ class Day03 extends Solution
             } elseif ($enabled) {
                 preg_match_all("/mul\((\d*,\d*)\)/", $match, $calc);
 
-                $pair = explode(',', $calc[1][0]);
-                $sum += intval($pair[0]) * intval($pair[1]);
+                [$a, $b] = InputParser::csvIntegers($calc[1][0]);
+                $sum += $a * $b;
             }
         }
 

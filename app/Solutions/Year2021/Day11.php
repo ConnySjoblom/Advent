@@ -15,8 +15,7 @@ class Day11 extends Solution
     {
         $octopuses = InputParser::integerGrid($this->input);
 
-        $maxY = count($octopuses);
-        $maxX = count($octopuses[0]);
+        [$maxY, $maxX] = GridHelper::dimensions($octopuses);
         $totalFlashes = 0;
         for ($step = 1; $step <= $steps; $step++) {
             $flash = true;
@@ -42,7 +41,7 @@ class Day11 extends Solution
             }
 
             foreach (array_keys($flashed) as $octopus) {
-                [$y, $x] = explode(',', $octopus);
+                [$y, $x] = InputParser::csvIntegers($octopus);
                 $octopuses[$y][$x] = 0;
             }
         }
@@ -57,8 +56,7 @@ class Day11 extends Solution
     {
         $octopuses = InputParser::integerGrid($this->input);
 
-        $maxY = count($octopuses);
-        $maxX = count($octopuses[0]);
+        [$maxY, $maxX] = GridHelper::dimensions($octopuses);
         $step = 0;
 
         while (true) {
@@ -86,7 +84,7 @@ class Day11 extends Solution
             }
 
             foreach (array_keys($flashed) as $octopus) {
-                [$y, $x] = explode(',', $octopus);
+                [$y, $x] = InputParser::csvIntegers($octopus);
                 $octopuses[$y][$x] = 0;
             }
 

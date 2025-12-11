@@ -16,13 +16,7 @@ class Day03 extends Solution
 
         $claims = [];
         foreach ($input as $claim) {
-            preg_match("/#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/", $claim, $matches);
-
-            $id = intval($matches[1]);
-            $position_x = intval($matches[2]);
-            $position_y = intval($matches[3]);
-            $width = intval($matches[4]);
-            $height = intval($matches[5]);
+            [$id, $position_x, $position_y, $width, $height] = InputParser::extractIntegers($claim);
 
             for ($x = $position_x; $x < $position_x + $width; $x++) {
                 for ($y = $position_y; $y < $position_y + $height; $y++) {
@@ -53,13 +47,7 @@ class Day03 extends Solution
         $ids = [];
         $claims = [];
         foreach ($input as $claim) {
-            preg_match("/#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/", $claim, $matches);
-
-            $id = intval($matches[1]);
-            $position_x = intval($matches[2]);
-            $position_y = intval($matches[3]);
-            $width = intval($matches[4]);
-            $height = intval($matches[5]);
+            [$id, $position_x, $position_y, $width, $height] = InputParser::extractIntegers($claim);
 
             $ids[] = $id;
             for ($x = $position_x; $x < $position_x + $width; $x++) {

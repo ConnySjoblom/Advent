@@ -21,7 +21,7 @@ class Day10 extends Solution
             $lights = array_shift($buttons);
 
             $buttons = array_map(fn ($button) => substr($button, 1, -1), $buttons);
-            $buttons = array_map(fn ($button) => array_map('intval', explode(',', $button)), $buttons);
+            $buttons = array_map(fn ($button) => InputParser::csvIntegers($button), $buttons);
 
             $lights = array_map(fn ($light) => $light == '#', str_split(substr($lights, 1, -1)));
 
@@ -62,9 +62,9 @@ class Day10 extends Solution
             $lights = array_shift($buttons);
 
             $buttons = array_map(fn ($button) => substr($button, 1, -1), $buttons);
-            $buttons = array_map(fn ($button) => array_map('intval', explode(',', $button)), $buttons);
+            $buttons = array_map(fn ($button) => InputParser::csvIntegers($button), $buttons);
 
-            $joltage = array_map('intval', explode(',', (substr($joltage, 1, -1))));
+            $joltage = InputParser::csvIntegers(substr($joltage, 1, -1));
 
             // Build matrix where each button is a vector showing which counters it affects
             $matrix = $this->buildMatrix($buttons, count($joltage));

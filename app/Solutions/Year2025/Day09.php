@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 use Carbon\CarbonInterval;
 
 class Day09 extends Solution
@@ -12,7 +13,7 @@ class Day09 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $cords = array_map(fn ($line) => array_map('intval', explode(',', $line)), explode("\n", $this->input));
+        $cords = array_map(fn ($line) => InputParser::csvIntegers($line), InputParser::lines($this->input));
         $cordCount = count($cords);
 
         $maxArea = 0;
@@ -34,7 +35,7 @@ class Day09 extends Solution
     public function partTwo(): string|int|null
     {
         $start = now();
-        $cords = array_map(fn ($line) => array_map('intval', explode(',', $line)), explode("\n", $this->input));
+        $cords = array_map(fn ($line) => InputParser::csvIntegers($line), InputParser::lines($this->input));
         $cordCount = count($cords);
 
         $borders = [];

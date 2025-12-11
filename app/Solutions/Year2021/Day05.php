@@ -15,7 +15,7 @@ class Day05 extends Solution
         $lines = [];
         $input = array_map(
             fn ($line) => array_map(
-                fn ($cords) => array_map('intval', explode(',', $cords)),
+                fn ($cords) => InputParser::csvIntegers($cords),
                 explode(' -> ', $line)
             ),
             InputParser::lines($this->input)
@@ -50,7 +50,7 @@ class Day05 extends Solution
         $lines = [];
         $input = array_map(
             fn ($line) => array_map(
-                fn ($cords) => array_map('intval', explode(',', $cords)),
+                fn ($cords) => InputParser::csvIntegers($cords),
                 explode(' -> ', $line)
             ),
             InputParser::lines($this->input)

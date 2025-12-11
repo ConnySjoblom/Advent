@@ -13,7 +13,7 @@ class Day04 extends Solution
     public function partOne(): string|int|null
     {
         $input = InputParser::groups($this->input);
-        $numbers = explode(',', array_shift($input));
+        $numbers = InputParser::csv(array_shift($input));
 
         $boards = [];
         foreach ($input as $b) {
@@ -49,7 +49,7 @@ class Day04 extends Solution
     public function partTwo(): string|int|null
     {
         $input = InputParser::groups($this->input);
-        $numbers = explode(',', array_shift($input));
+        $numbers = InputParser::csv(array_shift($input));
 
         $boards = [];
         $boardsWon = [];

@@ -4,6 +4,7 @@ namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
 use App\Solutions\Support\Helpers\InputParser;
+use App\Solutions\Support\Helpers\MathHelper;
 
 class Day03 extends Solution
 {
@@ -16,7 +17,7 @@ class Day03 extends Solution
 
         $paths = [];
         foreach ($lines as $line) {
-            $steps = explode(',', $line);
+            $steps = InputParser::csv($line);
 
             $x = 0;
             $y = 0;
@@ -62,10 +63,7 @@ class Day03 extends Solution
             $a = intval($coordinates[0]);
             $b = intval($coordinates[1]);
 
-            $a = abs($a);
-            $b = abs($b);
-
-            $distance = $a + $b;
+            $distance = MathHelper::manhattanDistance([0, 0], [$a, $b]);
 
             if ($distance < $smallest) {
                 $smallest = $distance;
@@ -84,7 +82,7 @@ class Day03 extends Solution
 
         $paths = [];
         foreach ($lines as $line) {
-            $steps = explode(',', $line);
+            $steps = InputParser::csv($line);
 
             $x = 0;
             $y = 0;
