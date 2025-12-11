@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2020;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day05 extends Solution
 {
@@ -11,7 +12,7 @@ class Day05 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $passes = array_map(fn ($pass) => str_split($pass), explode("\n", $this->input));
+        $passes = array_map(fn ($pass) => str_split($pass), InputParser::lines($this->input));
 
         $max = 0;
         foreach ($passes as $pass) {
@@ -45,7 +46,7 @@ class Day05 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $passes = array_map(fn ($pass) => str_split($pass), explode("\n", $this->input));
+        $passes = array_map(fn ($pass) => str_split($pass), InputParser::lines($this->input));
 
         $seatIds = [];
         foreach ($passes as $pass) {

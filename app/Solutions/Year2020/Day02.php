@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2020;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day02 extends Solution
 {
@@ -11,7 +12,7 @@ class Day02 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $passwords = explode("\n", $this->input);
+        $passwords = InputParser::lines($this->input);
 
         $valid = 0;
         foreach ($passwords as $password) {
@@ -35,7 +36,7 @@ class Day02 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $passwords = explode("\n", $this->input);
+        $passwords = InputParser::lines($this->input);
 
         $valid = 0;
         foreach ($passwords as $password) {
