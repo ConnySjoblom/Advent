@@ -17,7 +17,7 @@ class Day02 extends Solution
         $safeNum = 0;
         foreach ($reports as $report) {
             $safe = true;
-            $report = array_map(fn ($r) => intval($r), explode(' ', $report));
+            $report = InputParser::csvIntegers($report, ' ');
             $origin = implode(' ', $report);
             for ($i = 0; $i < count($report) - 1; $i++) {
                 if (
@@ -55,7 +55,7 @@ class Day02 extends Solution
 
         $safe = 0;
         foreach ($reports as $report) {
-            $safe += $this->isSafe(array_map(fn ($r) => intval($r), explode(' ', $report)));
+            $safe += $this->isSafe(InputParser::csvIntegers($report, ' '));
         }
 
         return $safe;

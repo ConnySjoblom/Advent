@@ -63,7 +63,7 @@ class Day09 extends Solution
             $nx = $x + $dx;
             $ny = $y + $dy;
 
-            if (isset($map[$nx][$ny])) {
+            if (GridHelper::inBounds($map, $nx, $ny)) {
                 $adjacent[] = $map[$nx][$ny];
             }
         }

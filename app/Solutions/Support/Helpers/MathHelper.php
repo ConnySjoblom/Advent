@@ -131,11 +131,15 @@ class MathHelper
     }
 
     /**
-     * Calculate Manhattan distance between two points
+     * Calculate Manhattan distance between two points (supports N dimensions)
      */
     public static function manhattanDistance(array $point1, array $point2): int
     {
-        return abs($point1[0] - $point2[0]) + abs($point1[1] - $point2[1]);
+        $distance = 0;
+        for ($i = 0; $i < count($point1); $i++) {
+            $distance += abs($point1[$i] - $point2[$i]);
+        }
+        return $distance;
     }
 
     /**

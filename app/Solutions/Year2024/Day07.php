@@ -18,7 +18,7 @@ class Day07 extends Solution
         foreach ($lines as $line) {
             [$target, $numbers] = explode(': ', $line);
             $target = intval($target);
-            $numbers = array_map('intval', explode(' ', $numbers));
+            $numbers = InputParser::csvIntegers($numbers, ' ');
 
             if ($this->evaluatePossible($target, $numbers)) {
                 $sum += $target;

@@ -51,8 +51,8 @@ class Day12 extends Solution
 
         $energy = 0;
         foreach ($moons as $moon) {
-            $pot = abs($moon[0][0]) + abs($moon[0][1]) + abs($moon[0][2]);
-            $kin = abs($moon[1][0]) + abs($moon[1][1]) + abs($moon[1][2]);
+            $pot = MathHelper::manhattanDistance($moon[0], [0, 0, 0]);
+            $kin = MathHelper::manhattanDistance($moon[1], [0, 0, 0]);
 
             $energy += $pot * $kin;
         }
