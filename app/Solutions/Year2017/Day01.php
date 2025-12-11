@@ -3,7 +3,6 @@
 namespace App\Solutions\Year2017;
 
 use App\Solutions\Solution;
-use App\Solutions\Support\Helpers\InputParser;
 
 class Day01 extends Solution
 {
