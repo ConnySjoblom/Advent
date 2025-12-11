@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2018;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day03 extends Solution
 {
@@ -11,7 +12,7 @@ class Day03 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::lines($this->input);
 
         $claims = [];
         foreach ($input as $claim) {
@@ -47,7 +48,7 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::lines($this->input);
 
         $ids = [];
         $claims = [];
