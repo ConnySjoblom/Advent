@@ -50,8 +50,8 @@ class GridHelper
      */
     public static function inBounds(array $grid, int $row, int $col): bool
     {
-        return $row >= 0 && $row < count($grid) &&
-               $col >= 0 && $col < count($grid[0]);
+        // Check if the row exists and the column exists in that row
+        return isset($grid[$row]) && isset($grid[$row][$col]);
     }
 
     /**
