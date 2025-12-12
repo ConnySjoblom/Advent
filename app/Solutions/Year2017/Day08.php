@@ -146,7 +146,7 @@ class Day08 extends Solution
         return match ($operation) {
             'inc' => $registry[$target] + $change,
             'dec' => $registry[$target] - $change,
-            default => 0,
+            default => throw new \InvalidArgumentException("Invalid operation: $operation"),
         };
     }
 }
