@@ -11,67 +11,45 @@ class Day12 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $this->input = <<<INPUT
-0:
-###
-##.
-##.
+        $sections = explode("\n\n", $this->input);
+        $queries = explode("\n", array_pop($sections));
 
-1:
-###
-##.
-.##
+        $shapes = [];
+        foreach ($sections as $present) {
+            $lines = explode("\n", $present);
+            $id = (int) rtrim($lines[0], ':');
+            $grid = array_slice($lines, 1);
+            $area = substr_count(implode('', $grid), '#');
+            $shapes[$id] = $area;
+        }
 
-2:
-.##
-###
-##.
+        $regions = [];
+        foreach ($queries as $region) {
+            [$dimensions, $values] = explode(': ', $region);
+            [$width, $height] = array_map('intval', explode('x', $dimensions));
+            $presentAmounts = array_map('intval', explode(' ', $values));
 
-3:
-##.
-###
-##.
-
-4:
-###
-#..
-###
-
-5:
-###
-.#.
-###
-
-4x4: 0 0 0 0 2 0
-12x5: 1 0 1 0 2 2
-12x5: 1 0 1 0 3 2
-INPUT;
-
-        $input = explode("\n\n", $this->input);
-        $areas_raw = explode("\n", array_pop($input));
-
-        $areas = [];
-        foreach ($areas_raw as $raw) {
-            $presents = explode(' ', $raw);
-
-            $areas[] = [
-                'size' => explode('x', substr(array_shift($presents), 0, -1)),
-                'presents' => $presents,
+            $regions[] = [
+                'width' => $width,
+                'height' => $height,
+                'presents' => $presentAmounts,
             ];
         }
 
-        $presents = [];
-        foreach ($input as $present_raw) {
-            $present_raw = explode("\n", $present_raw);
-            array_shift($present_raw);
-            $presents[] = array_map('str_split', $present_raw);
+        $fits = 0;
+        foreach ($regions as $region) {
+            $area = $region['height'] * $region['width'];
+            $presents = 0;
+            foreach ($region['presents'] as $id => $amount) {
+                $presents += $shapes[$id] * $amount;
+            }
+
+            if ($area > $presents) {
+                $fits++;
+            }
         }
 
-        foreach ($areas as [$width, $height]) {
-            $
-        }
-
-        return null;
+        return $fits;
     }
 
     /**
