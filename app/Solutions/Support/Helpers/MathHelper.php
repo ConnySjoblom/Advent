@@ -92,6 +92,9 @@ class MathHelper
      */
     public static function gcdArray(array $numbers): int
     {
+        if (empty($numbers)) {
+            return 0;
+        }
         return array_reduce($numbers, fn ($carry, $item) => self::gcd($carry, $item));
     }
 
