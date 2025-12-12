@@ -67,6 +67,8 @@ class Day08 extends Solution
                     }
                     break;
 
+                default:
+                    throw new \InvalidArgumentException("Unexpected operator '$op' in instruction: $instruction");
             }
         }
 
