@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day04 extends Solution
 {
@@ -11,7 +12,7 @@ class Day04 extends Solution
      */
     public function partOne(): string|int|null
     {
-        [$min, $max] = collect(explode('-', $this->input))->map(fn ($value) => intval($value));
+        [$min, $max] = array_map('intval', InputParser::csv($this->input, '-'));
 
         $matches = 0;
         for ($i = $min; $i <= $max; $i++) {
@@ -37,7 +38,7 @@ class Day04 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        [$min, $max] = collect(explode('-', $this->input))->map(fn ($value) => intval($value));
+        [$min, $max] = array_map('intval', InputParser::csv($this->input, '-'));
 
         $matches = 0;
         for ($i = $min; $i <= $max; $i++) {

@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day04 extends Solution
 {
@@ -12,7 +14,7 @@ class Day04 extends Solution
     public function partOne(): string|int|null
     {
 
-        $grid = array_map('str_split', explode("\n", $this->input));
+        $grid = InputParser::grid($this->input);
         $accessible = 0;
 
         foreach ($grid as $y => $row) {
@@ -34,7 +36,7 @@ class Day04 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $grid = array_map('str_split', explode("\n", $this->input));
+        $grid = InputParser::grid($this->input);
 
         $removed = 0;
         $wasRemoved = true;
@@ -63,26 +65,10 @@ class Day04 extends Solution
 
     private function countAdjacentRolls(array $grid, int $y, int $x): int
     {
-        $directions = [
-            [0, -1],   // Up
-            [1, -1],   // Up-Right
-            [1, 0],    // Right
-            [1, 1],    // Down-Right
-            [0, 1],    // Down
-            [-1, 1],   // Down-Left
-            [-1, 0],   // Left
-            [-1, -1],  // Up-Left
-        ];
-
         $rolls = 0;
-        foreach ($directions as [$dx, $dy]) {
-            $newX = $x + $dx;
-            $newY = $y + $dy;
-
-            if (isset($grid[$newY][$newX])) {
-                if ($grid[$newY][$newX] == '@') {
-                    $rolls++;
-                }
+        foreach (GridHelper::allNeighbors($y, $x) as [$newY, $newX]) {
+            if (GridHelper::get($grid, $newY, $newX) === '@') {
+                $rolls++;
             }
         }
 

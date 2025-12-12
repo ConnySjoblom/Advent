@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 use Illuminate\Support\Collection;
 
 class Day06 extends Solution
@@ -22,7 +23,7 @@ class Day06 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $this->objects = collect(explode("\n", $this->input))
+        $this->objects = collect(InputParser::lines($this->input))
             ->map(fn ($object) => collect(explode(')', $object)))
             ->mapWithKeys(fn ($object) => [$object[1] => $object[0]]);
 
@@ -39,7 +40,7 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $this->objects = collect(explode("\n", $this->input))
+        $this->objects = collect(InputParser::lines($this->input))
             ->map(fn ($object) => collect(explode(')', $object)))
             ->mapWithKeys(fn ($object) => [$object[1] => $object[0]]);
 

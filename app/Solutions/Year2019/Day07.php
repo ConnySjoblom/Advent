@@ -3,8 +3,8 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\MathHelper;
 use App\Solutions\Support\IntcodeComputer;
-use Generator;
 
 class Day07 extends Solution
 {
@@ -15,7 +15,7 @@ class Day07 extends Solution
     {
         $input = 0;
         $signals = [];
-        foreach ($this->permutations(range(0, 4)) as $permutation) {
+        foreach (MathHelper::permutations(range(0, 4)) as $permutation) {
             foreach ($permutation as $phase_setting) {
                 $computer = new IntcodeComputer($this->input);
                 $computer->setInput($phase_setting);
@@ -36,7 +36,7 @@ class Day07 extends Solution
     public function partTwo(): string|int|null
     {
         $max = 0;
-        foreach ($this->permutations(range(5, 9)) as $permutation) {
+        foreach (MathHelper::permutations(range(5, 9)) as $permutation) {
             $input = 0;
             $output = 0;
             $computers = $this->createComputers($permutation);
@@ -57,23 +57,6 @@ class Day07 extends Solution
         }
 
         return $max;
-    }
-
-    public function permutations(array $elements): Generator
-    {
-        if (count($elements) <= 1) {
-            yield $elements;
-        } else {
-            foreach ($this->permutations(array_slice($elements, 1)) as $permutation) {
-                foreach (range(0, count($elements) - 1) as $i) {
-                    yield array_merge(
-                        array_slice($permutation, 0, $i),
-                        [$elements[0]],
-                        array_slice($permutation, $i)
-                    );
-                }
-            }
-        }
     }
 
     private function createComputers(mixed $permutation): array

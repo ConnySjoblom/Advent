@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day15 extends Solution
 {
@@ -11,10 +12,10 @@ class Day15 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $ingredients = [];
-        foreach ($input as $iindex => $line) {
+        foreach ($lines as $iindex => $line) {
             [$name, $props] = explode(': ', $line);
             foreach (explode(', ', $props) as $pindex => $prop) {
                 [$prop, $score] = explode(' ', $prop);
@@ -68,10 +69,10 @@ class Day15 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $ingredients = [];
-        foreach ($input as $iindex => $line) {
+        foreach ($lines as $iindex => $line) {
             [$name, $props] = explode(': ', $line);
             foreach (explode(', ', $props) as $pindex => $prop) {
                 [$prop, $score] = explode(' ', $prop);

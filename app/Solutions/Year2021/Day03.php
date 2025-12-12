@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day03 extends Solution
 {
@@ -11,7 +12,7 @@ class Day03 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $reports = explode("\n", $this->input);
+        $reports = InputParser::lines($this->input);
 
         $gamma = $epsilon = '';
         $positions = strlen($reports[0]);
@@ -40,8 +41,8 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $oxygenReports = explode("\n", $this->input);
-        $co2Reports = explode("\n", $this->input);
+        $oxygenReports = InputParser::lines($this->input);
+        $co2Reports = InputParser::lines($this->input);
         $positions = strlen($oxygenReports[0]);
 
         for ($i = 0; $i < $positions; $i++) {

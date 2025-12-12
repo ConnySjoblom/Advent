@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2017;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day06 extends Solution
 {
@@ -11,10 +12,7 @@ class Day06 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $banks = array_map(
-            fn ($bank) => intval($bank),
-            explode("\t", $this->input)
-        );
+        $banks = InputParser::csvIntegers($this->input, "\t");
 
         $cycles = 0;
         $memories = [];
@@ -45,10 +43,7 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $banks = array_map(
-            fn ($bank) => intval($bank),
-            explode("\t", $this->input)
-        );
+        $banks = InputParser::csvIntegers($this->input, "\t");
 
         $cycles = 0;
         $memories = [];

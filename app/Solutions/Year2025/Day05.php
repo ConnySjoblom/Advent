@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day05 extends Solution
 {
@@ -11,12 +12,12 @@ class Day05 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $parts = explode("\n\n", $this->input);
+        $parts = InputParser::groups($this->input);
         $freshIds = array_map(
-            fn ($range) => explode('-', $range),
-            explode("\n", $parts[0])
+            fn ($range) => InputParser::csvIntegers($range, '-'),
+            InputParser::lines($parts[0])
         );
-        $ingredients = explode("\n", $parts[1]);
+        $ingredients = InputParser::lines($parts[1]);
 
         $freshCount = 0;
         foreach ($ingredients as $ingredient) {
@@ -36,10 +37,10 @@ class Day05 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $parts = explode("\n\n", $this->input);
+        $parts = InputParser::groups($this->input);
         $freshIds = array_map(
-            fn ($range) => explode('-', $range),
-            explode("\n", $parts[0])
+            fn ($range) => InputParser::csvIntegers($range, '-'),
+            InputParser::lines($parts[0])
         );
 
         usort($freshIds, fn ($a, $b) => $a[0] <=> $b[0]);

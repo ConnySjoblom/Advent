@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day10 extends Solution
 {
@@ -11,9 +12,7 @@ class Day10 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = str($this->input)
-            ->explode("\n")
-            ->map(fn ($line) => str_split($line));
+        $input = InputParser::grid($this->input);
 
         $score = 0;
         $openChars = ['(','[', '{', '<'];
@@ -43,9 +42,7 @@ class Day10 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = str($this->input)
-            ->explode("\n")
-            ->map(fn ($line) => str_split($line));
+        $input = InputParser::grid($this->input);
 
         $scores = [];
         $openChars = ['(','[', '{', '<'];

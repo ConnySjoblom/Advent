@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day16 extends Solution
 {
@@ -31,16 +32,15 @@ EOF;
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
-        $items = [];
-        foreach (explode("\n", $this->itemsString) as $item) {
-            $parts = explode(': ', $item);
-            $items[$parts[0]] = intval($parts[1]);
+        $items = InputParser::keyValuePairs($this->itemsString);
+        foreach ($items as $key => $value) {
+            $items[$key] = intval($value);
         }
 
         $sues = [];
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             $parts = explode(': ', $line, 2);
             $number = intval(explode(' ', $parts[0])[1]);
 
@@ -77,16 +77,15 @@ EOF;
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
-        $items = [];
-        foreach (explode("\n", $this->itemsString) as $item) {
-            $parts = explode(': ', $item);
-            $items[$parts[0]] = intval($parts[1]);
+        $items = InputParser::keyValuePairs($this->itemsString);
+        foreach ($items as $key => $value) {
+            $items[$key] = intval($value);
         }
 
         $sues = [];
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             $parts = explode(': ', $line, 2);
             $number = intval(explode(' ', $parts[0])[1]);
 

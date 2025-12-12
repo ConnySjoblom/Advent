@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day03 extends Solution
 {
@@ -11,7 +12,7 @@ class Day03 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $banks = array_map('str_split', explode("\n", $this->input));
+        $banks = InputParser::grid($this->input);
 
         $answer = 0;
         foreach ($banks as $bank) {
@@ -33,7 +34,7 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $banks = array_map('str_split', explode("\n", $this->input));
+        $banks = InputParser::grid($this->input);
 
         $answer = 0;
         foreach ($banks as $bank) {

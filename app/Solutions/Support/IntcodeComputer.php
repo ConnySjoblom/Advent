@@ -2,6 +2,8 @@
 
 namespace App\Solutions\Support;
 
+use App\Solutions\Support\Helpers\InputParser;
+
 class IntcodeComputer
 {
     protected int $pointer = 0;
@@ -16,7 +18,7 @@ class IntcodeComputer
 
     public function __construct(string $memory)
     {
-        $this->memory = array_map('intval', explode(',', $memory));
+        $this->memory = InputParser::csvIntegers($memory);
     }
 
     public function setInput(int $input): void

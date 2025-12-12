@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day02 extends Solution
 {
@@ -11,19 +12,18 @@ class Day02 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $wrapper = 0;
-        foreach ($input as $present) {
-            $size = explode('x', $present);
-            sort($size, SORT_NUMERIC);
+        foreach ($lines as $present) {
+            $dimensions = InputParser::extractIntegers($present);
+            sort($dimensions);
 
-            $paper =
-                (2 * intval($size[0]) * intval($size[1]))
-                + (2 * intval($size[1]) * intval($size[2]))
-                + (2 * intval($size[2]) * intval($size[0]));
+            $paper = 2 * $dimensions[0] * $dimensions[1]
+                + 2 * $dimensions[1] * $dimensions[2]
+                + 2 * $dimensions[2] * $dimensions[0];
 
-            $wrapper += ($paper + intval(array_shift($size)) * intval(array_shift($size)));
+            $wrapper += $paper + $dimensions[0] * $dimensions[1];
         }
 
         return $wrapper;
@@ -34,15 +34,15 @@ class Day02 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $ribbon = 0;
-        foreach ($input as $present) {
-            $size = explode('x', $present);
-            sort($size, SORT_NUMERIC);
+        foreach ($lines as $present) {
+            $dimensions = InputParser::extractIntegers($present);
+            sort($dimensions);
 
-            $ribbon += (intval($size[0]) * 2) + (intval($size[1]) * 2);
-            $ribbon += (intval($size[0]) * intval($size[1]) * intval($size[2]));
+            $ribbon += 2 * $dimensions[0] + 2 * $dimensions[1];
+            $ribbon += $dimensions[0] * $dimensions[1] * $dimensions[2];
         }
 
         return $ribbon;

@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day07 extends Solution
 {
@@ -11,10 +13,7 @@ class Day07 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $diagram = array_map(
-            fn ($line) => str_split($line),
-            explode("\n", $this->input)
-        );
+        $diagram = InputParser::grid($this->input);
 
         $startX = array_search('S', $diagram[0]);
         $visited = [];
@@ -27,10 +26,7 @@ class Day07 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $diagram = array_map(
-            fn ($line) => str_split($line),
-            explode("\n", $this->input)
-        );
+        $diagram = InputParser::grid($this->input);
 
         $startX = array_search('S', $diagram[0]);
         $cache = [];
@@ -41,11 +37,11 @@ class Day07 extends Solution
     private function beam(array $diagram, int $x, int $y, array &$visited): int
     {
 
-        while (isset($diagram[$y][$x]) && $diagram[$y][$x] !== '^') {
+        while (GridHelper::inBounds($diagram, $y, $x) && $diagram[$y][$x] !== '^') {
             $y++;
         }
 
-        if (!isset($diagram[$y][$x])) {
+        if (!GridHelper::inBounds($diagram, $y, $x)) {
             return 0;
         }
 
@@ -64,11 +60,11 @@ class Day07 extends Solution
 
     private function timeline(array $diagram, int $x, int $y, array &$cache): int
     {
-        while (isset($diagram[$y][$x]) && $diagram[$y][$x] !== '^') {
+        while (GridHelper::inBounds($diagram, $y, $x) && $diagram[$y][$x] !== '^') {
             $y++;
         }
 
-        if (!isset($diagram[$y][$x])) {
+        if (!GridHelper::inBounds($diagram, $y, $x)) {
             return 0;
         }
 

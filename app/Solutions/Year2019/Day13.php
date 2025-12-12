@@ -70,7 +70,7 @@ class Day13 extends Solution
     {
         system('clear');
 
-        echo "Score: $score\n";
+        $output = "Score: $score\n";
 
         $tiles = [
             '  ',  // Empty space
@@ -82,10 +82,12 @@ class Day13 extends Solution
 
         for ($y = 0; $y < count($grid); $y++) {
             for ($x = 0; $x < count($grid[$y]); $x++) {
-                echo $tiles[$grid[$y][$x] ?? 0];
+                $output .= $tiles[$grid[$y][$x] ?? 0];
             }
-            echo "\n";
+            $output .= "\n";
         }
+
+        $this->debug($output);
     }
 
 }

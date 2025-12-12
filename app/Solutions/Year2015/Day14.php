@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 use App\Solutions\Support\Reindeer;
 
 class Day14 extends Solution
@@ -12,10 +13,10 @@ class Day14 extends Solution
      */
     public function partOne(int $seconds = 2503): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $reindeer = [];
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             preg_match('/(\w*) can fly (\d*) .* (\d*) .* (\d*) seconds./', $line, $matches);
 
             $reindeer[] = new Reindeer($matches[1], intval($matches[2]), intval($matches[3]), intval($matches[4]));
@@ -42,11 +43,11 @@ class Day14 extends Solution
      */
     public function partTwo(int $seconds = 2503): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $points = [];
         $reindeer = [];
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             preg_match('/(\w*) can fly (\d*) .* (\d*) .* (\d*) seconds./', $line, $matches);
 
             $reindeer[] = new Reindeer($matches[1], intval($matches[2]), intval($matches[3]), intval($matches[4]));

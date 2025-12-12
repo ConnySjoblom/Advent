@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day08 extends Solution
 {
@@ -11,7 +12,10 @@ class Day08 extends Solution
      */
     public function partOne($connections = 1000): string|int|null
     {
-        $map = array_map(fn ($line) => array_map('intval', explode(',', $line)), explode("\n", $this->input));
+        $map = array_map(
+            fn ($line) => InputParser::csvIntegers($line),
+            InputParser::lines($this->input)
+        );
 
         $distances = [];
         for ($i = 0; $i < count($map); $i++) {
@@ -68,7 +72,10 @@ class Day08 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $map = array_map(fn ($line) => array_map('intval', explode(',', $line)), explode("\n", $this->input));
+        $map = array_map(
+            fn ($line) => InputParser::csvIntegers($line),
+            InputParser::lines($this->input)
+        );
 
         $distances = [];
         for ($i = 0; $i < count($map); $i++) {

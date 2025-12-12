@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2020;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day04 extends Solution
 {
@@ -11,8 +12,7 @@ class Day04 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $passports = str($this->input)
-            ->explode("\n\n")
+        $passports = collect(InputParser::groups($this->input))
             ->map(fn ($passport) => str($passport)
                 ->explode("\n")
                 ->implode(' '))
@@ -51,8 +51,7 @@ class Day04 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $passports = str($this->input)
-            ->explode("\n\n")
+        $passports = collect(InputParser::groups($this->input))
             ->map(fn ($passport) => str($passport)
                 ->explode("\n")
                 ->implode(' '))

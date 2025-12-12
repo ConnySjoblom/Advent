@@ -22,18 +22,11 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $movement = str_split($this->input);
-
         $floor = 0;
-        foreach ($movement as $i => $change) {
-            switch ($change) {
-                case '(':
-                    $floor++;
-                    break;
-                case ')':
-                    $floor--;
-                    break;
-            }
+        $length = strlen($this->input);
+
+        for ($i = 0; $i < $length; $i++) {
+            $floor += $this->input[$i] === '(' ? 1 : -1;
 
             if ($floor < 0) {
                 return $i + 1;

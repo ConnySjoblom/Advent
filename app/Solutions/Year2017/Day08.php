@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2017;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day08 extends Solution
 {
@@ -11,9 +12,7 @@ class Day08 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $instructions = str($this->input)
-            ->explode("\n")
-            ->toArray();
+        $instructions = InputParser::lines($this->input);
 
         $registry = [];
         foreach ($instructions as $instruction) {
@@ -69,7 +68,7 @@ class Day08 extends Solution
                     break;
 
                 default:
-                    die("This I don't know: " . $op);
+                    throw new \InvalidArgumentException("Unexpected operator '$op' in instruction: $instruction");
             }
         }
 
@@ -81,9 +80,7 @@ class Day08 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $instructions = str($this->input)
-            ->explode("\n")
-            ->toArray();
+        $instructions = InputParser::lines($this->input);
 
         $registry = [];
         foreach ($instructions as $instruction) {
@@ -138,9 +135,6 @@ class Day08 extends Solution
                         $registry[$target] = $this->operation($registry, $target, $operation, $change);
                     }
                     break;
-
-                default:
-                    die("This I don't know: " . $op);
             }
 
             $max = max($max, $registry[$target]);
@@ -154,7 +148,7 @@ class Day08 extends Solution
         return match ($operation) {
             'inc' => $registry[$target] + $change,
             'dec' => $registry[$target] - $change,
-            default => die('lolwat'),
+            default => throw new \InvalidArgumentException("Invalid operation: $operation"),
         };
     }
 }

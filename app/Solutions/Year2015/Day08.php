@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day08 extends Solution
 {
@@ -11,14 +12,14 @@ class Day08 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $output = '';
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             $output .= eval("return $line;");
         }
 
-        return strlen(implode('', $input)) - strlen($output);
+        return strlen(implode('', $lines)) - strlen($output);
     }
 
     /**
@@ -26,10 +27,10 @@ class Day08 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $lines = InputParser::lines($this->input);
 
         $diff = 0;
-        foreach ($input as $line) {
+        foreach ($lines as $line) {
             $diff += strlen(addslashes($line)) + 2 - strlen($line);
         }
 

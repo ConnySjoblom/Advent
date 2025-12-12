@@ -16,4 +16,14 @@ abstract class Solution
             $this->input = trim(File::get(storage_path(sprintf('input/%d_%02d_input.txt', $year, $day))));
         }
     }
+
+    /**
+     * Output debug information based on verbosity level
+     */
+    protected function debug(string $message, int $requiredVerbosity = OutputInterface::VERBOSITY_VERY_VERBOSE): void
+    {
+        if ($this->verbosity >= $requiredVerbosity) {
+            echo $message . "\n";
+        }
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2017;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\GridHelper;
+use App\Solutions\Support\Helpers\MathHelper;
 
 class Day03 extends Solution
 {
@@ -16,7 +18,7 @@ class Day03 extends Solution
 
         $size = intval(ceil(sqrt($max)));
         $spiral = array_fill(0, $size, array_fill(0, $size, 0));
-        $directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+        $directions = GridHelper::directions();
 
         $x = $y = intval(floor($size / 2));
 
@@ -45,15 +47,7 @@ class Day03 extends Solution
             $step++;
         }
 
-        foreach ($spiral as $y) {
-            foreach ($y as $x) {
-                print str_pad(strval($x), 4, ' ');
-            }
-
-            print "\n";
-        }
-
-        return abs($positions[1][0] - end($positions)[0]) + abs($positions[1][1] - end($positions)[1]);
+        return MathHelper::manhattanDistance($positions[1], end($positions));
     }
 
     /**
@@ -65,7 +59,7 @@ class Day03 extends Solution
 
         $size = intval(ceil(sqrt($max)));
         $spiral = array_fill(0, $size, array_fill(0, $size, 0));
-        $directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+        $directions = GridHelper::directions();
 
         $x = $y = intval(floor($size / 2));
         $spiral[$x][$y] = 1;
@@ -103,16 +97,9 @@ class Day03 extends Solution
 
     private function getTotalOfAdjacent(int $x, int $y, array $spiral)
     {
-        $maxY = count($spiral);
-        $maxX = count($spiral[0]);
-
-        $total = 0;
-        for ($i = $x - 1; $i <= $x + 1; $i++) {
-            for ($j = $y - 1; $j <= $y + 1; $j++) {
-                if ($i >= 0 && $i < $maxX && $j >= 0 && $j < $maxY) {
-                    $total += $spiral[$i][$j];
-                }
-            }
+        $total = GridHelper::get($spiral, $x, $y, 0);
+        foreach (GridHelper::allNeighbors($x, $y) as [$nx, $ny]) {
+            $total += GridHelper::get($spiral, $nx, $ny, 0);
         }
 
         return $total;

@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day04 extends Solution
 {
@@ -11,8 +12,8 @@ class Day04 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n\n", $this->input);
-        $numbers = explode(',', array_shift($input));
+        $input = InputParser::groups($this->input);
+        $numbers = InputParser::csv(array_shift($input));
 
         $boards = [];
         foreach ($input as $b) {
@@ -47,8 +48,8 @@ class Day04 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n\n", $this->input);
-        $numbers = explode(',', array_shift($input));
+        $input = InputParser::groups($this->input);
+        $numbers = InputParser::csv(array_shift($input));
 
         $boards = [];
         $boardsWon = [];
