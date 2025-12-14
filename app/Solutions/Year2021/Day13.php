@@ -66,7 +66,7 @@ class Day13 extends Solution
             $dots = $visible;
         }
 
-        if ($this->verbosity >= OutputInterface::VERBOSITY_VERY_VERBOSE) {
+        if ($this->verbosity >= OutputInterface::VERBOSITY_VERBOSE) {
             $this->show($visible);
         }
 
