@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2020;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day03 extends Solution
 {
@@ -11,7 +12,7 @@ class Day03 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = array_map(fn ($line) => str_split($line), explode("\n", $this->input));
+        $input = InputParser::grid($this->input);
 
         $map = [];
         $repeat = count($input) * 3 / count($input[0]);
@@ -42,7 +43,7 @@ class Day03 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = array_map(fn ($line) => str_split($line), explode("\n", $this->input));
+        $input = InputParser::grid($this->input);
 
         $answer = 1;
         $slopes = [[1, 1], [3, 1], [5, 1], [7, 1], [1, 2]];

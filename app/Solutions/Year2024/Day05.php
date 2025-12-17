@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2024;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day05 extends Solution
 {
@@ -11,15 +12,15 @@ class Day05 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::lines($this->input);
 
         $rules = [];
         $updates = [];
         foreach ($input as $line) {
             if (str_contains($line, '|')) {
-                $rules[] = array_map(fn ($val) => intval($val), explode('|', $line));
+                $rules[] = InputParser::csvIntegers($line, '|');
             } elseif (str_contains($line, ',')) {
-                $updates[] = array_map(fn ($val) => intval($val), explode(',', $line));
+                $updates[] = InputParser::csvIntegers($line);
             }
         }
 
@@ -48,15 +49,15 @@ class Day05 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::lines($this->input);
 
         $rules = [];
         $updates = [];
         foreach ($input as $line) {
             if (str_contains($line, '|')) {
-                $rules[] = array_map(fn ($val) => intval($val), explode('|', $line));
+                $rules[] = InputParser::csvIntegers($line, '|');
             } elseif (str_contains($line, ',')) {
-                $updates[] = array_map(fn ($val) => intval($val), explode(',', $line));
+                $updates[] = InputParser::csvIntegers($line);
             }
         }
 

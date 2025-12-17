@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2017;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day05 extends Solution
 {
@@ -11,9 +12,7 @@ class Day05 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = collect(explode("\n", $this->input))
-            ->map(fn ($move) => intval($move))
-            ->toArray();
+        $input = InputParser::integers($this->input);
 
         $steps = 0;
         $pointer = 0;
@@ -30,9 +29,7 @@ class Day05 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = collect(explode("\n", $this->input))
-            ->map(fn ($move) => intval($move))
-            ->toArray();
+        $input = InputParser::integers($this->input);
 
         $steps = 0;
         $pointer = 0;

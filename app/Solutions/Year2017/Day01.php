@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2017;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day01 extends Solution
 {
@@ -11,9 +12,7 @@ class Day01 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = collect(str_split($this->input))
-            ->map(fn ($letter) => intval($letter))
-            ->toArray();
+        $input = InputParser::digits($this->input);
 
         $sum = 0;
         for ($i = 0; $i < count($input); $i++) {
@@ -33,9 +32,7 @@ class Day01 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = collect(str_split($this->input))
-            ->map(fn ($letter) => intval($letter))
-            ->toArray();
+        $input = InputParser::digits($this->input);
 
         $sum = 0;
         for ($i = 0; $i < count($input); $i++) {

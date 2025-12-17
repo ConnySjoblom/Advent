@@ -3,6 +3,8 @@
 namespace App\Solutions\Year2019;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
+use App\Solutions\Support\Helpers\MathHelper;
 
 class Day10 extends Solution
 {
@@ -13,7 +15,7 @@ class Day10 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $rows = explode("\n", $this->input);
+        $rows = InputParser::lines($this->input);
 
         $asteroids = [];
         foreach ($rows as $y => $row) {
@@ -36,7 +38,7 @@ class Day10 extends Solution
                 $dx = $ax - $sx;
                 $dy = $ay - $sy;
 
-                $g = gmp_intval(gmp_gcd($dx, $dy));
+                $g = MathHelper::gcd($dx, $dy);
 
                 $dx /= $g;
                 $dy /= $g;
@@ -58,7 +60,7 @@ class Day10 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $rows = explode("\n", $this->input);
+        $rows = InputParser::lines($this->input);
 
         $asteroids = [];
         foreach ($rows as $y => $row) {
@@ -82,7 +84,7 @@ class Day10 extends Solution
             $dx = $ax - $sx;
             $dy = $ay - $sy;
 
-            $g = gmp_intval(gmp_gcd($dx, $dy));
+            $g = MathHelper::gcd($dx, $dy);
 
             $dx /= $g;
             $dy /= $g;

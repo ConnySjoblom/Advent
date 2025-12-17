@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day11 extends Solution
 {
@@ -13,7 +14,10 @@ class Day11 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = array_map(fn ($server) => explode(': ', $server), explode("\n", $this->input));
+        $input = array_map(
+            fn ($server) => explode(': ', $server),
+            InputParser::lines($this->input)
+        );
         $servers = [];
         foreach ($input as $in) {
             $outs = explode(' ', $in[1]);
@@ -30,7 +34,10 @@ class Day11 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = array_map(fn ($server) => explode(': ', $server), explode("\n", $this->input));
+        $input = array_map(
+            fn ($server) => explode(': ', $server),
+            InputParser::lines($this->input)
+        );
         $servers = [];
         foreach ($input as $in) {
             $outs = explode(' ', $in[1]);

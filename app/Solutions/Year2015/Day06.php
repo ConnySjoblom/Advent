@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2015;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day06 extends Solution
 {
@@ -11,12 +12,13 @@ class Day06 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $instructions = InputParser::regex(
+            $this->input,
+            '/(turn on|turn off|toggle) (\d{1,3}),(\d{1,3}) through (\d{1,3}),(\d{1,3})/'
+        );
 
         $lights = [];
-        foreach ($input as $instruction) {
-            preg_match('/(turn on|turn off|toggle) (\d{1,3}),(\d{1,3}) through (\d{1,3}),(\d{1,3})/', $instruction, $matches);
-
+        foreach ($instructions as $matches) {
             $action = $matches[1];
             $fromX = $matches[2];
             $fromY = $matches[3];
@@ -52,12 +54,13 @@ class Day06 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $instructions = InputParser::regex(
+            $this->input,
+            '/(turn on|turn off|toggle) (\d{1,3}),(\d{1,3}) through (\d{1,3}),(\d{1,3})/'
+        );
 
         $lights = [];
-        foreach ($input as $instruction) {
-            preg_match('/(turn on|turn off|toggle) (\d{1,3}),(\d{1,3}) through (\d{1,3}),(\d{1,3})/', $instruction, $matches);
-
+        foreach ($instructions as $matches) {
             $action = $matches[1];
             $fromX = $matches[2];
             $fromY = $matches[3];

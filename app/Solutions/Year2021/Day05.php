@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day05 extends Solution
 {
@@ -14,10 +15,10 @@ class Day05 extends Solution
         $lines = [];
         $input = array_map(
             fn ($line) => array_map(
-                fn ($cords) => array_map('intval', explode(',', $cords)),
+                fn ($cords) => InputParser::csvIntegers($cords),
                 explode(' -> ', $line)
             ),
-            explode("\n", $this->input)
+            InputParser::lines($this->input)
         );
 
         foreach ($input as $line) {
@@ -49,10 +50,10 @@ class Day05 extends Solution
         $lines = [];
         $input = array_map(
             fn ($line) => array_map(
-                fn ($cords) => array_map('intval', explode(',', $cords)),
+                fn ($cords) => InputParser::csvIntegers($cords),
                 explode(' -> ', $line)
             ),
-            explode("\n", $this->input)
+            InputParser::lines($this->input)
         );
 
         foreach ($input as $line) {

@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2018;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day02 extends Solution
 {
@@ -11,20 +12,17 @@ class Day02 extends Solution
      */
     public function partOne(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::lines($this->input);
 
         $twice = 0;
         $thrice = 0;
         foreach ($input as $id) {
-            $charCounts = [];
-            foreach (array_unique(str_split($id)) as $char) {
-                $charCounts[$char] = count(array_filter(str_split($id), fn ($value) => $value == $char));
-            }
+            $charCounts = array_count_values(str_split($id));
 
-            if (array_search(2, $charCounts)) {
+            if (in_array(2, $charCounts)) {
                 $twice++;
             }
-            if (array_search(3, $charCounts)) {
+            if (in_array(3, $charCounts)) {
                 $thrice++;
             }
         }
@@ -37,7 +35,7 @@ class Day02 extends Solution
      */
     public function partTwo(): string|int|null
     {
-        $input = explode("\n", $this->input);
+        $input = InputParser::lines($this->input);
 
         do {
             $box = array_pop($input);

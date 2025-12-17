@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2021;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day02 extends Solution
 {
@@ -12,7 +13,7 @@ class Day02 extends Solution
     public function partOne(): string|int|null
     {
         $horizontal = $depth = 0;
-        foreach (explode("\n", $this->input) as $command) {
+        foreach (InputParser::lines($this->input) as $command) {
             [$direction, $value] = sscanf($command, '%s %d');
 
             /** @phpstan-ignore-next-line */
@@ -32,7 +33,7 @@ class Day02 extends Solution
     public function partTwo(): string|int|null
     {
         $horizontal = $depth = $aim = 0;
-        foreach (explode("\n", $this->input) as $command) {
+        foreach (InputParser::lines($this->input) as $command) {
             [$direction, $value] = sscanf($command, '%s %d');
 
             /** @phpstan-ignore-next-line */

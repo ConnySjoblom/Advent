@@ -3,6 +3,7 @@
 namespace App\Solutions\Year2025;
 
 use App\Solutions\Solution;
+use App\Solutions\Support\Helpers\InputParser;
 
 class Day01 extends Solution
 {
@@ -13,7 +14,7 @@ class Day01 extends Solution
     {
         $password = 0;
         $position = 50;
-        foreach (explode("\n", $this->input) as $rotation) {
+        foreach (InputParser::lines($this->input) as $rotation) {
             $direction = substr($rotation, 0, 1);
             $steps = intval(substr($rotation, 1));
             $position += match ($direction) {
@@ -39,7 +40,7 @@ class Day01 extends Solution
     {
         $password = 0;
         $position = 50;
-        foreach (explode("\n", $this->input) as $rotation) {
+        foreach (InputParser::lines($this->input) as $rotation) {
             $direction = substr($rotation, 0, 1);
             $steps = intval(substr($rotation, 1));
 
