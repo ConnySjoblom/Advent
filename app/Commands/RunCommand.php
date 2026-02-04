@@ -69,7 +69,7 @@ class RunCommand extends Command
             $answerString = "Answer '$answer' is ";
 
             if ($response->ok()) {
-                $body = $response->getBody()->getContents();
+                $body = $response->body();
                 if (str_contains($body, 'You gave an answer too recently')) {
                     $this->components->info(sprintf(
                         'Answer sent too recently, wait %s..',
