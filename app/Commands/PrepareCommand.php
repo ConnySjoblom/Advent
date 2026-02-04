@@ -56,7 +56,7 @@ class PrepareCommand extends Command
                 return Command::FAILURE;
             }
 
-            $inputData = $inputResponse->getBody()->getContents();
+            $inputData = $inputResponse->body();
 
             File::ensureDirectoryExists($inputPath);
             File::put($inputFile, $inputData);
