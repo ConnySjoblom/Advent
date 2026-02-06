@@ -17,6 +17,9 @@ class AdventOfCodeClient
     ) {
     }
 
+    /**
+     * @throws InvalidSessionException
+     */
     public function fetchInput(PuzzleIdentifier $puzzle): string
     {
         $response = $this->client()->get(sprintf(
@@ -33,6 +36,9 @@ class AdventOfCodeClient
         return $response->body();
     }
 
+    /**
+     * @throws InvalidSessionException
+     */
     public function submitAnswer(PuzzleIdentifier $puzzle, string|int $answer): SubmissionResult
     {
         $response = $this->client()->asForm()->post(
