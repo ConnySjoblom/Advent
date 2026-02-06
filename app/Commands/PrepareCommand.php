@@ -95,7 +95,7 @@ class PrepareCommand extends Command
         $testPath = dirname($testFile);
 
         if (File::exists($testFile) && ! $force) {
-            $this->info(' ! Tests already exists.');
+            $this->info(' ! Tests already exist.');
 
             return;
         }
