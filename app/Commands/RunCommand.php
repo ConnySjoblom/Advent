@@ -2,9 +2,15 @@
 
 namespace App\Commands;
 
+use App\Data\PuzzleIdentifier;
+use App\Enums\Part;
+use App\Enums\SubmissionResult;
+use App\Exceptions\InvalidSessionException;
+use App\Exceptions\SolutionNotFoundException;
+use App\Services\AdventOfCodeClient;
 use App\Support\Input;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Http;
 use LaravelZero\Framework\Commands\Command;
 
 class RunCommand extends Command
@@ -18,31 +24,29 @@ class RunCommand extends Command
 
     protected $description = 'Run puzzle solution';
 
-    public function handle(): int
+    public function handle(AdventOfCodeClient $client): int
     {
         $showTime = $this->option('time');
         $submitAnswer = $this->option('submit');
 
-        [$year, $day, $part] = Input::validate(
+        $puzzle = Input::validate(
             intval($this->option('year')),
             intval($this->argument('day')),
-            intval($this->argument('part'))
+            intval($this->argument('part')),
         );
 
-        $partMethod = ($part == 1) ? 'partOne' : 'partTwo';
-        $solution = sprintf('App\Solutions\Year%d\Day%02d', $year, $day);
+        $solutionClass = $puzzle->solutionClass();
 
-        if (!class_exists($solution)) {
-            $this->error('Solution class not found');
-
-            return Command::FAILURE;
+        if (! class_exists($solutionClass)) {
+            throw SolutionNotFoundException::forPuzzle($puzzle);
         }
 
-        $solution = new $solution($year, $day);
+        $part = Part::from($puzzle->part);
+        $solution = new $solutionClass($puzzle);
         $solution->verbosity = $this->getOutput()->getVerbosity();
-        $solveStart = now();
 
-        $answer = $solution->$partMethod();
+        $solveStart = now();
+        $answer = $solution->{$part->method()}();
         $solveTime = $solveStart->diff(now());
 
         $this->newLine();
@@ -54,64 +58,46 @@ class RunCommand extends Command
         }
 
         if ($submitAnswer) {
-            $http = Http::withCookies([
-                'session' => config('aoc.session'),
-            ], 'adventofcode.com');
-
-            $response = $http->asForm()->post(
-                sprintf('https://adventofcode.com/%d/day/%d/answer', $year, $day),
-                [
-                    'level' => "$part",
-                    'answer' => "$answer",
-                ]
-            );
-
-            $answerString = "Answer '$answer' is ";
-
-            if ($response->ok()) {
-                $body = $response->body();
-                if (str_contains($body, 'You gave an answer too recently')) {
-                    $this->components->info(sprintf(
-                        'Answer sent too recently, wait %s..',
-                        str($body)->match('/You have (.*) left to wait/')->toString()
-                    ));
-                } else {
-                    if (str_contains($body, "That's the right answer!")) {
-                        $answerString .= 'correct!';
-                    }
-
-                    if (str_contains($body, "That's not the right answer")) {
-                        $answerString .= 'wrong!';
-                    }
-
-                    if (str_contains($body, 'your answer is too high')) {
-                        $answerString .= 'too high!';
-                    }
-
-                    if (str_contains($body, 'Did you already complete it?')) {
-                        $answerString .= 'already submitted!';
-                    }
-
-                    $this->info($answerString);
-                    $this->newLine();
-                }
-            }
+            $this->submitAnswer($client, $puzzle, $answer);
         } else {
             $this->info(sprintf("Answer is: %s\n", $answer));
         }
 
-        $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
-
         if ($showTime) {
-            $totalTime = Carbon::parse(LARAVEL_START)->diff(now());
-
-            $this->line(sprintf(
-                "Solve time: %s\nExecution time: %s\n",
-                $solveTime->forHumans($carbonConfig),
-                $totalTime->forHumans($carbonConfig)
-            ));
+            $this->displayTiming($solveTime);
         }
 
         return Command::SUCCESS;
+    }
+
+    private function submitAnswer(AdventOfCodeClient $client, PuzzleIdentifier $puzzle, string|int $answer): void
+    {
+        try {
+            $result = $client->submitAnswer($puzzle, $answer);
+
+            if ($result === SubmissionResult::RateLimited) {
+                $this->components->info(sprintf(
+                    'Answer sent too recently, wait %s..',
+                    $client->getRateLimitWait(),
+                ));
+            } else {
+                $this->info($result->message($answer));
+                $this->newLine();
+            }
+        } catch (InvalidSessionException $e) {
+            $this->components->error($e->getMessage());
+        }
+    }
+
+    private function displayTiming(\DateInterval $solveTime): void
+    {
+        $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
+        $totalTime = Carbon::parse(LARAVEL_START)->diff(now());
+
+        $this->line(sprintf(
+            "Solve time: %s\nExecution time: %s\n",
+            CarbonInterval::instance($solveTime)->forHumans($carbonConfig),
+            CarbonInterval::instance($totalTime)->forHumans($carbonConfig),
+        ));
     }
 }

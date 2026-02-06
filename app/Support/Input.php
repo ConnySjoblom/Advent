@@ -2,11 +2,12 @@
 
 namespace App\Support;
 
+use App\Data\PuzzleIdentifier;
 use Illuminate\Support\Facades\Validator;
 
 class Input
 {
-    public static function validate(?int $year, ?int $day, ?int $part = 1): array
+    public static function validate(?int $year, ?int $day, ?int $part = 1): PuzzleIdentifier
     {
         $curMonth = intval(date('n'));
         $maxYear = match ($curMonth) {
@@ -25,15 +26,15 @@ class Input
         }
 
         Validator::validate(['year' => $year, 'day' => $day, 'part' => $part], [
-            'year' => 'integer|between:2015,' . $maxYear,
-            'day' => 'required|integer|between:1,25',
+            'year' => 'integer|between:' . config('aoc.first_year') . ',' . $maxYear,
+            'day' => 'required|integer|between:1,' . config('aoc.max_day'),
             'part' => 'integer|between:1,2',
         ]);
 
-        return [
-            $year,
-            $day,
-            $part,
-        ];
+        return new PuzzleIdentifier(
+            year: $year,
+            day: $day,
+            part: $part,
+        );
     }
 }
