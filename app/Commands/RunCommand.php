@@ -6,7 +6,6 @@ use App\Data\PuzzleIdentifier;
 use App\Enums\Part;
 use App\Enums\SubmissionResult;
 use App\Exceptions\InvalidSessionException;
-use App\Exceptions\SolutionNotFoundException;
 use App\Services\AdventOfCodeClient;
 use App\Support\Input;
 use Carbon\CarbonInterval;
@@ -38,7 +37,9 @@ class RunCommand extends Command
         $solutionClass = $puzzle->solutionClass();
 
         if (! class_exists($solutionClass)) {
-            throw SolutionNotFoundException::forPuzzle($puzzle);
+            $this->components->error(sprintf('Solution for %d Day %02d not found', $puzzle->year, $puzzle->day));
+
+            return Command::FAILURE;
         }
 
         $part = Part::from($puzzle->part);

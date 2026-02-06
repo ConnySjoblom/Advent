@@ -21,7 +21,7 @@ class Input
 
             // If both year and day are empty, also default day to current day
             if (empty($day)) {
-                $day = intval(date('d'));
+                $day = min(intval(date('d')), config('aoc.max_day'));
             }
         }
 
