@@ -46,6 +46,9 @@ class PrepareCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @throws InvalidSessionException
+     */
     private function prepareInput(AdventOfCodeClient $client, PuzzleIdentifier $puzzle, bool $force): void
     {
         $inputPath = storage_path('input');
