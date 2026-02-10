@@ -16,7 +16,7 @@ test('Day 10 Part 1', function (string $input, string $answer) {
 [.###.#] (0,1,2,3,4) (0,3,4) (0,1,2,4,5) (1,2) {10,11,11,5,10,5}
 INPUT
     , '7'],
-])->skipOnCi();
+])->skip('Requires z3');
 
 test('Day 10 Part 2', function (string $input, string $answer) {
     test()->solution->input = $input;
@@ -28,4 +28,4 @@ test('Day 10 Part 2', function (string $input, string $answer) {
 [.###.#] (0,1,2,3,4) (0,3,4) (0,1,2,4,5) (1,2) {10,11,11,5,10,5}
 INPUT
         , '33'],
-])->skipOnCi();
+])->skip('Requires z3');

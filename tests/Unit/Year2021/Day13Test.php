@@ -4,6 +4,7 @@ use function PHPUnit\Framework\assertEquals;
 
 beforeEach(function () {
     test()->solution = new \App\Solutions\Year2021\Day13();
+    test()->solution->verbosity = \Symfony\Component\Console\Output\OutputInterface::VERBOSITY_QUIET;
 });
 
 test('Day 13 Part 1', function (string $input, string $answer) {
@@ -33,7 +34,7 @@ test('Day 13 Part 1', function (string $input, string $answer) {
 fold along y=7
 fold along x=5
 INPUT
-    , '17'],
+        , '17'],
 ]);
 
 test('Day 13 Part 2', function (string $input, string $answer) {

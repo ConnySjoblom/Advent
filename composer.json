@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^8.5",
+        "php": "^8.4",
         "ext-gmp": "*",
         "illuminate/http": "^12.29",
         "illuminate/translation": "^12.29",
