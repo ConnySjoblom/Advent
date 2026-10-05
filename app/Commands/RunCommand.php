@@ -7,9 +7,11 @@ use App\Enums\Part;
 use App\Enums\SubmissionResult;
 use App\Exceptions\InvalidSessionException;
 use App\Services\AdventOfCodeClient;
+use App\Solutions\Solution;
 use App\Support\Input;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 
 class RunCommand extends Command
@@ -36,8 +38,20 @@ class RunCommand extends Command
 
         $solutionClass = $puzzle->solutionClass();
 
-        if (! class_exists($solutionClass)) {
+        if (! is_subclass_of($solutionClass, Solution::class)) {
             $this->components->error(sprintf('Solution for %d Day %02d not found', $puzzle->year, $puzzle->day));
+
+            return Command::FAILURE;
+        }
+
+        if (! File::exists($puzzle->inputPath())) {
+            $this->components->error(sprintf(
+                'Input for %d Day %02d not found, run `prepare %d --year=%d` first',
+                $puzzle->year,
+                $puzzle->day,
+                $puzzle->day,
+                $puzzle->year,
+            ));
 
             return Command::FAILURE;
         }
@@ -93,7 +107,7 @@ class RunCommand extends Command
     private function displayTiming(\DateInterval $solveTime): void
     {
         $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
-        $totalTime = Carbon::parse(LARAVEL_START)->diff(now());
+        $totalTime = Carbon::createFromTimestamp(LARAVEL_START)->diff(now());
 
         $this->line(sprintf(
             "Solve time: %s\nExecution time: %s\n",

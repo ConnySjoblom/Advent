@@ -7,13 +7,10 @@ use Illuminate\Support\Facades\Validator;
 
 class Input
 {
-    public static function validate(?int $year, ?int $day, ?int $part = 1): PuzzleIdentifier
+    public static function validate(?int $year, ?int $day, int $part = 1): PuzzleIdentifier
     {
-        $curMonth = intval(date('n'));
-        $maxYear = match ($curMonth) {
-            12 => intval(date('Y')),
-            default => intval(date('Y') - 1),
-        };
+        $now = now();
+        $maxYear = $now->month === 12 ? $now->year : $now->year - 1;
 
         // If year is empty, fallback to latest available year
         if (empty($year)) {
@@ -21,7 +18,7 @@ class Input
 
             // If both year and day are empty, also default day to current day
             if (empty($day)) {
-                $day = min(intval(date('d')), config('aoc.max_day'));
+                $day = min($now->day, config('aoc.max_day'));
             }
         }
 

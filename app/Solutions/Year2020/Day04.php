@@ -16,7 +16,6 @@ class Day04 extends Solution
             ->map(fn ($passport) => str($passport)
                 ->explode("\n")
                 ->implode(' '))
-            /** @phpstan-ignore-next-line */
             ->map(fn ($passport) => str($passport)
                 ->explode(' ')
                 ->mapWithKeys(function ($passport) {
@@ -56,7 +55,6 @@ class Day04 extends Solution
             ->map(fn ($passport) => str($passport)
                 ->explode("\n")
                 ->implode(' '))
-            /** @phpstan-ignore-next-line */
             ->map(fn ($passport) => str($passport)
                 ->explode(' ')
                 ->mapWithKeys(function ($passport) {

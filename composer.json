@@ -19,17 +19,17 @@
     "require": {
         "php": "^8.4",
         "ext-gmp": "*",
-        "illuminate/http": "^12.29",
-        "illuminate/translation": "^12.29",
-        "illuminate/validation": "^12.29",
-        "laravel-zero/framework": "^12.0",
-        "nesbot/carbon": "^3.11"
+        "illuminate/http": "^13.0",
+        "illuminate/translation": "^13.0",
+        "illuminate/validation": "^13.0",
+        "laravel-zero/framework": "^13.0",
+        "nesbot/carbon": "^3.14"
     },
     "require-dev": {
-        "larastan/larastan": "^3.7",
-        "laravel/pint": "^1.25",
-        "mockery/mockery": "^1.6",
-        "pestphp/pest": "^4.1"
+        "larastan/larastan": "^3.12",
+        "laravel/pint": "^1.32",
+        "mockery/mockery": "^1.6.15",
+        "pestphp/pest": "^5.3"
     },
     "autoload": {
         "psr-4": {
