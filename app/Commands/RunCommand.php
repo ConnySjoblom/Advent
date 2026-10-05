@@ -10,8 +10,10 @@ use App\Services\AdventOfCodeClient;
 use App\Solutions\Solution;
 use App\Support\Input;
 use Carbon\CarbonInterval;
+use DateInterval;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\ValidationException;
 use LaravelZero\Framework\Commands\Command;
 
 class RunCommand extends Command
@@ -30,11 +32,17 @@ class RunCommand extends Command
         $showTime = $this->option('time');
         $submitAnswer = $this->option('submit');
 
-        $puzzle = Input::validate(
-            intval($this->option('year')),
-            intval($this->argument('day')),
-            intval($this->argument('part')),
-        );
+        try {
+            $puzzle = Input::validate(
+                intval($this->option('year')),
+                intval($this->argument('day')),
+                intval($this->argument('part')),
+            );
+        } catch (ValidationException $e) {
+            $this->components->error($e->getMessage());
+
+            return Command::FAILURE;
+        }
 
         $solutionClass = $puzzle->solutionClass();
 
@@ -104,7 +112,7 @@ class RunCommand extends Command
         }
     }
 
-    private function displayTiming(\DateInterval $solveTime): void
+    private function displayTiming(DateInterval $solveTime): void
     {
         $carbonConfig = ['minimumUnit' => 'µs', 'short' => true, 'parts' => 2];
         $totalTime = Carbon::createFromTimestamp(LARAVEL_START)->diff(now());

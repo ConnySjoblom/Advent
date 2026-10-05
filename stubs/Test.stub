@@ -1,21 +1,25 @@
 <?php
 
-use function PHPUnit\Framework\assertEquals;
-
-beforeEach(function () {
-    test()->solution = new \App\Solutions\Year{{ year }}\Day{{ day }}();
-});
+use App\Solutions\Year{{ year }}\Day{{ day }};
 
 test('Day {{ day }} Part 1', function (string $input, string $answer) {
-    test()->solution->input = $input;
-    assertEquals($answer, test()->solution->partOne());
+    $solution = new Day{{ day }}();
+    $solution->input = $input;
+    expect($solution->partOne())->toEqual($answer);
 })->with([
-    ['', ''],
+    [<<<INPUT
+
+INPUT
+    , ''],
 ])->skip('No test implemented yet.');
 
 test('Day {{ day }} Part 2', function (string $input, string $answer) {
-    test()->solution->input = $input;
-    assertEquals($answer, test()->solution->partTwo());
+    $solution = new Day{{ day }}();
+    $solution->input = $input;
+    expect($solution->partTwo())->toEqual($answer);
 })->with([
-    ['', ''],
+    [<<<INPUT
+
+INPUT
+    , ''],
 ])->skip('No test implemented yet.');

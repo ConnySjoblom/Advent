@@ -2,10 +2,8 @@
     "name": "connysjoblom/advent",
     "description": "My Advent of Code Solutions.",
     "keywords": [
-        "framework",
-        "laravel",
-        "laravel zero",
-        "console",
+        "advent-of-code",
+        "laravel-zero",
         "cli"
     ],
     "type": "project",
@@ -33,15 +31,24 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "pest --parallel",
+        "lint": "pint",
+        "analyse": "phpstan analyse",
+        "check": [
+            "@composer validate --strict",
+            "pint --test",
+            "@analyse",
+            "@test"
+        ]
     },
     "config": {
         "preferred-install": "dist",
