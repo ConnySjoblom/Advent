@@ -29,7 +29,7 @@ class TestMissingCommand extends Command
 
         foreach ($solutionFiles as $solutionFile) {
             // Extract year and day from path
-            if (!preg_match('/Year(\d{4})\/Day(\d{2})\.php$/', $solutionFile, $matches)) {
+            if (! preg_match('/Year(\d{4})\/Day(\d{2})\.php$/', $solutionFile, $matches)) {
                 continue;
             }
 
@@ -57,7 +57,7 @@ class TestMissingCommand extends Command
             // Check Part 1
             if ($part1Implemented) {
                 $hasTest = $testContent && $this->hasTestForPart($testContent, 1);
-                if (!$hasTest) {
+                if (! $hasTest) {
                     $missingParts[] = 'Part 1';
                     $stats['missing_part1']++;
                 }
@@ -66,13 +66,13 @@ class TestMissingCommand extends Command
             // Check Part 2
             if ($part2Implemented) {
                 $hasTest = $testContent && $this->hasTestForPart($testContent, 2);
-                if (!$hasTest) {
+                if (! $hasTest) {
                     $missingParts[] = 'Part 2';
                     $stats['missing_part2']++;
                 }
             }
 
-            if (!empty($missingParts)) {
+            if ($missingParts !== []) {
                 // Use "Both parts" if both are missing for consistency
                 $missingText = (count($missingParts) === 2)
                     ? 'Both parts'
@@ -87,22 +87,22 @@ class TestMissingCommand extends Command
                 if (count($missingParts) === 2) {
                     $stats['missing_tests']++;
                 }
-            } else {
+            } elseif ($part1Implemented || $part2Implemented) {
                 // Only count as "with tests" if at least one part is implemented
-                if ($part1Implemented || $part2Implemented) {
-                    $stats['with_tests']++;
-                }
+                $stats['with_tests']++;
             }
         }
 
         if ($stats['total_solutions'] === 0) {
             $yearText = $yearFilter ? "for year {$yearFilter}" : '';
             $this->components->warn("No solutions found {$yearText}");
+
             return Command::SUCCESS;
         }
 
         if (empty($missing)) {
             $this->components->info('All solutions have complete tests!');
+
             return Command::SUCCESS;
         }
 
@@ -111,12 +111,10 @@ class TestMissingCommand extends Command
         $this->components->twoColumnDetail('<fg=yellow>Missing Tests</>', '');
         $this->newLine();
 
-        $rows = array_map(function ($item) {
-            return [
-                sprintf('Year %s, Day %s', $item['year'], $item['day']),
-                sprintf('<fg=red>%s</>', $item['missing']),
-            ];
-        }, $missing);
+        $rows = array_map(fn (array $item) => [
+            sprintf('Year %s, Day %s', $item['year'], $item['day']),
+            sprintf('<fg=red>%s</>', $item['missing']),
+        ], $missing);
 
         $this->table(['Solution', 'Missing'], $rows);
 
@@ -170,7 +168,7 @@ class TestMissingCommand extends Command
         $method = $part === 1 ? 'partOne' : 'partTwo';
 
         // Find the method (with or without parameters)
-        if (!preg_match("/public function {$method}\([^)]*\).*?\{(.*?)\n\s+\}/s", $content, $matches)) {
+        if (! preg_match("/public function {$method}\([^)]*\).*?\{(.*?)\n\s+\}/s", $content, $matches)) {
             return false;
         }
 

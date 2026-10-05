@@ -7,6 +7,7 @@ use App\Enums\SubmissionResult;
 use App\Exceptions\InvalidSessionException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
+use RuntimeException;
 
 class AdventOfCodeClient
 {
@@ -24,7 +25,7 @@ class AdventOfCodeClient
     {
         $response = $this->client()->get(sprintf(
             '%s/%d/day/%d/input',
-            config('aoc.base_url'),
+            config()->string('aoc.base_url'),
             $puzzle->year,
             $puzzle->day,
         ));
@@ -42,7 +43,7 @@ class AdventOfCodeClient
     public function submitAnswer(PuzzleIdentifier $puzzle, string|int $answer): SubmissionResult
     {
         $response = $this->client()->asForm()->post(
-            sprintf('%s/%d/day/%d/answer', config('aoc.base_url'), $puzzle->year, $puzzle->day),
+            sprintf('%s/%d/day/%d/answer', config()->string('aoc.base_url'), $puzzle->year, $puzzle->day),
             [
                 'level' => (string) $puzzle->part,
                 'answer' => (string) $answer,
@@ -76,9 +77,12 @@ class AdventOfCodeClient
             throw InvalidSessionException::missing();
         }
 
-        return Http::withCookies(
-            ['session' => $session],
-            parse_url(config('aoc.base_url'), PHP_URL_HOST),
-        );
+        $domain = parse_url(config()->string('aoc.base_url'), PHP_URL_HOST);
+
+        if (! is_string($domain)) {
+            throw new RuntimeException('The aoc.base_url config value must be an absolute URL.');
+        }
+
+        return Http::withCookies(['session' => $session], $domain);
     }
 }
