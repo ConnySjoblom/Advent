@@ -20,7 +20,11 @@ My personal toolkit for tackling Advent of Code puzzles. Built with Laravel Zero
 
 2. Get your session cookie from adventofcode.com (check browser dev tools while logged in)
 
-3. Configure it in the application - this lets the CLI download your personalized inputs and submit answers
+3. Add it to `.env` - this lets the CLI download your personalized inputs and submit answers:
+   ```bash
+   cp .env.example .env
+   # then set AOC_SESSION=<your session cookie>
+   ```
 
 ## My Workflow
 
@@ -34,7 +38,7 @@ This creates a solution class and downloads my input file. I usually add `--test
 
 **Examples:**
 ```bash
-./advent prepare 1                    # Today's year, day 1
+./advent prepare 1                    # Day 1 of the latest event
 ./advent prepare 5 --year=2023       # Go back to 2023
 ./advent prepare 3 --test            # Include test file
 ./advent prepare 1 --force           # Overwrite existing solution
@@ -56,14 +60,23 @@ I typically run with `--time` first to see performance, then add `--submit` once
 ./advent run 7 2 --submit           # Run and submit answer
 ```
 
+### Finding Missing Tests
+
+```bash
+./advent test:missing [--year=YYYY]
+```
+
+Lists implemented solutions whose parts don't have a real test yet.
+
 ## Development Tools
 
 Keep code clean and tested:
 
 ```bash
-./vendor/bin/pest                    # Run tests
-./vendor/bin/pint                    # Fix code style
-./vendor/bin/phpstan                 # Static analysis
+composer test                        # Run tests (in parallel)
+composer lint                        # Fix code style
+composer analyse                     # Static analysis
+composer check                       # Everything CI runs
 ```
 
 ## Technical Notes
@@ -71,7 +84,8 @@ Keep code clean and tested:
 - Built on Laravel Zero for a solid CLI foundation
 - Solutions organized by year in `app/Solutions/`
 - Inputs stored in `storage/input/`
-- Requires PHP ^8.4.0 and GMP extension
+- Requires PHP 8.4+ and the GMP extension
+- 2025 Day 10 shells out to `scripts/z3_solver.py`, which needs Python 3 with `pip install z3-solver`
 
 ## About Advent of Code
 

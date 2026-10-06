@@ -1,8 +1,9 @@
 /vendor
-/build/phpstan
+/build
+/builds
 /storage/input
 /.env
 /.idea
 /.vscode
-/.vagrant
+.phpunit.cache
 .phpunit.result.cache

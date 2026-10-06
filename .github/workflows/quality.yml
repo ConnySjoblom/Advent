@@ -15,9 +15,14 @@ concurrency:
 
 jobs:
   test:
-    name: Test
+    name: Test (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.4', '8.5' ]
 
     steps:
       - name: Checkout Repository
@@ -26,7 +31,7 @@ jobs:
       - uses: "./.github/actions/setup-php"
         name: Setup PHP
         with:
-          php-version: '8.4'
+          php-version: ${{ matrix.php }}
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
@@ -67,6 +72,9 @@ jobs:
         name: Setup PHP
         with:
           php-version: '8.4'
+
+      - name: Validate composer.json
+        run: composer validate --strict
 
       - name: Code Style Check
         run: vendor/bin/pint --test

@@ -7,6 +7,7 @@ use App\Exceptions\InvalidSessionException;
 use App\Services\AdventOfCodeClient;
 use App\Support\Input;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\ValidationException;
 use LaravelZero\Framework\Commands\Command;
 
 class PrepareCommand extends Command
@@ -24,10 +25,16 @@ class PrepareCommand extends Command
         $createTest = $this->option('test');
         $force = $this->option('force');
 
-        $puzzle = Input::validate(
-            intval($this->option('year')),
-            intval($this->argument('day')),
-        );
+        try {
+            $puzzle = Input::validate(
+                intval($this->option('year')),
+                intval($this->argument('day')),
+            );
+        } catch (ValidationException $e) {
+            $this->components->error($e->getMessage());
+
+            return Command::FAILURE;
+        }
 
         try {
             $this->prepareInput($client, $puzzle, $force);
@@ -51,7 +58,6 @@ class PrepareCommand extends Command
      */
     private function prepareInput(AdventOfCodeClient $client, PuzzleIdentifier $puzzle, bool $force): void
     {
-        $inputPath = storage_path('input');
         $inputFile = $puzzle->inputPath();
 
         if (File::exists($inputFile) && ! $force) {
@@ -64,49 +70,41 @@ class PrepareCommand extends Command
 
         $inputData = $client->fetchInput($puzzle);
 
-        File::ensureDirectoryExists($inputPath);
+        File::ensureDirectoryExists(dirname($inputFile));
         File::put($inputFile, $inputData);
     }
 
     private function prepareSolution(PuzzleIdentifier $puzzle, bool $force): void
     {
-        $solutionFile = $puzzle->solutionPath();
-        $solutionPath = dirname($solutionFile);
-
-        if (File::exists($solutionFile) && ! $force) {
+        if (File::exists($puzzle->solutionPath()) && ! $force) {
             $this->info(' ! Solution already exists.');
 
             return;
         }
 
         $this->info('<> Preparing solution...');
-
-        $solutionStub = str(File::get(base_path('stubs/Solution.stub')))
-            ->replace('{{ day }}', sprintf('%02d', $puzzle->day))
-            ->replace('{{ year }}', (string) $puzzle->year);
-
-        File::ensureDirectoryExists($solutionPath);
-        File::put($solutionFile, $solutionStub);
+        $this->writeStub('Solution.stub', $puzzle->solutionPath(), $puzzle);
     }
 
     private function prepareTest(PuzzleIdentifier $puzzle, bool $force): void
     {
-        $testFile = $puzzle->testPath();
-        $testPath = dirname($testFile);
-
-        if (File::exists($testFile) && ! $force) {
+        if (File::exists($puzzle->testPath()) && ! $force) {
             $this->info(' ! Tests already exist.');
 
             return;
         }
 
         $this->info('<> Preparing tests...');
+        $this->writeStub('Test.stub', $puzzle->testPath(), $puzzle);
+    }
 
-        $testStub = str(File::get(base_path('stubs/Test.stub')))
+    private function writeStub(string $stub, string $destination, PuzzleIdentifier $puzzle): void
+    {
+        $contents = str(File::get(base_path("stubs/{$stub}")))
             ->replace('{{ day }}', sprintf('%02d', $puzzle->day))
             ->replace('{{ year }}', (string) $puzzle->year);
 
-        File::ensureDirectoryExists($testPath);
-        File::put($testFile, $testStub);
+        File::ensureDirectoryExists(dirname($destination));
+        File::put($destination, $contents);
     }
 }
